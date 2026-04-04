@@ -1,0 +1,32 @@
+---
+title: renderToBuffer
+description: Render a sound offline to an AudioBuffer.
+---
+
+Renders a sound definition using an `OfflineAudioContext`. Useful for pre-rendering sounds, generating previews, or exporting audio.
+
+```ts
+import { renderToBuffer } from "audio-kit";
+
+const buffer = await renderToBuffer(definition, {
+  duration: 1,
+  sampleRate: 44100,
+});
+```
+
+## Signature
+
+```ts
+function renderToBuffer(
+  definition: SoundDefinition,
+  options: OfflineRenderOptions
+): Promise<AudioBuffer>;
+```
+
+## OfflineRenderOptions
+
+| Property            | Type     | Default | Description              |
+| ------------------- | -------- | ------- | ------------------------ |
+| `duration`          | `number` | -       | Duration in seconds      |
+| `sampleRate`        | `number` | `44100` | Output sample rate       |
+| `numberOfChannels`  | `number` | `2`     | Number of audio channels |

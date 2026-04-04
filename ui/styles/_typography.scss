@@ -1,0 +1,24 @@
+@use "sass:math";
+
+$_a: -0.0223;
+$_b: 0.185;
+$_c: -0.1745;
+
+@function dynamic-metrics($size) {
+  @return ($_a + $_b * math.pow(math.$e, $_c * $size)) * $size * 1px;
+}
+
+@mixin typography($size, $weight: null, $leading: 1.5, $tracking: null) {
+  font-size: #{$size}px;
+  line-height: $leading;
+
+  @if $tracking {
+    letter-spacing: #{$tracking}px;
+  } @else {
+    letter-spacing: dynamic-metrics($size);
+  }
+
+  @if $weight {
+    font-variation-settings: "wght" $weight;
+  }
+}

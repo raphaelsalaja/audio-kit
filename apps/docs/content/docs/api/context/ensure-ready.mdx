@@ -1,0 +1,23 @@
+---
+title: ensureReady
+description: Resume the AudioContext after a user gesture.
+---
+
+Browsers suspend the `AudioContext` until a user gesture. `ensureReady` resumes it. Safe to call multiple times - resolves immediately if already running.
+
+```ts
+import { ensureReady } from "audio-kit";
+
+button.addEventListener("click", async () => {
+  await ensureReady();
+  play();
+});
+```
+
+## Signature
+
+```ts
+function ensureReady(): Promise<void>;
+```
+
+Call this early - ideally on the first user interaction. It's a no-op if the context is already in the `"running"` state.

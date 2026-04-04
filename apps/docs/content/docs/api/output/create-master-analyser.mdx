@@ -1,0 +1,42 @@
+---
+title: createMasterAnalyser
+description: Real-time FFT and waveform analysis on the master output.
+---
+
+Creates an analyser node connected to the master output. Use it to build visualizers, spectrum displays, or level meters.
+
+```ts
+import { createMasterAnalyser } from "audio-kit";
+
+const analyser = createMasterAnalyser({ fftSize: 2048 });
+
+function draw() {
+  const freq = analyser.getFrequencyData();
+  const wave = analyser.getTimeDomainData();
+  requestAnimationFrame(draw);
+}
+draw();
+```
+
+## Signature
+
+```ts
+function createMasterAnalyser(options?: AnalyserOptions): AudioAnalyser;
+```
+
+## AnalyserOptions
+
+| Property                | Type     | Default | Description                    |
+| ----------------------- | -------- | ------- | ------------------------------ |
+| `fftSize`               | `number` | `2048`  | FFT window size (power of 2)   |
+| `smoothingTimeConstant` | `number` | `0.8`   | Smoothing between frames (0–1) |
+| `minDecibels`           | `number` | `-100`  | Minimum dB range               |
+| `maxDecibels`           | `number` | `-30`   | Maximum dB range               |
+
+## AudioAnalyser
+
+| Method                | Returns      | Description              |
+| --------------------- | ------------ | ------------------------ |
+| `getFrequencyData()`  | `Uint8Array` | Frequency bin magnitudes |
+| `getTimeDomainData()` | `Uint8Array` | Waveform sample values   |
+| `dispose()`           | `void`       | Disconnect and clean up  |

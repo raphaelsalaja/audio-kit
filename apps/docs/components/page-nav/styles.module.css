@@ -1,0 +1,44 @@
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 48px 0 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  color: var(--gray-10);
+  text-decoration: none;
+  border: 1px solid var(--gray-a4);
+  border-radius: 12px;
+  transition: border-color 0.15s;
+}
+
+.card:hover {
+  border-color: var(--gray-a6);
+}
+
+.next {
+  text-align: right;
+}
+
+.direction {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--gray-9);
+  @typography 13;
+}
+
+.next .direction {
+  justify-content: flex-end;
+}
+
+.title {
+  font-variation-settings: "wght" 600;
+  color: var(--gray-12);
+  @typography 14;
+}

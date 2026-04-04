@@ -1,0 +1,36 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack",
+    "lint": "biome check --fix --unsafe .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@audio-kit/icons": "workspace:*",
+    "@audio-kit/ui": "workspace:*",
+    "@base-ui/react": "^1.2.0",
+    "@shikijs/transformers": "^4.0.1",
+    "audio-kit": "workspace:^",
+    "calligraph": "^1.4.1",
+    "fumadocs-core": "latest",
+    "fumadocs-mdx": "latest",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "motion": "^12.0.0",
+    "next": "16.1.6",
+    "next-themes": "^0.4.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "shiki": "^4.0.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.0",
+    "@types/node": "^25.2.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "^5.9.3"
+  }
+}

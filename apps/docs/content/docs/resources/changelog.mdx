@@ -1,0 +1,45 @@
+---
+title: Changelog
+description: What's new in audio-kit.
+---
+
+## 0.1.0
+
+**Engine overhaul and CLI.**
+
+- Voice handles with `stop(releaseTime?)` for proper ADSR note-off
+- Lookahead scheduler replaces `setTimeout`-based sequencing
+- Feedback-filtered delay, enhanced reverb with pre-delay and damping
+- Bitcrusher with sample-rate reduction
+- Effect nodes expose `dispose()` for cleanup
+- `AudioContext` options (`latencyHint`, `sampleRate`)
+- JSON Schema for patches with `$schema` support
+- CLI tool: `npx audio-kit add | list | remove | init`
+- React bindings refactored with `useSyncExternalStore` and stable refs
+- 18 patches improved with richer effects and multi-layer techniques
+
+## 0.0.6
+
+**Schema and stability.**
+
+- Added JSON Schema for patch validation
+- Improved effect parameter validation
+- Fixed sample loading race condition
+- Fixed orphaned LFO oscillators in effects
+- Node cleanup via `AudioScheduledSourceNode.onended`
+
+## 0.0.5
+
+**Initial release.**
+
+- Core synthesis engine: oscillators, noise, wavetable, and sample playback
+- ADSR envelopes with attack, decay, sustain, release
+- Biquad and IIR filters with filter envelopes
+- 14 built-in effects: reverb, delay, chorus, phaser, flanger, tremolo, vibrato, bitcrusher, compressor, EQ, distortion, gain, pan, stereo widener
+- LFO modulation targeting any parameter
+- Multi-layer sounds with independent envelopes
+- 3D spatial audio with HRTF panning
+- Patches with `definePack` and `loadPack`
+- React bindings: `SoundProvider`, `useSound`, `usePack`, `useSequence`, `useAnalyser`, `useListener`
+- Offline rendering with `renderToBuffer`, `renderToWav`, `bufferToWav`
+- Sequence scheduling with `defineSequence`

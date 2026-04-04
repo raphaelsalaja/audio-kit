@@ -1,0 +1,93 @@
+---
+title: Envelopes
+description: Control how sounds fade in and out.
+---
+
+The amplitude envelope shapes the volume of a layer over time. audio-kit uses a proper ADSR model: attack ramps linearly, decay curves exponentially toward the sustain level, and release fades to silence when you stop the voice.
+
+## Basic usage
+
+```ts
+{
+  envelope: {
+    attack: 0.01,
+    decay: 0.5,
+    sustain: 0.3,
+    release: 0.2,
+  },
+}
+```
+
+Only `decay` is required. Omit the rest for a simple pluck shape.
+
+## Parameters
+
+| Property  | Type     | Default | Description                          |
+| --------- | -------- | ------- | ------------------------------------ |
+| `attack`  | `number` | `0`     | Time to reach full volume (s)        |
+| `decay`   | `number` | -       | Time to reach sustain level (s)      |
+| `sustain` | `number` | `0`     | Sustain level (0-1)                  |
+| `release` | `number` | `0`     | Fade time after note-off (s)         |
+
+## Triggering release
+
+The release phase starts when you call `stop()` on a voice handle:
+
+```ts
+const play = defineSound({
+  source: { type: "sawtooth", frequency: 110 },
+  envelope: { attack: 0.1, decay: 0.5, sustain: 0.6, release: 0.8 },
+  gain: 0.2,
+});
+
+const voice = play();
+
+// later...
+voice.stop();     // uses the 0.8s release from the envelope
+voice.stop(0.2);  // override: fade out over 200ms instead
+```
+
+## Common shapes
+
+<DemoGrid>
+  <Demo
+    label="Pluck"
+    definition={{ source: { type: "sine", frequency: 440 }, envelope: { attack: 0, decay: 0.05, sustain: 0 }, gain: 0.3 }}
+    controls={[
+      { param: "envelope.decay", label: "Decay", min: 0.01, max: 0.5, step: 0.01 },
+      { param: "gain", label: "Gain", min: 0, max: 1, step: 0.01 },
+    ]}
+  />
+  <Demo
+    label="Pad"
+    definition={{ source: { type: "sine", frequency: 440 }, envelope: { attack: 0.3, decay: 2, sustain: 0.7, release: 1 }, gain: 0.2 }}
+    controls={[
+      { param: "envelope.attack", label: "Attack", min: 0.01, max: 2, step: 0.01 },
+      { param: "envelope.decay", label: "Decay", min: 0.1, max: 5, step: 0.1 },
+      { param: "envelope.sustain", label: "Sustain", min: 0, max: 1, step: 0.01 },
+    ]}
+  />
+  <Demo
+    label="Percussive"
+    definition={{ source: { type: "sine", frequency: 440 }, envelope: { attack: 0.001, decay: 0.3, sustain: 0 }, gain: 0.3 }}
+    controls={[
+      { param: "envelope.attack", label: "Attack", min: 0.001, max: 0.05, step: 0.001 },
+      { param: "envelope.decay", label: "Decay", min: 0.05, max: 1, step: 0.01 },
+    ]}
+  />
+</DemoGrid>
+
+**Pluck** - fast attack, short decay, no sustain:
+```ts
+{ envelope: { decay: 0.05 } }
+```
+
+**Pad** - slow attack, long decay, high sustain:
+```ts
+{ envelope: { attack: 0.3, decay: 2, sustain: 0.7, release: 1 } }
+```
+
+**Percussive** - instant attack, medium decay:
+```ts
+{ envelope: { attack: 0.001, decay: 0.3 } }
+```

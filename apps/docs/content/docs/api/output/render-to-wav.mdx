@@ -1,0 +1,24 @@
+---
+title: renderToWav
+description: Render a sound and encode as a WAV file.
+---
+
+Renders a sound definition offline and encodes the result as a WAV blob. Combines `renderToBuffer` and `bufferToWav` in one call.
+
+```ts
+import { renderToWav } from "audio-kit";
+
+const blob = await renderToWav(definition, { duration: 1 });
+const url = URL.createObjectURL(blob);
+```
+
+## Signature
+
+```ts
+function renderToWav(
+  definition: SoundDefinition,
+  options: OfflineRenderOptions
+): Promise<Blob>;
+```
+
+Uses the same `OfflineRenderOptions` as `renderToBuffer`.

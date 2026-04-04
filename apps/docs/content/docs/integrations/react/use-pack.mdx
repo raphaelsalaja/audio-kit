@@ -1,0 +1,48 @@
+---
+title: usePack
+description: Load and play sounds from a patch.
+---
+
+`usePack` loads a patch and returns a reactive patch instance. When the URL or data changes, it automatically reloads.
+
+## From a URL
+
+```tsx
+import { usePack } from "audio-kit/react";
+
+function Toolbar() {
+  const pack = usePack("/packs/ui.json");
+
+  return (
+    <div>
+      <button onClick={() => pack?.play("click")}>Click</button>
+      <button onClick={() => pack?.play("success")}>Success</button>
+    </div>
+  );
+}
+```
+
+## Inline data
+
+```tsx
+const pack = usePack({
+  name: "inline",
+  sounds: {
+    beep: {
+      source: { type: "sine", frequency: 880 },
+      envelope: { decay: 0.1 },
+      gain: 0.3,
+    },
+  },
+});
+```
+
+## Signature
+
+```ts
+function usePack(
+  source: string | SoundPack
+): AudioPack | undefined;
+```
+
+Returns `undefined` while loading. The patch instance is stable across re-renders - only the internal sounds update when the source changes.

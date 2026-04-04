@@ -1,0 +1,38 @@
+---
+title: definePack
+description: Create a patch instance from an inline object.
+---
+
+```ts
+import { definePack } from "audio-kit";
+
+const pack = definePack({
+  name: "my-pack",
+  sounds: {
+    beep: {
+      source: { type: "sine", frequency: 880 },
+      envelope: { decay: 0.1 },
+      gain: 0.3,
+    },
+  },
+});
+
+pack.play("beep");
+```
+
+**Parameters:**
+- `data: SoundPack` - inline patch object
+
+**Returns:** `AudioPack`
+
+## SoundPack schema
+
+Patch JSON files support a `$schema` property for IDE validation:
+
+```json
+{
+  "$schema": "https://unpkg.com/audio-kit/schemas/pack.schema.json",
+  "name": "my-pack",
+  "sounds": { ... }
+}
+```

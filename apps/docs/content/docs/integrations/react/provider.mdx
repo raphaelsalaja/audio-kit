@@ -1,0 +1,46 @@
+---
+title: SoundProvider
+description: Context provider for managing audio state in React.
+---
+
+`SoundProvider` wraps your app (or a subtree) and gives child components access to shared audio state - whether sound is enabled and the current volume. It's a controlled component: you own the state, it owns the audio.
+
+## Setup
+
+```tsx
+import { SoundProvider } from "audio-kit/react";
+
+function App() {
+  const [enabled, setEnabled] = useState(true);
+  const [volume, setVolume] = useState(0.8);
+
+  return (
+    <SoundProvider
+      enabled={enabled}
+      volume={volume}
+      onEnabledChange={setEnabled}
+      onVolumeChange={setVolume}
+    >
+      {children}
+    </SoundProvider>
+  );
+}
+```
+
+## Props
+
+| Prop              | Type                      | Description                    |
+| ----------------- | ------------------------- | ------------------------------ |
+| `enabled`         | `boolean`                 | Whether sounds are active      |
+| `volume`          | `number`                  | Master volume (0–1)            |
+| `onEnabledChange` | `(enabled: boolean) => void` | Called when enabled changes  |
+| `onVolumeChange`  | `(volume: number) => void`   | Called when volume changes   |
+| `children`        | `ReactNode`               | Your app                       |
+
+## Why controlled?
+
+You likely already store sound preferences in your app state (settings, localStorage, user profile). A controlled component avoids dual sources of truth - you decide where the state lives, `SoundProvider` syncs the audio engine.
+
+## Respects reduced motion
+
+When the user's OS has `prefers-reduced-motion: reduce` enabled, `SoundProvider` automatically disables sound. You can override this by explicitly setting `enabled={true}`.

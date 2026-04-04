@@ -1,0 +1,36 @@
+---
+title: setListener
+description: Position the 3D audio listener.
+---
+
+Sets the position and orientation of the global audio listener. Use with `panner` on layers to place sounds in 3D space.
+
+```ts
+import { setListener } from "audio-kit";
+
+setListener({
+  positionX: 0,
+  positionY: 1.6,
+  positionZ: 0,
+});
+```
+
+## Signature
+
+```ts
+function setListener(listener: Listener): void;
+```
+
+## Listener
+
+| Property     | Type     | Default | Description         |
+| ------------ | -------- | ------- | ------------------- |
+| `positionX`  | `number` | -       | X position          |
+| `positionY`  | `number` | -       | Y position          |
+| `positionZ`  | `number` | -       | Z position          |
+| `forwardX`   | `number` | `0`     | Forward direction X |
+| `forwardY`   | `number` | `0`     | Forward direction Y |
+| `forwardZ`   | `number` | `-1`    | Forward direction Z |
+| `upX`        | `number` | `0`     | Up direction X      |
+| `upY`        | `number` | `1`     | Up direction Y      |
+| `upZ`        | `number` | `0`     | Up direction Z      |

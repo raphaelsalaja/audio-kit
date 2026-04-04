@@ -1,0 +1,42 @@
+---
+title: useSequence
+description: Play timed sound sequences.
+---
+
+`useSequence` creates a sequence player from an array of steps. Use it for notification chords, game events, or any sound that plays over time.
+
+## Usage
+
+```tsx
+import { useSequence } from "audio-kit/react";
+
+function NotificationSound() {
+  const sequence = useSequence([
+    {
+      sound: { source: { type: "sine", frequency: 523 }, envelope: { decay: 0.15 }, gain: 0.3 },
+      at: 0,
+    },
+    {
+      sound: { source: { type: "sine", frequency: 659 }, envelope: { decay: 0.15 }, gain: 0.3 },
+      at: 0.1,
+    },
+    {
+      sound: { source: { type: "sine", frequency: 784 }, envelope: { decay: 0.2 }, gain: 0.3 },
+      at: 0.2,
+    },
+  ]);
+
+  return <button onClick={() => sequence?.play()}>Notify</button>;
+}
+```
+
+## Signature
+
+```ts
+function useSequence(
+  steps: SequenceStep[],
+  options?: SequenceOptions
+): { play: () => void; stop: () => void } | undefined;
+```
+
+Returns `undefined` when sound is disabled. The `play` and `stop` functions are stable references.

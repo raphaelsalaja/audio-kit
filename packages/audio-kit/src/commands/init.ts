@@ -1,0 +1,72 @@
+import { existsSync } from "node:fs";
+import { writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import * as p from "@clack/prompts";
+
+export async function init(_args: string[]) {
+  p.intro("audio-kit init");
+
+  const name = await p.text({
+    message: "Pack name",
+    placeholder: "my-pack",
+    validate: (v) => (v.length === 0 ? "Name is required" : undefined),
+  });
+
+  if (p.isCancel(name)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const author = await p.text({
+    message: "Author",
+    placeholder: "Your name",
+  });
+
+  if (p.isCancel(author)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const description = await p.text({
+    message: "Description",
+    placeholder: "What does this pack sound like?",
+  });
+
+  if (p.isCancel(description)) {
+    p.cancel("Cancelled.");
+    process.exit(0);
+  }
+
+  const slug = (name as string)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  const filename = `${slug}.json`;
+  const target = resolve(process.cwd(), filename);
+
+  if (existsSync(target)) {
+    const overwrite = await p.confirm({
+      message: `${filename} already exists. Overwrite?`,
+    });
+    if (p.isCancel(overwrite) || !overwrite) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
+  }
+
+  const pack = {
+    $schema: "node_modules/audio-kit/schemas/pack.schema.json",
+    name: name as string,
+    author: (author as string) || undefined,
+    version: "1.0.0",
+    description: (description as string) || undefined,
+    tags: [],
+    sounds: {},
+  };
+
+  await writeFile(target, `${JSON.stringify(pack, null, 2)}\n`, "utf-8");
+
+  p.log.success(`Created ${filename}`);
+  p.outro("Add sounds to the `sounds` object to get started.");
+}

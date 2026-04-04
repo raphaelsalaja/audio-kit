@@ -1,0 +1,20 @@
+---
+title: bufferToWav
+description: Convert an AudioBuffer to a WAV blob.
+---
+
+Encodes an existing `AudioBuffer` as a WAV blob. Useful when you already have a buffer from another source and need to export it.
+
+```ts
+import { bufferToWav } from "audio-kit";
+
+const blob = bufferToWav(buffer);
+```
+
+## Signature
+
+```ts
+function bufferToWav(buffer: AudioBuffer): Blob;
+```
+
+The output is a standard 16-bit PCM WAV file.

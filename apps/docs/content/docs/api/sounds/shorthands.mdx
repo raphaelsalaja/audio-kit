@@ -1,0 +1,26 @@
+---
+title: Shorthands
+description: One-liner sound constructors.
+---
+
+When you just need a quick tone, use the shorthand constructors. Each wraps `defineSound` and returns a play function.
+
+```ts
+import { sine, triangle, square, sawtooth, noise } from "audio-kit";
+
+sine(440, 0.1)();
+triangle(880, 0.2)();
+noise("pink", 0.05)();
+```
+
+## Available shorthands
+
+| Function    | Signature                            | Description              |
+| ----------- | ------------------------------------ | ------------------------ |
+| `sine`      | `sine(frequency, decay, gain?)`      | Sine wave                |
+| `triangle`  | `triangle(frequency, decay, gain?)`  | Triangle wave            |
+| `square`    | `square(frequency, decay, gain?)`    | Square wave              |
+| `sawtooth`  | `sawtooth(frequency, decay, gain?)`  | Sawtooth wave            |
+| `noise`     | `noise(color?, decay?, gain?)`       | White, pink, or brown    |
+
+All return `(opts?: PlayOptions) => VoiceHandle`.

@@ -1,0 +1,499 @@
+{
+  "$schema": "../packages/audio-kit/schemas/pack.schema.json",
+  "name": "UI Essentials",
+  "author": "audio-kit",
+  "version": "1.0.0",
+  "description": "Essential UI interaction sounds — clicks, toggles, pops, notifications, transitions, and more",
+  "tags": ["ui", "interactions", "feedback", "transitions", "notifications"],
+  "sounds": {
+    "click": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2000, "resonance": 2 },
+      "envelope": { "attack": 0.001, "decay": 0.05, "sustain": 0, "release": 0.01 },
+      "gain": 0.3
+    },
+    "tap": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 1200, "resonance": 1 },
+      "envelope": { "attack": 0.001, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.2
+    },
+    "key-press": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 3500, "resonance": 8 },
+      "envelope": { "attack": 0.001, "decay": 0.025, "sustain": 0, "release": 0.01 },
+      "gain": 0.25
+    },
+    "checkbox": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 4000, "resonance": 6 },
+      "envelope": { "attack": 0.001, "decay": 0.03, "sustain": 0, "release": 0.01 },
+      "gain": 0.25
+    },
+    "radio": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2500, "resonance": 2 },
+      "envelope": { "attack": 0.001, "decay": 0.04, "sustain": 0, "release": 0.02 },
+      "gain": 0.2
+    },
+    "tick": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 5000, "resonance": 3 },
+      "envelope": { "attack": 0.001, "decay": 0.02, "sustain": 0, "release": 0.01 },
+      "gain": 0.15
+    },
+    "scroll-snap": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 5000, "resonance": 3 },
+      "envelope": { "attack": 0.001, "decay": 0.02, "sustain": 0, "release": 0.01 },
+      "gain": 0.08
+    },
+    "focus": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 3000, "resonance": 2 },
+      "envelope": { "attack": 0.001, "decay": 0.03, "sustain": 0, "release": 0.01 },
+      "gain": 0.08
+    },
+    "blur": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2000, "resonance": 1 },
+      "envelope": { "attack": 0.001, "decay": 0.04, "sustain": 0, "release": 0.01 },
+      "gain": 0.06
+    },
+    "toggle-on": {
+      "source": { "type": "sine", "frequency": { "start": 500, "end": 700 } },
+      "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.04 },
+      "gain": 0.25
+    },
+    "toggle-off": {
+      "source": { "type": "sine", "frequency": { "start": 700, "end": 500 } },
+      "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.04 },
+      "gain": 0.25
+    },
+    "hover": {
+      "source": { "type": "sine", "frequency": 2400 },
+      "envelope": { "attack": 0.01, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.08
+    },
+    "select": {
+      "source": { "type": "sine", "frequency": { "start": 500, "end": 700 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.03 },
+      "gain": 0.2
+    },
+    "deselect": {
+      "source": { "type": "sine", "frequency": { "start": 700, "end": 500 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.03 },
+      "gain": 0.15
+    },
+    "pop": {
+      "source": { "type": "sine", "frequency": { "start": 1200, "end": 300 } },
+      "envelope": { "attack": 0.001, "decay": 0.06, "sustain": 0, "release": 0.03 },
+      "gain": 0.3
+    },
+    "boop": {
+      "source": { "type": "sine", "frequency": { "start": 2000, "end": 400 } },
+      "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
+      "gain": 0.25
+    },
+    "bounce": {
+      "source": { "type": "sine", "frequency": { "start": 600, "end": 100 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.04 },
+      "gain": 0.3
+    },
+    "spring": {
+      "source": { "type": "sine", "frequency": { "start": 600, "end": 1200 } },
+      "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.2
+    },
+    "expand": {
+      "source": { "type": "sine", "frequency": { "start": 300, "end": 800 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.04 },
+      "gain": 0.15
+    },
+    "collapse": {
+      "source": { "type": "sine", "frequency": { "start": 1200, "end": 400 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.04 },
+      "gain": 0.15
+    },
+    "success": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 523 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "gain": 0.25
+        },
+        {
+          "source": { "type": "sine", "frequency": 654 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "delay": 0.08,
+          "gain": 0.25
+        }
+      ]
+    },
+    "complete": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 523 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "sine", "frequency": 654 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "delay": 0.08,
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "sine", "frequency": 784 },
+          "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.1 },
+          "delay": 0.16,
+          "gain": 0.2
+        }
+      ]
+    },
+    "level-up": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 440 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "sine", "frequency": 554 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "delay": 0.08,
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "sine", "frequency": 660 },
+          "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.1 },
+          "delay": 0.16,
+          "gain": 0.2
+        }
+      ]
+    },
+    "confetti": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 523 },
+          "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.06 },
+          "gain": 0.18
+        },
+        {
+          "source": { "type": "sine", "frequency": 659 },
+          "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.06 },
+          "delay": 0.06,
+          "gain": 0.18
+        },
+        {
+          "source": { "type": "sine", "frequency": 784 },
+          "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.06 },
+          "delay": 0.12,
+          "gain": 0.15
+        },
+        {
+          "source": { "type": "sine", "frequency": 1047 },
+          "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.08 },
+          "delay": 0.18,
+          "gain": 0.12
+        }
+      ]
+    },
+    "save": {
+      "source": { "type": "sine", "frequency": 654 },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.06 },
+      "gain": 0.2
+    },
+    "ding": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 1.4, "depth": 1500 } },
+      "envelope": { "attack": 0.001, "decay": 0.4, "sustain": 0, "release": 0.2 },
+      "gain": 0.25
+    },
+    "notification": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 1.4, "depth": 1500 } },
+          "envelope": { "attack": 0.001, "decay": 0.3, "sustain": 0, "release": 0.15 },
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "sine", "frequency": 1320, "fm": { "ratio": 1.4, "depth": 1200 } },
+          "envelope": { "attack": 0.001, "decay": 0.3, "sustain": 0, "release": 0.15 },
+          "delay": 0.12,
+          "gain": 0.18
+        }
+      ]
+    },
+    "mention": {
+      "source": { "type": "sine", "frequency": 660, "fm": { "ratio": 1.2, "depth": 500 } },
+      "envelope": { "attack": 0.001, "decay": 0.6, "sustain": 0, "release": 0.3 },
+      "gain": 0.18
+    },
+    "badge": {
+      "source": { "type": "sine", "frequency": 1100, "fm": { "ratio": 2.0, "depth": 2000 } },
+      "envelope": { "attack": 0.001, "decay": 0.2, "sustain": 0, "release": 0.1 },
+      "gain": 0.2
+    },
+    "info": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 2, "depth": 200 } },
+      "envelope": { "attack": 0.001, "decay": 0.25, "sustain": 0, "release": 0.1 },
+      "gain": 0.18
+    },
+    "sparkle": {
+      "source": { "type": "sine", "frequency": 1047, "detune": 7, "fm": { "ratio": 1.5, "depth": 800 } },
+      "envelope": { "attack": 0.001, "decay": 0.3, "sustain": 0, "release": 0.15 },
+      "gain": 0.15
+    },
+    "star": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 1.4, "depth": 1000 } },
+      "envelope": { "attack": 0.001, "decay": 0.3, "sustain": 0, "release": 0.15 },
+      "gain": 0.18
+    },
+    "error": {
+      "source": { "type": "sawtooth", "frequency": { "start": 400, "end": 200 } },
+      "filter": { "type": "lowpass", "frequency": 1500 },
+      "envelope": { "attack": 0.001, "decay": 0.25, "sustain": 0, "release": 0.08 },
+      "gain": 0.25
+    },
+    "delete": {
+      "layers": [
+        {
+          "source": { "type": "sawtooth", "frequency": { "start": 300, "end": 150 } },
+          "filter": { "type": "lowpass", "frequency": 800 },
+          "envelope": { "attack": 0.001, "decay": 0.2, "sustain": 0, "release": 0.06 },
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "noise", "color": "white" },
+          "filter": { "type": "highpass", "frequency": 2000 },
+          "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.02 },
+          "gain": 0.1
+        }
+      ]
+    },
+    "warning": {
+      "layers": [
+        {
+          "source": { "type": "triangle", "frequency": 600 },
+          "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
+          "gain": 0.25
+        },
+        {
+          "source": { "type": "triangle", "frequency": 600 },
+          "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
+          "delay": 0.16,
+          "gain": 0.25
+        }
+      ]
+    },
+    "swoosh": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 3000, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.1, "sustain": 0, "release": 0.04 },
+      "gain": 0.15
+    },
+    "whoosh": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2000, "resonance": 1 },
+      "envelope": { "attack": 0.02, "decay": 0.2, "sustain": 0, "release": 0.06 },
+      "gain": 0.2
+    },
+    "page-enter": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2000, "resonance": 1 },
+      "envelope": { "attack": 0.02, "decay": 0.2, "sustain": 0, "release": 0.06 },
+      "gain": 0.12
+    },
+    "page-exit": {
+      "source": { "type": "noise", "color": "pink" },
+      "filter": { "type": "bandpass", "frequency": 2000, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.2, "sustain": 0, "release": 0.06 },
+      "gain": 0.1
+    },
+    "tab-switch": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 3000, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.08, "sustain": 0, "release": 0.03 },
+      "gain": 0.1
+    },
+    "drawer-open": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 1000, "resonance": 1 },
+      "envelope": { "attack": 0.02, "decay": 0.2, "sustain": 0, "release": 0.06 },
+      "gain": 0.1
+    },
+    "drawer-close": {
+      "source": { "type": "noise", "color": "pink" },
+      "filter": { "type": "bandpass", "frequency": 1000, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.2, "sustain": 0, "release": 0.06 },
+      "gain": 0.1
+    },
+    "modal-open": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 1500, "resonance": 1 },
+      "envelope": { "attack": 0.02, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.12
+    },
+    "modal-close": {
+      "source": { "type": "noise", "color": "pink" },
+      "filter": { "type": "bandpass", "frequency": 1500, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.1
+    },
+    "dropdown-open": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2500, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.1, "sustain": 0, "release": 0.03 },
+      "gain": 0.1
+    },
+    "dropdown-close": {
+      "source": { "type": "noise", "color": "pink" },
+      "filter": { "type": "bandpass", "frequency": 2500, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.1, "sustain": 0, "release": 0.03 },
+      "gain": 0.08
+    },
+    "slide": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2000, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.1
+    },
+    "slide-up": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 2500, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.1
+    },
+    "slide-down": {
+      "source": { "type": "noise", "color": "pink" },
+      "filter": { "type": "bandpass", "frequency": 1500, "resonance": 1 },
+      "envelope": { "attack": 0.01, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.1
+    },
+    "copy": {
+      "layers": [
+        {
+          "source": { "type": "noise", "color": "white" },
+          "filter": { "type": "bandpass", "frequency": 4000, "resonance": 3 },
+          "envelope": { "attack": 0.001, "decay": 0.04, "sustain": 0, "release": 0.01 },
+          "gain": 0.15
+        },
+        {
+          "source": { "type": "sine", "frequency": 1200 },
+          "envelope": { "attack": 0.001, "decay": 0.05, "sustain": 0, "release": 0.02 },
+          "gain": 0.15
+        }
+      ]
+    },
+    "send": {
+      "layers": [
+        {
+          "source": { "type": "noise", "color": "white" },
+          "filter": { "type": "bandpass", "frequency": 3000, "resonance": 2 },
+          "envelope": { "attack": 0.001, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "gain": 0.1
+        },
+        {
+          "source": { "type": "sine", "frequency": { "start": 800, "end": 1200 } },
+          "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.04 },
+          "gain": 0.15
+        }
+      ]
+    },
+    "receive": {
+      "layers": [
+        {
+          "source": { "type": "noise", "color": "white" },
+          "filter": { "type": "bandpass", "frequency": 3000, "resonance": 2 },
+          "envelope": { "attack": 0.001, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "gain": 0.08
+        },
+        {
+          "source": { "type": "sine", "frequency": { "start": 1200, "end": 800 } },
+          "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.04 },
+          "gain": 0.12
+        }
+      ]
+    },
+    "command": {
+      "layers": [
+        {
+          "source": { "type": "noise", "color": "white" },
+          "filter": { "type": "bandpass", "frequency": 3000, "resonance": 2 },
+          "envelope": { "attack": 0.001, "decay": 0.04, "sustain": 0, "release": 0.01 },
+          "gain": 0.1
+        },
+        {
+          "source": { "type": "sine", "frequency": { "start": 800, "end": 1200 } },
+          "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
+          "gain": 0.15
+        }
+      ]
+    },
+    "escape": {
+      "layers": [
+        {
+          "source": { "type": "noise", "color": "white" },
+          "filter": { "type": "bandpass", "frequency": 2000, "resonance": 2 },
+          "envelope": { "attack": 0.001, "decay": 0.04, "sustain": 0, "release": 0.01 },
+          "gain": 0.08
+        },
+        {
+          "source": { "type": "sine", "frequency": { "start": 1200, "end": 800 } },
+          "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
+          "gain": 0.12
+        }
+      ]
+    },
+    "undo": {
+      "source": { "type": "sine", "frequency": { "start": 1200, "end": 600 } },
+      "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.04 },
+      "gain": 0.18
+    },
+    "archive": {
+      "source": { "type": "sine", "frequency": { "start": 1000, "end": 600 } },
+      "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.05 },
+      "gain": 0.15
+    },
+    "sync": {
+      "source": { "type": "sine", "frequency": { "start": 500, "end": 700 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.03 },
+      "gain": 0.12
+    },
+    "heart": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": { "start": 1200, "end": 400 } },
+          "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
+          "gain": 0.15
+        },
+        {
+          "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 1.5, "depth": 300 } },
+          "envelope": { "attack": 0.01, "decay": 0.2, "sustain": 0, "release": 0.1 },
+          "gain": 0.12
+        }
+      ]
+    },
+    "streak": {
+      "source": { "type": "sine", "frequency": { "start": 523, "end": 1047 }, "fm": { "ratio": 1.5, "depth": 300 } },
+      "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.06 },
+      "gain": 0.2
+    },
+    "loading-start": {
+      "source": { "type": "sine", "frequency": { "start": 400, "end": 800 } },
+      "envelope": { "attack": 0.01, "decay": 0.15, "sustain": 0, "release": 0.06 },
+      "gain": 0.1
+    },
+    "loading-end": {
+      "source": { "type": "sine", "frequency": { "start": 800, "end": 1200 } },
+      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.04 },
+      "gain": 0.12
+    },
+    "progress-tick": {
+      "source": { "type": "noise", "color": "white" },
+      "filter": { "type": "bandpass", "frequency": 4000, "resonance": 3 },
+      "envelope": { "attack": 0.001, "decay": 0.02, "sustain": 0, "release": 0.01 },
+      "gain": 0.1
+    }
+  }
+}

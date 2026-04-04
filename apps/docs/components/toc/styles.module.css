@@ -1,0 +1,46 @@
+.toc {
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  width: var(--toc-width);
+  height: 100dvh;
+  padding: var(--page-top) 0 24px;
+  overflow-y: auto;
+}
+
+.label {
+  padding-left: 8px;
+  margin-bottom: 8px;
+  color: var(--gray-9);
+  text-transform: uppercase;
+  @typography 11, 600, 1.5, 0.55;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.link {
+  display: block;
+  padding: 3px 8px;
+  color: var(--gray-9);
+  border-radius: var(--radius-sm);
+  transition: color 0.15s;
+  @typography 12, 0, 1.4;
+}
+
+.link:hover {
+  color: var(--gray-12);
+}
+
+.active {
+  color: var(--gray-12);
+}
+
+@media (width <= 768px) {
+  .toc {
+    display: none;
+  }
+}

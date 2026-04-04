@@ -1,0 +1,17 @@
+@import "@audio-kit/ui/styles/colors.css";
+@import "@audio-kit/ui/styles/reset.css";
+@import "@audio-kit/ui/styles/tokens.css";
+@import "@audio-kit/ui/styles/shadows.css";
+
+:root {
+  --sidebar-width: 200px;
+  --toc-width: 180px;
+  --body-width: 1024px;
+  --page-top: 64px;
+}
+
+html {
+  scrollbar-gutter: stable;
+  overscroll-behavior-y: none;
+  scrollbar-width: thin;
+}

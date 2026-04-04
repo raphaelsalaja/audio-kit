@@ -1,0 +1,154 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.demo {
+  margin-bottom: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gray-a4);
+  border-radius: 12px;
+}
+
+.grid .demo {
+  margin-bottom: 0;
+}
+
+/* Visualizer area */
+
+.visualizerArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  overflow: hidden;
+  background: var(--gray-a2);
+}
+
+.canvas {
+  --vis-color: var(--gray-a5);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+:global(.dark) .canvas {
+  --vis-color: var(--gray-a4);
+}
+
+.playOverlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: var(--gray-a3);
+  border: none;
+  border-radius: 50%;
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+
+.playButtonIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-10);
+  transition: color 0.15s;
+}
+
+.playOverlay:hover {
+  background: var(--gray-a4);
+  transform: scale(1.05);
+}
+
+.playOverlay:hover .playButtonIcon {
+  color: var(--gray-12);
+}
+
+.playOverlay[data-active] {
+  background: var(--gray-a5);
+  transform: scale(0.95);
+}
+
+.playOverlay[data-active] .playButtonIcon {
+  color: var(--gray-12);
+}
+
+/* Controls bar with knobs */
+
+.controlsBar {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid var(--gray-a4);
+}
+
+.knobs {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.knobContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  min-width: 56px;
+}
+
+.knob {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  cursor: ns-resize;
+  user-select: none;
+  border-radius: 50%;
+  transition: opacity 0.15s;
+}
+
+.knob:hover {
+  opacity: 0.8;
+}
+
+.knobLabel {
+  color: var(--gray-10);
+  text-align: center;
+  white-space: nowrap;
+  @typography 11, 500;
+}
+
+.knobValue {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--gray-9);
+  text-align: center;
+  @typography 10;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-top: 1px solid var(--gray-a4);
+  @typography 13, 500;
+}
+
+.label {
+  color: var(--gray-11);
+  white-space: nowrap;
+}

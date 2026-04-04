@@ -1,0 +1,17 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "---Introduction---",
+    "index",
+    "install",
+    "features",
+    "---Concepts---",
+    "...concepts",
+    "---Integrations---",
+    "...integrations",
+    "---API---",
+    "...api",
+    "---Resources---",
+    "...resources"
+  ]
+}

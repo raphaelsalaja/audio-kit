@@ -1,0 +1,29 @@
+---
+title: llms.txt
+description: Machine-readable project summary for AI assistants and language models.
+---
+
+audio-kit exposes a [`llms.txt`](/llms.txt) file at the root of the site. This follows the emerging convention for helping AI assistants understand a project quickly.
+
+## What it contains
+
+- Project name and description
+- Core API surface (functions, types, hooks)
+- Key concepts (sources, envelopes, filters, effects, patches)
+- Links to relevant documentation pages
+
+## Usage
+
+Point your AI tool at the URL:
+
+```
+https://audio-kit.dev/llms.txt
+```
+
+Or reference it in your project's AI configuration:
+
+```json
+{
+  "context": ["https://audio-kit.dev/llms.txt"]
+}
+```

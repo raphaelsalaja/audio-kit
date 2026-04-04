@@ -1,0 +1,74 @@
+{
+  "name": "audio-kit",
+  "version": "0.1.0",
+  "description": "A declarative synthesizer for the web",
+  "author": "Raphael Salaja",
+  "license": "MIT",
+  "homepage": "https://github.com/raphaelsalaja/audio-kit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelsalaja/audio-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raphaelsalaja/audio-kit/issues"
+  },
+  "keywords": [
+    "audio",
+    "sound",
+    "synthesizer",
+    "web-audio",
+    "declarative",
+    "ui-sounds"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "audio-kit": "./dist/bin.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "default": "./dist/react.js"
+    },
+    "./bin": "./dist/bin.js",
+    "./schemas/pack.schema.json": "./schemas/pack.schema.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "schemas"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bunchee",
+    "dev": "bunchee --watch",
+    "lint": "biome check --fix --unsafe .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bunchee"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "bunchee": "latest",
+    "react": "^19.0.0",
+    "typescript": "^5.9.3"
+  }
+}

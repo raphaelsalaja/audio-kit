@@ -1,0 +1,36 @@
+.root {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--gray-1);
+  cursor: pointer;
+  user-select: none;
+  background: var(--gray-12);
+  border-radius: var(--radius-sm);
+  transition:
+    background 120ms ease,
+    opacity 120ms ease;
+}
+
+.root:hover {
+  opacity: 0.88;
+}
+
+.root:active {
+  opacity: 0.76;
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--blue-8);
+  outline-offset: 2px;
+}
+
+.root[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}

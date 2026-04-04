@@ -1,0 +1,77 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 16px 0 8px;
+}
+
+.card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px;
+  color: inherit;
+  text-decoration: none;
+  background: var(--gray-a2);
+  border-radius: 16px;
+  transition: background 0.15s;
+}
+
+.card:hover {
+  background: var(--gray-a3);
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.icon :global(svg) {
+  width: 32px;
+  height: 32px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.title {
+  color: var(--gray-12);
+  text-decoration: none;
+  @typography 15, 600;
+}
+
+.tag {
+  padding: 2px 8px;
+  color: var(--gray-10);
+  background: var(--gray-a3);
+  border-radius: 6px;
+  @typography 11, 500;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  color: var(--gray-9);
+  text-decoration: none;
+  @typography 13;
+}
+
+.external {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--gray-8);
+}

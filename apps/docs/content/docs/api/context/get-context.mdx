@@ -1,0 +1,37 @@
+---
+title: getContext
+description: Access the shared AudioContext instance.
+---
+
+Returns the shared `AudioContext`, creating it on first call. All audio-kit functions route through this single context.
+
+```ts
+import { getContext } from "audio-kit";
+
+const ctx = getContext();
+```
+
+## Signature
+
+```ts
+function getContext(options?: ContextOptions): AudioContext;
+```
+
+## ContextOptions
+
+Configure the context on first creation. Options are ignored on subsequent calls.
+
+| Property      | Type     | Description                           |
+| ------------- | -------- | ------------------------------------- |
+| `latencyHint` | `string` | `"interactive"`, `"balanced"`, `"playback"` |
+| `sampleRate`  | `number` | Output sample rate                    |
+
+## dispose
+
+Close the shared context and release resources. A fresh context is created on the next `getContext()` call.
+
+```ts
+import { dispose } from "audio-kit";
+
+dispose();
+```

@@ -1,0 +1,48 @@
+---
+title: defineSound
+description: Create a reusable play function from a sound definition.
+---
+
+Takes a sound definition and returns a function that plays it. Call the function to trigger the sound - each call returns a `VoiceHandle` for stopping mid-flight.
+
+```ts
+import { defineSound } from "audio-kit";
+
+const play = defineSound({
+  source: { type: "sine", frequency: 440 },
+  envelope: { decay: 0.1 },
+  gain: 0.3,
+});
+
+const voice = play();
+voice.stop(0.1);
+```
+
+## Signature
+
+```ts
+function defineSound(definition: SoundDefinition): (opts?: PlayOptions) => VoiceHandle;
+```
+
+## PlayOptions
+
+Override volume, panning, or pitch at play time without changing the definition.
+
+| Property       | Type     | Description            |
+| -------------- | -------- | ---------------------- |
+| `volume`       | `number` | Gain multiplier        |
+| `pan`          | `number` | Stereo pan (-1 to 1)   |
+| `detune`       | `number` | Pitch offset (cents)   |
+| `playbackRate` | `number` | Speed multiplier       |
+| `velocity`     | `number` | Intensity (0–1)        |
+
+```ts
+play({ velocity: 0.5, pan: -0.3, detune: 100 });
+```
+
+## VoiceHandle
+
+| Method      | Description                                |
+| ----------- | ------------------------------------------ |
+| `stop()`    | Stop with a short default fade             |
+| `stop(0.5)` | Fade out over 500ms                       |

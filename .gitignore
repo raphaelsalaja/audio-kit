@@ -1,0 +1,36 @@
+# dependencies
+node_modules
+
+# build output
+dist
+.next
+.turbo
+*.tsbuildinfo
+
+# generated
+.source
+
+# environment
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# test coverage
+coverage/
+
+# logs
+*.log
+
+# packed tarballs
+*.tgz
+
+# os
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/*
+!.vscode/settings.json

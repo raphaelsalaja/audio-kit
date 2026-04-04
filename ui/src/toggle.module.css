@@ -1,0 +1,32 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--gray-11);
+  cursor: pointer;
+  user-select: none;
+  border-radius: var(--radius-sm);
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+
+.root:hover {
+  background: var(--gray-a3);
+}
+
+.root[data-pressed] {
+  color: var(--gray-12);
+  background: var(--gray-a4);
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--blue-8);
+  outline-offset: 2px;
+}
+
+.root[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}

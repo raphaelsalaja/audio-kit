@@ -1,0 +1,22 @@
+---
+title: setMasterVolume
+description: Set the global output volume.
+---
+
+Controls the master gain node. Affects all sounds routed through the master bus.
+
+```ts
+import { setMasterVolume } from "audio-kit";
+
+setMasterVolume(0.5);
+```
+
+## Signature
+
+```ts
+function setMasterVolume(volume: number): void;
+```
+
+| Parameter | Type     | Description                  |
+| --------- | -------- | ---------------------------- |
+| `volume`  | `number` | 0 = silent, 1 = full volume |

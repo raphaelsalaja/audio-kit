@@ -1,0 +1,64 @@
+---
+title: Spatial Audio
+description: Position sounds in 3D space.
+---
+
+audio-kit supports full 3D spatial audio using the Web Audio API's HRTF panning. Position sounds anywhere in 3D space and set up a listener to hear them from a specific vantage point.
+
+## Position a sound
+
+Add a `panner` to any layer:
+
+```ts
+defineSound({
+  source: { type: "sine", frequency: 200 },
+  envelope: { attack: 0.1, decay: 2, sustain: 0.2, release: 0.5 },
+  gain: 0.3,
+  panner: {
+    positionX: 5,
+    positionY: 0,
+    positionZ: -3,
+    panningModel: "HRTF",
+    distanceModel: "inverse",
+    refDistance: 1,
+    maxDistance: 100,
+  },
+});
+```
+
+## Set the listener
+
+Tell audio-kit where the listener is. In a game, this would track the camera or player position.
+
+```ts
+import { setListener } from "audio-kit";
+
+setListener({
+  positionX: 0,
+  positionY: 1.6,
+  positionZ: 0,
+});
+```
+
+## Panner properties
+
+| Property         | Type     | Default        | Description                |
+| ---------------- | -------- | -------------- | -------------------------- |
+| `positionX/Y/Z`  | `number` | -              | Source position             |
+| `orientationX/Y/Z` | `number` | `0, 0, 0`    | Source direction            |
+| `panningModel`   | `string` | `"equalpower"` | `"equalpower"` or `"HRTF"` |
+| `distanceModel`  | `string` | `"inverse"`    | `"linear"`, `"inverse"`, `"exponential"` |
+| `refDistance`     | `number` | `1`            | Distance where volume is 100% |
+| `maxDistance`     | `number` | `10000`        | Maximum audible distance   |
+| `rolloffFactor`  | `number` | `1`            | How quickly volume drops   |
+| `coneInnerAngle` | `number` | `360`          | Full-volume cone (degrees) |
+| `coneOuterAngle` | `number` | `360`          | Audible cone (degrees)     |
+| `coneOuterGain`  | `number` | `0`            | Volume outside cone        |
+
+## Listener properties
+
+| Property          | Type     | Default | Description          |
+| ----------------- | -------- | ------- | -------------------- |
+| `positionX/Y/Z`  | `number` | -       | Listener position    |
+| `forwardX/Y/Z`   | `number` | `0,0,-1`| Forward direction    |
+| `upX/Y/Z`        | `number` | `0,1,0` | Up direction         |

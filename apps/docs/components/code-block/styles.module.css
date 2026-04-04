@@ -1,0 +1,175 @@
+/* shared */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.root pre {
+  padding-block: 12px;
+  padding-inline: 16px;
+  margin-bottom: 0;
+  overflow-x: auto;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+  @typography 13;
+}
+
+.root pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  counter-reset: line;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.root pre code > :global(.line) {
+  display: inline-block;
+  min-width: 100%;
+  padding: 0 16px 0 0;
+  white-space: pre;
+}
+
+.root pre code > :global(.line)::before {
+  display: inline-block;
+  width: 2ch;
+  margin-right: 16px;
+  color: var(--gray-a6);
+  text-align: right;
+  user-select: none;
+  content: counter(line);
+  counter-increment: line;
+}
+
+.root pre[data-line-numbers="false"] code > :global(.line)::before {
+  display: none;
+}
+
+.root
+  pre
+  code:not(:has(> :global(.line) + :global(.line)))
+  > :global(.line)::before {
+  display: none;
+}
+
+.root pre code > :global(.line.highlighted) {
+  width: calc(100% + 32px);
+  padding: 0 16px;
+  margin: 0 -16px;
+  background: var(--blue-a3);
+}
+
+.root pre code span {
+  color: var(--shiki-light);
+}
+
+:global(.dark) .root pre code span {
+  color: var(--shiki-dark);
+}
+
+.copyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  margin-left: auto;
+  color: var(--gray-9);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.copyButton:hover {
+  color: var(--gray-12);
+  background: var(--gray-a3);
+}
+
+/* pre header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--gray-10);
+  @typography 13, 500;
+}
+
+.title {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.icon :global(svg) {
+  width: 14px;
+  height: 14px;
+}
+
+/* tabs */
+
+.list {
+  position: relative;
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 28px;
+  padding-inline: 8px;
+  color: var(--gray-9);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+
+  @typography 13, 500;
+}
+
+.tab:hover {
+  color: var(--gray-11);
+}
+
+.tab[data-active] {
+  color: var(--gray-12);
+}
+
+.indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+  width: var(--active-tab-width);
+  height: var(--active-tab-height);
+  background: var(--gray-3);
+  border-radius: 6px;
+  translate: var(--active-tab-left) -50%;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  transition-duration: 0.4s;
+  transition-property: translate, width;
+}
+
+.panel pre {
+  padding-inline: 16px;
+}

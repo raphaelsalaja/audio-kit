@@ -1,0 +1,99 @@
+{
+  "$schema": "../packages/audio-kit/schemas/pack.schema.json",
+  "name": "Synths",
+  "author": "audio-kit",
+  "version": "1.0.0",
+  "description": "Synthesized instruments — bass, pads, leads, keys, bells, and arps",
+  "tags": ["synths", "instruments", "bass", "pads", "leads", "keys"],
+  "sounds": {
+    "bass": {
+      "source": { "type": "sawtooth", "frequency": 55 },
+      "envelope": { "attack": 0.01, "decay": 0.3, "sustain": 0.4, "release": 0.2 },
+      "filter": { "type": "lowpass", "frequency": 800, "resonance": 2 },
+      "gain": 0.7
+    },
+    "sub-bass": {
+      "source": { "type": "sine", "frequency": 40 },
+      "envelope": { "attack": 0.01, "decay": 0.4, "sustain": 0.5, "release": 0.3 },
+      "gain": 0.6
+    },
+    "pad": {
+      "source": { "type": "triangle", "frequency": 220 },
+      "envelope": { "attack": 0.8, "decay": 1.0, "sustain": 0.7, "release": 1.5 },
+      "gain": 0.4
+    },
+    "drone": {
+      "source": { "type": "sawtooth", "frequency": 110 },
+      "envelope": { "attack": 1.0, "decay": 1.5, "sustain": 0.6, "release": 2.0 },
+      "filter": { "type": "lowpass", "frequency": 600, "resonance": 1 },
+      "gain": 0.35
+    },
+    "lead": {
+      "source": { "type": "sawtooth", "frequency": 440 },
+      "envelope": { "attack": 0.01, "decay": 0.2, "sustain": 0.6, "release": 0.3 },
+      "gain": 0.5
+    },
+    "square-lead": {
+      "source": { "type": "square", "frequency": 440 },
+      "envelope": { "attack": 0.01, "decay": 0.2, "sustain": 0.5, "release": 0.25 },
+      "gain": 0.4
+    },
+    "electric-piano": {
+      "source": { "type": "sine", "frequency": 440, "fm": { "ratio": 2, "depth": 300 } },
+      "envelope": { "attack": 0.005, "decay": 0.8, "sustain": 0.1, "release": 0.5 },
+      "gain": 0.5
+    },
+    "organ": {
+      "source": { "type": "sine", "frequency": 440, "fm": { "ratio": 1, "depth": 100 } },
+      "envelope": { "attack": 0.01, "decay": 0.1, "sustain": 0.8, "release": 0.2 },
+      "gain": 0.45
+    },
+    "bell": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 3.5, "depth": 500 } },
+      "envelope": { "attack": 0.001, "decay": 1.5, "sustain": 0, "release": 1.0 },
+      "gain": 0.4
+    },
+    "chime": {
+      "source": { "type": "sine", "frequency": 1047, "fm": { "ratio": 2.5, "depth": 400 } },
+      "envelope": { "attack": 0.001, "decay": 1.0, "sustain": 0, "release": 0.8 },
+      "gain": 0.35
+    },
+    "arp": {
+      "source": { "type": "square", "frequency": 660 },
+      "envelope": { "attack": 0.005, "decay": 0.1, "sustain": 0.2, "release": 0.15 },
+      "gain": 0.35
+    },
+    "pluck": {
+      "source": { "type": "triangle", "frequency": 440 },
+      "envelope": { "attack": 0.002, "decay": 0.6, "sustain": 0.05, "release": 0.4 },
+      "gain": 0.5
+    },
+    "bleep": {
+      "source": { "type": "square", "frequency": { "start": 880, "end": 440 } },
+      "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.1 },
+      "gain": 0.35
+    },
+    "texture": {
+      "source": { "type": "sawtooth", "frequency": 330 },
+      "envelope": { "attack": 1.0, "decay": 1.5, "sustain": 0.5, "release": 2.0 },
+      "filter": { "type": "lowpass", "frequency": 1200, "resonance": 1 },
+      "gain": 0.3
+    },
+    "noise-white": {
+      "source": { "type": "noise", "color": "white" },
+      "envelope": { "attack": 0.1, "decay": 0.5, "sustain": 0.6, "release": 0.5 },
+      "gain": 0.3
+    },
+    "noise-pink": {
+      "source": { "type": "noise", "color": "pink" },
+      "envelope": { "attack": 0.1, "decay": 0.5, "sustain": 0.6, "release": 0.5 },
+      "gain": 0.3
+    },
+    "noise-filtered": {
+      "source": { "type": "noise", "color": "white" },
+      "envelope": { "attack": 0.1, "decay": 0.5, "sustain": 0.6, "release": 0.5 },
+      "filter": { "type": "bandpass", "frequency": 1000, "resonance": 2 },
+      "gain": 0.3
+    }
+  }
+}

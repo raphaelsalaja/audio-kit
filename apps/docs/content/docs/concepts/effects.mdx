@@ -1,0 +1,263 @@
+---
+title: Effects
+description: 14 built-in effects you can apply per-layer or globally.
+---
+
+Effects shape the output of your sounds. Apply them to individual layers or to the entire mix. Most support a `mix` parameter for dry/wet balance. Internal oscillators (chorus, flanger, phaser, tremolo, vibrato) are cleaned up automatically when the voice ends.
+
+## Per-layer
+
+```ts
+defineSound({
+  source: { type: "sine", frequency: 880 },
+  envelope: { decay: 1.2 },
+  gain: 0.2,
+  effects: [{ type: "reverb", decay: 0.8, damping: 0.4, mix: 0.3 }],
+});
+```
+
+## Global
+
+Applied after all layers are mixed together:
+
+```ts
+defineSound({
+  layers: [/* ... */],
+  effects: [
+    { type: "chorus", rate: 1.5, depth: 0.003, mix: 0.3 },
+    { type: "reverb", decay: 1.2, damping: 0.5, roomSize: 1.2, mix: 0.35 },
+  ],
+});
+```
+
+## Reverb
+
+Algorithmic reverb with pre-delay, damping, and room size control.
+
+<Demo
+  label="Reverb"
+  definition={{ source: { type: "sine", frequency: 880 }, envelope: { attack: 0.001, decay: 0.8 }, gain: 0.2, effects: [{ type: "reverb", decay: 1.2, damping: 0.4, mix: 0.4 }] }}
+  controls={[
+    { param: "effects.0.decay", label: "Decay", min: 0.1, max: 4, step: 0.1 },
+    { param: "effects.0.damping", label: "Damping", min: 0, max: 1, step: 0.01 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property   | Type     | Description                         |
+| ---------- | -------- | ----------------------------------- |
+| `decay`    | `number` | Tail length in seconds              |
+| `preDelay` | `number` | Gap before reverb onset             |
+| `damping`  | `number` | High-frequency rolloff (0-1)        |
+| `roomSize` | `number` | Size multiplier                     |
+| `mix`      | `number` | Dry/wet                             |
+
+## Convolver
+
+Impulse response reverb from a file or buffer.
+
+| Property | Type          | Description             |
+| -------- | ------------- | ----------------------- |
+| `url`    | `string`      | URL to impulse response |
+| `buffer` | `AudioBuffer` | Pre-decoded buffer      |
+| `mix`    | `number`      | Dry/wet                 |
+
+## Delay
+
+Feedback delay with an optional filter in the feedback path for analog-style darkening.
+
+<Demo
+  label="Delay"
+  definition={{ source: { type: "sine", frequency: { start: 600, end: 300 } }, envelope: { decay: 0.1 }, gain: 0.3, effects: [{ type: "delay", time: 0.3, feedback: 0.45, feedbackFilter: { type: "lowpass", frequency: 2000 }, mix: 0.4 }] }}
+  controls={[
+    { param: "effects.0.time", label: "Time", min: 0.05, max: 1, step: 0.01 },
+    { param: "effects.0.feedback", label: "Feedback", min: 0, max: 0.9, step: 0.01 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property         | Type     | Description                            |
+| ---------------- | -------- | -------------------------------------- |
+| `time`           | `number` | Delay time in seconds                  |
+| `feedback`       | `number` | Feedback amount (0-1)                  |
+| `feedbackFilter` | `object` | `{ type, frequency, Q? }` in the loop |
+| `mix`            | `number` | Dry/wet                                |
+
+```ts
+{ type: "delay", time: 0.3, feedback: 0.45, feedbackFilter: { type: "lowpass", frequency: 2000 }, mix: 0.3 }
+```
+
+## Distortion
+
+Waveshaper distortion.
+
+<Demo
+  label="Distortion"
+  definition={{ source: { type: "sawtooth", frequency: 110 }, filter: { type: "lowpass", frequency: 1200 }, envelope: { decay: 0.4 }, gain: 0.2, effects: [{ type: "distortion", amount: 30, mix: 0.6 }] }}
+  controls={[
+    { param: "effects.0.amount", label: "Amount", min: 1, max: 100, step: 1 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property | Type     | Description          |
+| -------- | -------- | -------------------- |
+| `amount` | `number` | Distortion intensity |
+| `mix`    | `number` | Dry/wet              |
+
+## Chorus
+
+Modulated delay for stereo width and movement.
+
+<Demo
+  label="Chorus"
+  definition={{ source: { type: "triangle", frequency: 220 }, envelope: { attack: 0.05, decay: 0.8 }, gain: 0.3, effects: [{ type: "chorus", rate: 1.5, depth: 0.003, mix: 0.4 }] }}
+  controls={[
+    { param: "effects.0.rate", label: "Rate", min: 0.1, max: 6, step: 0.1 },
+    { param: "effects.0.depth", label: "Depth", min: 0.001, max: 0.01, step: 0.001 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property | Type     | Description    |
+| -------- | -------- | -------------- |
+| `rate`   | `number` | LFO rate (Hz)  |
+| `depth`  | `number` | Mod depth      |
+| `mix`    | `number` | Dry/wet        |
+
+## Flanger
+
+Short modulated delay with feedback.
+
+<Demo
+  label="Flanger"
+  definition={{ source: { type: "sawtooth", frequency: 220 }, envelope: { attack: 0.02, decay: 0.6 }, gain: 0.25, effects: [{ type: "flanger", rate: 0.5, depth: 0.003, feedback: 0.7, mix: 0.5 }] }}
+  controls={[
+    { param: "effects.0.rate", label: "Rate", min: 0.1, max: 5, step: 0.1 },
+    { param: "effects.0.feedback", label: "Feedback", min: 0, max: 0.95, step: 0.01 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property   | Type     | Description   |
+| ---------- | -------- | ------------- |
+| `rate`     | `number` | LFO rate (Hz) |
+| `depth`    | `number` | Mod depth     |
+| `feedback` | `number` | Feedback      |
+| `mix`      | `number` | Dry/wet       |
+
+## Phaser
+
+Multi-stage allpass filter sweep.
+
+<Demo
+  label="Phaser"
+  definition={{ source: { type: "sawtooth", frequency: { start: 200, end: 100 } }, filter: { type: "lowpass", frequency: 2000, resonance: 2 }, envelope: { attack: 0.02, decay: 0.8 }, gain: 0.2, effects: [{ type: "phaser", rate: 0.8, depth: 800, stages: 6, mix: 0.6 }] }}
+  controls={[
+    { param: "effects.0.rate", label: "Rate", min: 0.1, max: 4, step: 0.1 },
+    { param: "effects.0.depth", label: "Depth", min: 100, max: 2000, step: 10 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property   | Type     | Description       |
+| ---------- | -------- | ----------------- |
+| `rate`     | `number` | Sweep rate (Hz)   |
+| `depth`    | `number` | Sweep depth       |
+| `stages`   | `number` | Allpass stages    |
+| `feedback` | `number` | Feedback          |
+| `mix`      | `number` | Dry/wet           |
+
+## Tremolo
+
+Amplitude modulation.
+
+<Demo
+  label="Tremolo"
+  definition={{ source: { type: "triangle", frequency: 440 }, envelope: { attack: 0.05, decay: 0.8 }, gain: 0.3, effects: [{ type: "tremolo", rate: 6, depth: 0.8 }] }}
+  controls={[
+    { param: "effects.0.rate", label: "Rate", min: 0.5, max: 20, step: 0.5 },
+    { param: "effects.0.depth", label: "Depth", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property | Type     | Description    |
+| -------- | -------- | -------------- |
+| `rate`   | `number` | LFO rate (Hz)  |
+| `depth`  | `number` | Mod depth      |
+
+## Vibrato
+
+Pitch modulation.
+
+<Demo
+  label="Vibrato"
+  definition={{ source: { type: "sine", frequency: 440 }, envelope: { attack: 0.05, decay: 0.8 }, gain: 0.3, effects: [{ type: "vibrato", rate: 5, depth: 0.005 }] }}
+  controls={[
+    { param: "effects.0.rate", label: "Rate", min: 0.5, max: 15, step: 0.5 },
+    { param: "effects.0.depth", label: "Depth", min: 0.001, max: 0.02, step: 0.001 },
+  ]}
+/>
+
+| Property | Type     | Description    |
+| -------- | -------- | -------------- |
+| `rate`   | `number` | LFO rate (Hz)  |
+| `depth`  | `number` | Mod depth      |
+
+## Bitcrusher
+
+Lo-fi bit depth and sample rate reduction.
+
+<Demo
+  label="Bitcrusher"
+  definition={{ source: { type: "noise", color: "white" }, filter: { type: "bandpass", frequency: 1200, resonance: 4 }, envelope: { decay: 0.15 }, gain: 0.35, effects: [{ type: "bitcrusher", bits: 4, mix: 0.8 }] }}
+  controls={[
+    { param: "effects.0.bits", label: "Bits", min: 1, max: 16, step: 1 },
+    { param: "effects.0.mix", label: "Mix", min: 0, max: 1, step: 0.01 },
+  ]}
+/>
+
+| Property              | Type     | Description              |
+| --------------------- | -------- | ------------------------ |
+| `bits`                | `number` | Bit depth                |
+| `sampleRateReduction` | `number` | Reduction factor (int)   |
+| `mix`                 | `number` | Dry/wet                  |
+
+## Compressor
+
+Dynamic range compression.
+
+| Property    | Type     | Description       |
+| ----------- | -------- | ----------------- |
+| `threshold` | `number` | Threshold (dB)    |
+| `knee`      | `number` | Knee width (dB)   |
+| `ratio`     | `number` | Compression ratio |
+| `attack`    | `number` | Attack time (s)   |
+| `release`   | `number` | Release time (s)  |
+
+## EQ
+
+Multi-band parametric equalizer.
+
+```ts
+{
+  type: "eq",
+  bands: [
+    { type: "lowshelf", frequency: 200, gain: 3 },
+    { type: "peaking", frequency: 1000, gain: -2, Q: 1.5 },
+    { type: "highshelf", frequency: 8000, gain: 2 },
+  ],
+}
+```
+
+## Gain
+
+| Property | Type     | Description     |
+| -------- | -------- | --------------- |
+| `value`  | `number` | Gain multiplier |
+
+## Pan
+
+| Property | Type     | Description           |
+| -------- | -------- | --------------------- |
+| `value`  | `number` | Position (-1 to 1)    |

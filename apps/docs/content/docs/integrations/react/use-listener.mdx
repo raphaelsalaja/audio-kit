@@ -1,0 +1,39 @@
+---
+title: useListener
+description: Set the 3D audio listener position.
+---
+
+`useListener` updates the spatial audio listener whenever its props change. Use it with `panner` on sound layers to create 3D audio scenes.
+
+## Usage
+
+```tsx
+import { useListener } from "audio-kit/react";
+
+function Scene({ playerPosition }) {
+  useListener({
+    positionX: playerPosition.x,
+    positionY: playerPosition.y,
+    positionZ: playerPosition.z,
+  });
+
+  return <World />;
+}
+```
+
+## Signature
+
+```ts
+function useListener(listener: Listener): void;
+```
+
+Calls `setListener` internally whenever the listener object changes (shallow comparison). In a game loop, pass a memoized object to avoid unnecessary updates:
+
+```tsx
+const listener = useMemo(
+  () => ({ positionX: x, positionY: y, positionZ: z }),
+  [x, y, z]
+);
+
+useListener(listener);
+```

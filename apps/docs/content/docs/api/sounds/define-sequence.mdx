@@ -1,0 +1,46 @@
+---
+title: defineSequence
+description: Create a timed sound sequence with play/stop controls.
+---
+
+Schedules a series of sounds over time. Returns a controller with `play()` and `stop()` methods. Uses a lookahead scheduler for sample-accurate timing, even in background tabs.
+
+```ts
+import { defineSequence } from "audio-kit";
+
+const seq = defineSequence([
+  { sound: clickDef, at: 0 },
+  { sound: popDef, at: 0.2 },
+  { sound: chimeDef, at: 0.5 },
+], { loop: false });
+
+seq.play();
+seq.stop();
+```
+
+## Signature
+
+```ts
+function defineSequence(
+  steps: SequenceStep[],
+  options?: SequenceOptions
+): { play: () => void; stop: () => void };
+```
+
+## SequenceStep
+
+| Property | Type                               | Description                           |
+| -------- | ---------------------------------- | ------------------------------------- |
+| `sound`  | `SoundDefinition \| PlayFunction`  | Sound to play, or a pre-built play fn |
+| `at`     | `number`                           | Absolute time offset (seconds)        |
+| `wait`   | `number`                           | Delay after previous step (seconds)   |
+| `volume` | `number`                           | Per-step volume override              |
+
+Use `at` for absolute positioning or `wait` for relative timing. If both are provided, `at` takes priority.
+
+## SequenceOptions
+
+| Property   | Type      | Default | Description                |
+| ---------- | --------- | ------- | -------------------------- |
+| `loop`     | `boolean` | `false` | Repeat after last step     |
+| `duration` | `number`  | -       | Total sequence length (s)  |

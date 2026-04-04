@@ -1,0 +1,63 @@
+---
+title: useSound
+description: Play a sound from a definition.
+---
+
+`useSound` takes a sound definition and returns a stable play function. The definition is memoized - changing it creates a new sound.
+
+## Usage
+
+```tsx
+import { useSound } from "audio-kit/react";
+
+function SaveButton() {
+  const play = useSound({
+    source: { type: "sine", frequency: 880 },
+    envelope: { decay: 0.1 },
+    gain: 0.3,
+  });
+
+  return <button onClick={() => play()}>Save</button>;
+}
+```
+
+## Signature
+
+```ts
+function useSound(definition: SoundDefinition): () => VoiceHandle | undefined;
+```
+
+The play function returns `undefined` when sound is disabled (via `SoundProvider` or reduced motion).
+
+## With options
+
+Pass `PlayOptions` at call time to override volume, pan, or pitch:
+
+```tsx
+const play = useSound(definition);
+
+play({ velocity: 0.5, pan: -0.3 });
+```
+
+## Stopping a voice
+
+```tsx
+function Drone() {
+  const play = useSound({
+    source: { type: "sawtooth", frequency: 110 },
+    envelope: { attack: 0.3, decay: 2, sustain: 0.6, release: 0.8 },
+    gain: 0.2,
+  });
+
+  const voiceRef = useRef<VoiceHandle | null>(null);
+
+  return (
+    <button
+      onPointerDown={() => { voiceRef.current = play() ?? null; }}
+      onPointerUp={() => { voiceRef.current?.stop(0.2); }}
+    >
+      Hold to play
+    </button>
+  );
+}
+```

@@ -1,0 +1,19 @@
+.popup {
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--gray-1);
+  background: var(--gray-12);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-4);
+  transform-origin: var(--transform-origin);
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: 0;
+  transform: scale(0.96);
+}

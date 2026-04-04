@@ -1,0 +1,9 @@
+{
+  "title": "Output",
+  "pages": [
+    "create-master-analyser",
+    "render-to-buffer",
+    "render-to-wav",
+    "buffer-to-wav"
+  ]
+}

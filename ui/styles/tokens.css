@@ -1,0 +1,50 @@
+:root {
+  --bg: #ffffff;
+  --bg-subtle: var(--gray-2);
+  --selection: var(--gray-a4);
+  --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  --font-sans: Inter, sans-serif;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+.dark,
+.dark-theme {
+  --bg: #0a0a0a;
+  --bg-subtle: var(--gray-2);
+  color-scheme: dark;
+}
+
+.light {
+  --bg: #ffffff;
+  --bg-subtle: var(--gray-2);
+  color-scheme: light;
+}
+
+:root {
+  font-family: var(--font-sans);
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  color: var(--gray-12);
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+html {
+  scrollbar-color: var(--gray-a4) transparent;
+  background: var(--bg);
+}
+
+::selection {
+  background: var(--selection);
+}
+
+code {
+  font-family: var(--font-mono);
+}

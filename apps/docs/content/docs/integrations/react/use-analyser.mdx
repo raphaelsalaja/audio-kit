@@ -1,0 +1,49 @@
+---
+title: useAnalyser
+description: Real-time audio analysis for visualizations.
+---
+
+`useAnalyser` creates a `AudioAnalyser` connected to the master output. Use it to build spectrum visualizers, waveform displays, or VU meters. The analyser is automatically disposed when the component unmounts.
+
+## Usage
+
+```tsx
+import { useAnalyser } from "audio-kit/react";
+
+function Visualizer() {
+  const analyser = useAnalyser({ fftSize: 2048 });
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (!analyser || !canvasRef.current) return;
+
+    const ctx = canvasRef.current.getContext("2d")!;
+    let frame: number;
+
+    function draw() {
+      const data = analyser!.getFrequencyData();
+      ctx.clearRect(0, 0, 300, 150);
+
+      for (let i = 0; i < data.length; i++) {
+        const h = (data[i] / 255) * 150;
+        ctx.fillRect(i * 2, 150 - h, 1, h);
+      }
+
+      frame = requestAnimationFrame(draw);
+    }
+
+    draw();
+    return () => cancelAnimationFrame(frame);
+  }, [analyser]);
+
+  return <canvas ref={canvasRef} width={300} height={150} />;
+}
+```
+
+## Signature
+
+```ts
+function useAnalyser(options?: AnalyserOptions): AudioAnalyser | undefined;
+```
+
+Returns `undefined` when sound is disabled. The analyser instance is stable - it's only recreated if the options change.
