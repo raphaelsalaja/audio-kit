@@ -1,263 +1,206 @@
 "use client";
 
-import type { AudioAnalyser, SoundDefinition } from "audio-kit";
-import { createMasterAnalyser, defineSound, ensureReady } from "audio-kit";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Button } from "@base-ui/react/button";
+import { Checkbox } from "@base-ui/react/checkbox";
+import { Slider } from "@base-ui/react/slider";
+import { Tabs } from "@base-ui/react/tabs";
+import type { SoundDefinition } from "audio-kit";
+import { defineSound, ensureReady } from "audio-kit";
+import { AnimatePresence, motion } from "motion/react";
+import { useCallback, useRef, useState } from "react";
+import uiEssentials from "../../../../packs/ui-essentials.json";
 import styles from "./styles.module.css";
 
-/* ------------------------------------------------------------------ */
-/*  Examples                                                           */
-/* ------------------------------------------------------------------ */
-
-type Example = {
-  id: string;
-  title: string;
-  description: string;
-  code: string;
-  sound: ReturnType<typeof defineSound>;
+type Pack = {
+  name: string;
+  sounds: Record<string, SoundDefinition>;
 };
 
-const EXAMPLES: Example[] = [
-  {
-    id: "click",
-    title: "Click",
-    description: "Single oscillator, short decay",
-    code: `defineSound({
-  source: { type: "sine", frequency: 800 },
-  envelope: { decay: 0.06 },
-})`,
-    sound: defineSound({
-      source: { type: "sine", frequency: 800 },
-      envelope: { decay: 0.06 },
-      gain: 0.2,
-    }),
-  },
-  {
-    id: "rise",
-    title: "Rise",
-    description: "Frequency sweep from 400 to 800 Hz",
-    code: `defineSound({
-  source: { type: "sine", frequency: { start: 400, end: 800 } },
-  envelope: { decay: 0.15 },
-})`,
-    sound: defineSound({
-      source: { type: "sine", frequency: { start: 400, end: 800 } },
-      envelope: { decay: 0.15 },
-      gain: 0.2,
-    }),
-  },
-  {
-    id: "notify",
-    title: "Notification",
-    description: "Two sine layers at different frequencies",
-    code: `defineSound({
-  layers: [
-    { source: { type: "sine", frequency: 1200 }, envelope: { decay: 0.3 } },
-    { source: { type: "sine", frequency: 1800 }, envelope: { decay: 0.2 } },
-  ],
-})`,
-    sound: defineSound({
-      layers: [
-        {
-          source: { type: "sine", frequency: 1200 },
-          envelope: { attack: 0.01, decay: 0.3 },
-          gain: 0.12,
-        },
-        {
-          source: { type: "sine", frequency: 1800 },
-          envelope: { attack: 0.02, decay: 0.22 },
-          gain: 0.07,
-        },
-      ],
-    } as SoundDefinition),
-  },
-  {
-    id: "snare",
-    title: "Snare",
-    description: "Triangle body with high-passed noise",
-    code: `defineSound({
-  layers: [
-    { source: { type: "triangle", frequency: 185 }, envelope: { decay: 0.08 } },
-    { source: { type: "noise", color: "white" }, envelope: { decay: 0.18 },
-      filter: { type: "highpass", frequency: 2000 } },
-  ],
-})`,
-    sound: defineSound({
-      layers: [
-        {
-          source: { type: "triangle", frequency: 185 },
-          envelope: { decay: 0.08 },
-          gain: 0.3,
-        },
-        {
-          source: { type: "noise", color: "white" },
-          envelope: { decay: 0.18 },
-          gain: 0.25,
-          filter: { type: "highpass", frequency: 2000 },
-        },
-      ],
-    } as SoundDefinition),
-  },
-  {
-    id: "ambient",
-    title: "Ambient",
-    description: "Layered chord with reverb",
-    code: `defineSound({
-  layers: [
-    { source: { type: "sine", frequency: 440 }, envelope: { decay: 0.5 } },
-    { source: { type: "sine", frequency: 554 }, envelope: { decay: 0.4 } },
-  ],
-  effects: [{ type: "reverb", decay: 1.2, mix: 0.6 }],
-})`,
-    sound: defineSound({
-      layers: [
-        {
-          source: { type: "sine", frequency: 440 },
-          envelope: { decay: 0.5 },
-          gain: 0.15,
-        },
-        {
-          source: { type: "sine", frequency: 554 },
-          envelope: { decay: 0.4 },
-          gain: 0.1,
-        },
-      ],
-      effects: [{ type: "reverb", decay: 1.2, mix: 0.6 }],
-    } as SoundDefinition),
-  },
-];
+const pack = uiEssentials as unknown as Pack;
+
+const GRID_CELLS = [
+  { id: "click" },
+  { id: "checkbox" },
+  { id: "tab-switch" },
+  { id: "slider" },
+] as const;
+
+const spring = { type: "spring", stiffness: 500, damping: 25 } as const;
 
 /* ------------------------------------------------------------------ */
-/*  Component                                                          */
+/*  Icons                                                              */
+/* ------------------------------------------------------------------ */
+
+function CheckIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      fill="currentcolor"
+      width="10"
+      height="10"
+      viewBox="0 0 10 10"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M9.1603 1.12218C9.50684 1.34873 9.60427 1.81354 9.37792 2.16038L5.13603 8.66012C5.01614 8.8438 4.82192 8.96576 4.60451 8.99384C4.3871 9.02194 4.1683 8.95335 4.00574 8.80615L1.24664 6.30769C0.939709 6.02975 0.916013 5.55541 1.19372 5.24822C1.47142 4.94102 1.94536 4.91731 2.2523 5.19524L4.36085 7.10461L8.12299 1.33999C8.34934 0.993152 8.81376 0.895638 9.1603 1.12218Z" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Widget components                                                  */
+/* ------------------------------------------------------------------ */
+
+type WidgetProps = {
+  play: (name?: string) => void;
+};
+
+function CheckboxWidget({ play }: WidgetProps) {
+  const [checked, setChecked] = useState(false);
+  return (
+    // biome-ignore lint/a11y/noLabelWithoutControl: Base UI Checkbox.Root renders a hidden input internally
+    <label className={styles.widgetCheckboxLabel}>
+      <Checkbox.Root
+        className={styles.widgetCheckbox}
+        checked={checked}
+        onCheckedChange={(val) => {
+          setChecked(val);
+          play("checkbox");
+        }}
+      >
+        <Checkbox.Indicator className={styles.widgetCheckboxIndicator}>
+          <AnimatePresence>
+            {checked && (
+              <motion.span
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={spring}
+                style={{ display: "flex" }}
+              >
+                <CheckIcon className={styles.widgetCheckboxIcon} />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </Checkbox.Indicator>
+      </Checkbox.Root>
+      Enable notifications
+    </label>
+  );
+}
+
+function SliderWidget({ play }: WidgetProps) {
+  const lastTick = useRef(0);
+  return (
+    <Slider.Root
+      className={styles.widgetSliderRoot}
+      defaultValue={40}
+      step={5}
+      onValueChange={() => {
+        const now = performance.now();
+        if (now - lastTick.current > 60) {
+          lastTick.current = now;
+          play("tap");
+        }
+      }}
+    >
+      <Slider.Control className={styles.widgetSliderControl}>
+        <Slider.Track className={styles.widgetSliderTrack}>
+          <Slider.Indicator className={styles.widgetSliderIndicator} />
+          <Slider.Thumb
+            aria-label="Volume"
+            className={styles.widgetSliderThumb}
+          />
+        </Slider.Track>
+      </Slider.Control>
+    </Slider.Root>
+  );
+}
+
+function TabsWidget({ play }: WidgetProps) {
+  return (
+    <Tabs.Root
+      defaultValue="general"
+      className={styles.widgetTabsRoot}
+      onValueChange={() => play("tab-switch")}
+    >
+      <Tabs.List className={styles.widgetTabsList}>
+        <Tabs.Tab value="general" className={styles.widgetTab}>
+          General
+        </Tabs.Tab>
+        <Tabs.Tab value="settings" className={styles.widgetTab}>
+          Settings
+        </Tabs.Tab>
+        <Tabs.Tab value="about" className={styles.widgetTab}>
+          About
+        </Tabs.Tab>
+        <Tabs.Indicator className={styles.widgetTabsIndicator} />
+      </Tabs.List>
+    </Tabs.Root>
+  );
+}
+
+function ButtonWidget({ play }: WidgetProps) {
+  return (
+    <Button
+      className={styles.widgetButton}
+      render={
+        <motion.button
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.92 }}
+          transition={spring}
+        />
+      }
+      onClick={() => play("click")}
+    >
+      Submit
+    </Button>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cell renderer                                                      */
+/* ------------------------------------------------------------------ */
+
+function CellWidget({ cellId, play }: { cellId: string } & WidgetProps) {
+  switch (cellId) {
+    case "checkbox":
+      return <CheckboxWidget play={play} />;
+    case "slider":
+      return <SliderWidget play={play} />;
+    case "tab-switch":
+      return <TabsWidget play={play} />;
+    case "click":
+      return <ButtonWidget play={play} />;
+    default:
+      return null;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Playground                                                         */
 /* ------------------------------------------------------------------ */
 
 export function Playground() {
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const analyserRef = useRef<AudioAnalyser | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const rafRef = useRef<number>(0);
-  const waveformStarted = useRef(false);
-  const startWaveformRef = useRef<() => void>(() => {});
-
-  const play = useCallback(async (example: Example) => {
+  const play = useCallback(async (name?: string) => {
     await ensureReady();
-    if (!analyserRef.current) {
-      analyserRef.current = createMasterAnalyser({ fftSize: 2048 });
-    }
-    if (!waveformStarted.current) {
-      waveformStarted.current = true;
-      startWaveformRef.current();
-    }
-    example.sound();
-
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setActiveId(example.id);
-    timeoutRef.current = setTimeout(() => setActiveId(null), 400);
-  }, []);
-
-  /* ----- waveform ----- */
-  const drawWaveform = useCallback(() => {
-    const canvas = canvasRef.current;
-    const analyser = analyserRef.current;
-    if (!canvas || !analyser) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    const w = rect.width * dpr;
-    const h = rect.height * dpr;
-
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-    }
-
-    const data = analyser.getTimeDomainData();
-    const len = data.length;
-    ctx.clearRect(0, 0, w, h);
-
-    ctx.strokeStyle = "rgba(128,128,128,0.06)";
-    ctx.lineWidth = dpr;
-    ctx.beginPath();
-    ctx.moveTo(0, h / 2);
-    ctx.lineTo(w, h / 2);
-    ctx.stroke();
-
-    const cs = getComputedStyle(canvas);
-    ctx.strokeStyle = cs.getPropertyValue("--gray-8").trim() || "#999";
-    ctx.lineWidth = 1.5 * dpr;
-    ctx.lineJoin = "round";
-    ctx.beginPath();
-
-    const sliceW = w / len;
-    for (let i = 0; i < len; i++) {
-      const v = data[i] / 128.0;
-      const y = (v * h) / 2;
-      if (i === 0) ctx.moveTo(0, y);
-      else ctx.lineTo(i * sliceW, y);
-    }
-    ctx.stroke();
-    rafRef.current = requestAnimationFrame(drawWaveform);
-  }, []);
-
-  const startWaveform = useCallback(() => {
-    cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(drawWaveform);
-  }, [drawWaveform]);
-
-  startWaveformRef.current = startWaveform;
-
-  useEffect(() => {
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
+    const def = pack.sounds[name ?? "click"];
+    if (!def) return;
+    defineSound(def)();
   }, []);
 
   return (
-    <div className={styles.demo}>
-      <div className={styles.waveform}>
-        <canvas ref={canvasRef} className={styles.canvas} />
-      </div>
-
-      <div className={styles.examples}>
-        {EXAMPLES.map((ex) => (
-          <div
-            key={ex.id}
-            className={styles.example}
-            data-active={activeId === ex.id || undefined}
+    <div className={styles.playground}>
+      <div className={styles.grid}>
+        {GRID_CELLS.map((cell, i) => (
+          <motion.div
+            key={cell.id}
+            className={styles.cell}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.08, ...spring }}
           >
-            <div className={styles.exampleHeader}>
-              <div className={styles.meta}>
-                <span className={styles.title}>{ex.title}</span>
-                <span className={styles.description}>{ex.description}</span>
-              </div>
-              <button
-                type="button"
-                className={styles.playBtn}
-                data-active={activeId === ex.id || undefined}
-                onClick={() => play(ex)}
-                aria-label={`Play ${ex.title}`}
-              >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path d="M2.5 1v10l8.5-5-8.5-5z" fill="currentColor" />
-                </svg>
-              </button>
-            </div>
-            <pre className={styles.code}>
-              <code>{ex.code}</code>
-            </pre>
-          </div>
+            <CellWidget cellId={cell.id} play={play} />
+          </motion.div>
         ))}
       </div>
     </div>

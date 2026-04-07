@@ -6,6 +6,7 @@ import { Card, CardGrid } from "@/components/card";
 import { Pre, Tabs } from "@/components/code-block";
 import { CopyForLLM } from "@/components/copy-for-llm";
 import { Demo, DemoGrid } from "@/components/demo";
+import { Playground } from "@/components/playground";
 import { PageNav } from "@/components/page-nav";
 import proseStyles from "@/components/prose/styles.module.css";
 import { TableWrapper } from "@/components/prose/table-wrapper";
@@ -55,6 +56,7 @@ export default async function Page(props: {
               CardGrid,
               Demo,
               DemoGrid,
+              Playground,
               SoundBuilder,
               Tabs,
             }}
