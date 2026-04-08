@@ -52,7 +52,8 @@
     "dev": "bunchee --watch",
     "lint": "biome check --fix --unsafe .",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "bunchee"
+    "prepublishOnly": "bunchee",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -63,12 +64,14 @@
     }
   },
   "dependencies": {
-    "@clack/prompts": "^0.9.1"
+    "@clack/prompts": "^0.9.1",
+    "picocolors": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "bunchee": "latest",
     "react": "^19.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.3"
   }
 }

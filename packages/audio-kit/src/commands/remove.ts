@@ -3,7 +3,32 @@ import { join } from "node:path";
 import * as p from "@clack/prompts";
 import { getInstalledPacks, getPacksDir } from "./utils.js";
 
-export async function remove(_args: string[]) {
+export interface RemoveOptions {
+  yes?: boolean;
+}
+
+export function parseRemoveOptions(args: string[]): {
+  packs: string[];
+  options: RemoveOptions;
+} {
+  const options: RemoveOptions = {};
+  const packs: string[] = [];
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === "-y" || arg === "--yes") {
+      options.yes = true;
+    } else if (arg && !arg.startsWith("-")) {
+      packs.push(arg);
+    }
+  }
+
+  return { packs, options };
+}
+
+export async function remove(args: string[]) {
+  const { packs: packNames, options } = parseRemoveOptions(args);
+
   p.intro("audio-kit remove");
 
   const packs = await getInstalledPacks();
@@ -14,33 +39,48 @@ export async function remove(_args: string[]) {
     return;
   }
 
-  const selected = await p.multiselect({
-    message: "Select packs to remove",
-    options: packs.map((pk) => ({
-      value: pk.file,
-      label: pk.name,
-      hint: `${pk.soundCount} sounds`,
-    })),
-  });
+  let files: string[];
 
-  if (p.isCancel(selected)) {
-    p.cancel("Cancelled.");
-    process.exit(0);
+  if (packNames.length > 0) {
+    const matched = packs.filter((pk) =>
+      packNames.some((n) => n.toLowerCase() === pk.name.toLowerCase()),
+    );
+    if (matched.length === 0) {
+      p.log.error(`No matching packs found for: ${packNames.join(", ")}`);
+      return;
+    }
+    files = matched.map((pk) => pk.file);
+  } else {
+    const selected = await p.multiselect({
+      message: "Select packs to remove",
+      options: packs.map((pk) => ({
+        value: pk.file,
+        label: pk.name,
+        hint: `${pk.soundCount} sounds`,
+      })),
+    });
+
+    if (p.isCancel(selected)) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
+
+    files = selected as string[];
+    if (files.length === 0) {
+      p.outro("No packs selected.");
+      return;
+    }
   }
 
-  const files = selected as string[];
-  if (files.length === 0) {
-    p.outro("No packs selected.");
-    return;
-  }
+  if (!options.yes) {
+    const confirmed = await p.confirm({
+      message: `Remove ${files.length} pack(s)?`,
+    });
 
-  const confirmed = await p.confirm({
-    message: `Remove ${files.length} pack(s)?`,
-  });
-
-  if (p.isCancel(confirmed) || !confirmed) {
-    p.cancel("Cancelled.");
-    process.exit(0);
+    if (p.isCancel(confirmed) || !confirmed) {
+      p.cancel("Cancelled.");
+      process.exit(0);
+    }
   }
 
   const dir = getPacksDir();
@@ -49,7 +89,7 @@ export async function remove(_args: string[]) {
   for (const file of files) {
     try {
       await unlink(join(dir, file));
-      const pk = packs.find((p) => p.file === file);
+      const pk = packs.find((item) => item.file === file);
       removed.push(pk?.name ?? file);
     } catch (err) {
       p.log.warn(`Failed to remove ${file}: ${err}`);

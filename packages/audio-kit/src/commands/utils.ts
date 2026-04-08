@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { join, resolve, isAbsolute } from "node:path";
 
 export const REGISTRY_BASE = "https://audio-kit.dev/api";
 
@@ -35,7 +35,7 @@ export function getPacksDir(): string {
   return resolve(cwd, "packs");
 }
 
-function parseGitHubSource(source: string): {
+export function parseGitHubSource(source: string): {
   owner: string;
   repo: string;
   branch: string;
@@ -129,6 +129,59 @@ export async function discoverPacksFromGitHub(
 
 export function isGitHubSource(source: string): boolean {
   return parseGitHubSource(source) !== null;
+}
+
+export function isLocalSource(source: string): boolean {
+  if (source.startsWith("http://") || source.startsWith("https://")) {
+    return false;
+  }
+  const abs = isAbsolute(source) ? source : resolve(process.cwd(), source);
+  return existsSync(abs);
+}
+
+export async function discoverPacksFromLocal(
+  source: string,
+): Promise<DiscoveredPack[]> {
+  const abs = isAbsolute(source) ? source : resolve(process.cwd(), source);
+
+  if (abs.endsWith(".json")) {
+    const raw = await readFile(abs, "utf-8");
+    const data = JSON.parse(raw) as Record<string, unknown>;
+    if (!validatePack(data)) {
+      throw new Error(`${source} is not a valid sound pack.`);
+    }
+    return [
+      {
+        name: data.name,
+        path: abs,
+        downloadUrl: abs,
+        description: (data as { description?: string }).description,
+        soundCount: Object.keys(data.sounds).length,
+      },
+    ];
+  }
+
+  const files = await readdir(abs);
+  const packs: DiscoveredPack[] = [];
+
+  for (const file of files) {
+    if (!file.endsWith(".json") || file === "index.json") continue;
+    try {
+      const filePath = join(abs, file);
+      const raw = await readFile(filePath, "utf-8");
+      const data = JSON.parse(raw) as Record<string, unknown>;
+      if (!validatePack(data)) continue;
+      packs.push({
+        name: data.name,
+        path: filePath,
+        downloadUrl: filePath,
+        description: (data as { description?: string }).description,
+        soundCount: Object.keys(data.sounds).length,
+      });
+    } catch {}
+  }
+
+  return packs;
 }
 
 export async function fetchPackIndex(): Promise<PackIndexEntry[]> {
