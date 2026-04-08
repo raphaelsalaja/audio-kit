@@ -1,0 +1,222 @@
+{
+  "$schema": "../packages/audio-kit/schemas/pack.schema.json",
+  "name": "Retro",
+  "author": "Raphael Salaja",
+  "version": "1.0.0",
+  "description": "8-bit square waves with chiptune character — nostalgic, pixelated UI sounds",
+  "tags": ["ui", "retro", "8-bit", "chiptune"],
+  "sounds": {
+    "tap": {
+      "source": { "type": "square", "frequency": 880 },
+      "envelope": { "attack": 0, "decay": 0.02, "sustain": 0, "release": 0.006 },
+      "gain": 0.15
+    },
+    "click": {
+      "source": { "type": "square", "frequency": 660 },
+      "envelope": { "attack": 0, "decay": 0.025, "sustain": 0, "release": 0.008 },
+      "gain": 0.18
+    },
+    "key-press": {
+      "source": { "type": "square", "frequency": 1047 },
+      "envelope": { "attack": 0, "decay": 0.015, "sustain": 0, "release": 0.005 },
+      "gain": 0.12
+    },
+    "toggle-on": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": 523 },
+          "envelope": { "attack": 0, "decay": 0.03, "sustain": 0, "release": 0.01 },
+          "gain": 0.16
+        },
+        {
+          "source": { "type": "square", "frequency": 784 },
+          "envelope": { "attack": 0, "decay": 0.03, "sustain": 0, "release": 0.01 },
+          "delay": 0.04,
+          "gain": 0.14
+        }
+      ]
+    },
+    "toggle-off": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": 784 },
+          "envelope": { "attack": 0, "decay": 0.03, "sustain": 0, "release": 0.01 },
+          "gain": 0.16
+        },
+        {
+          "source": { "type": "square", "frequency": 523 },
+          "envelope": { "attack": 0, "decay": 0.03, "sustain": 0, "release": 0.01 },
+          "delay": 0.04,
+          "gain": 0.14
+        }
+      ]
+    },
+    "checkbox": {
+      "source": { "type": "square", "frequency": { "start": 440, "end": 880 } },
+      "envelope": { "attack": 0, "decay": 0.04, "sustain": 0, "release": 0.012 },
+      "gain": 0.16
+    },
+    "select": {
+      "source": { "type": "square", "frequency": 740 },
+      "envelope": { "attack": 0, "decay": 0.035, "sustain": 0, "release": 0.01 },
+      "gain": 0.15
+    },
+    "deselect": {
+      "source": { "type": "square", "frequency": 554 },
+      "envelope": { "attack": 0, "decay": 0.03, "sustain": 0, "release": 0.008 },
+      "gain": 0.12
+    },
+    "hover": {
+      "source": { "type": "square", "frequency": 1320 },
+      "envelope": { "attack": 0, "decay": 0.01, "sustain": 0, "release": 0.004 },
+      "gain": 0.06
+    },
+    "tab-switch": {
+      "source": { "type": "square", "frequency": { "start": 660, "end": 880 } },
+      "envelope": { "attack": 0, "decay": 0.03, "sustain": 0, "release": 0.01 },
+      "gain": 0.14
+    },
+    "expand": {
+      "source": { "type": "square", "frequency": { "start": 330, "end": 660 } },
+      "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.12
+    },
+    "collapse": {
+      "source": { "type": "square", "frequency": { "start": 660, "end": 330 } },
+      "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.12
+    },
+    "page-enter": {
+      "source": { "type": "square", "frequency": { "start": 440, "end": 880 } },
+      "envelope": { "attack": 0, "decay": 0.08, "sustain": 0, "release": 0.025 },
+      "gain": 0.1
+    },
+    "page-exit": {
+      "source": { "type": "square", "frequency": { "start": 880, "end": 440 } },
+      "envelope": { "attack": 0, "decay": 0.08, "sustain": 0, "release": 0.025 },
+      "gain": 0.08
+    },
+    "success": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": 523 },
+          "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "gain": 0.16
+        },
+        {
+          "source": { "type": "square", "frequency": 659 },
+          "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "delay": 0.06,
+          "gain": 0.14
+        },
+        {
+          "source": { "type": "square", "frequency": 784 },
+          "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "delay": 0.12,
+          "gain": 0.12
+        },
+        {
+          "source": { "type": "square", "frequency": 1047 },
+          "envelope": { "attack": 0, "decay": 0.08, "sustain": 0, "release": 0.025 },
+          "delay": 0.18,
+          "gain": 0.1
+        }
+      ]
+    },
+    "error": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": { "start": 440, "end": 220 } },
+          "envelope": { "attack": 0, "decay": 0.08, "sustain": 0, "release": 0.025 },
+          "gain": 0.2
+        },
+        {
+          "source": { "type": "square", "frequency": { "start": 330, "end": 165 } },
+          "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "delay": 0.04,
+          "gain": 0.14
+        }
+      ]
+    },
+    "warning": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": 440 },
+          "envelope": { "attack": 0, "decay": 0.05, "sustain": 0, "release": 0.015 },
+          "gain": 0.18
+        },
+        {
+          "source": { "type": "square", "frequency": 466 },
+          "envelope": { "attack": 0, "decay": 0.05, "sustain": 0, "release": 0.015 },
+          "delay": 0.012,
+          "gain": 0.14
+        }
+      ]
+    },
+    "notification": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": 660 },
+          "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+          "gain": 0.16
+        },
+        {
+          "source": { "type": "square", "frequency": 880 },
+          "envelope": { "attack": 0, "decay": 0.05, "sustain": 0, "release": 0.015 },
+          "delay": 0.07,
+          "gain": 0.14
+        }
+      ]
+    },
+    "info": {
+      "source": { "type": "square", "frequency": 880 },
+      "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.14
+    },
+    "copy": {
+      "layers": [
+        {
+          "source": { "type": "square", "frequency": 1047 },
+          "envelope": { "attack": 0, "decay": 0.02, "sustain": 0, "release": 0.006 },
+          "gain": 0.14
+        },
+        {
+          "source": { "type": "square", "frequency": 1320 },
+          "envelope": { "attack": 0, "decay": 0.02, "sustain": 0, "release": 0.006 },
+          "delay": 0.04,
+          "gain": 0.12
+        }
+      ]
+    },
+    "send": {
+      "source": { "type": "square", "frequency": { "start": 440, "end": 1320 } },
+      "envelope": { "attack": 0, "decay": 0.1, "sustain": 0, "release": 0.03 },
+      "gain": 0.14
+    },
+    "delete": {
+      "source": { "type": "square", "frequency": { "start": 660, "end": 165 } },
+      "envelope": { "attack": 0, "decay": 0.12, "sustain": 0, "release": 0.04 },
+      "gain": 0.18
+    },
+    "undo": {
+      "source": { "type": "square", "frequency": { "start": 880, "end": 440 } },
+      "envelope": { "attack": 0, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.12
+    },
+    "pop": {
+      "source": { "type": "square", "frequency": { "start": 660, "end": 220 } },
+      "envelope": { "attack": 0, "decay": 0.05, "sustain": 0, "release": 0.015 },
+      "gain": 0.2
+    },
+    "swoosh": {
+      "source": { "type": "square", "frequency": { "start": 220, "end": 1760 } },
+      "envelope": { "attack": 0.005, "decay": 0.08, "sustain": 0, "release": 0.025 },
+      "gain": 0.1
+    },
+    "slide": {
+      "source": { "type": "square", "frequency": { "start": 440, "end": 880 } },
+      "envelope": { "attack": 0.003, "decay": 0.06, "sustain": 0, "release": 0.02 },
+      "gain": 0.08
+    }
+  }
+}

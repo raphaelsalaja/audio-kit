@@ -1,7 +1,7 @@
 {
   "$schema": "../packages/audio-kit/schemas/pack.schema.json",
   "name": "Drums",
-  "author": "audio-kit",
+  "author": "Raphael Salaja",
   "version": "1.0.0",
   "description": "Synthesized drum kit — kicks, snares, hi-hats, and percussion",
   "tags": ["drums", "percussion", "beats", "rhythm"],

@@ -8,7 +8,7 @@ import type { SoundDefinition } from "audio-kit";
 import { defineSound, ensureReady } from "audio-kit";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useRef, useState } from "react";
-import uiEssentials from "../../../../packs/ui-essentials.json";
+import uiEssentials from "../../../../packs/core.json";
 import styles from "./styles.module.css";
 
 type Pack = {

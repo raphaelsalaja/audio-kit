@@ -8,7 +8,7 @@
   flex-direction: column;
   width: var(--sidebar-width);
   height: 100dvh;
-  padding-top: var(--page-top);
+  padding-top: calc(var(--page-top) + var(--fade-size));
   overflow-y: auto;
   scrollbar-width: none;
 

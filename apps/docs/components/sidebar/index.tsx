@@ -318,4 +318,5 @@ export {
   SidebarRoot,
   SidebarSeparatorItem as SidebarSeparator,
   SidebarTree,
+  SidebarTreeNode,
 };

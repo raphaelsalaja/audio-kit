@@ -154,6 +154,8 @@ const iconMap: Record<string, IconEntry> = {
     external: true,
     tag: "v0.0.6",
   },
+
+  "/library": { icon: Music, color: "var(--violet-9)" },
 };
 
 export function getIconEntry(href: string): IconEntry | undefined {

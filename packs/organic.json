@@ -1,0 +1,250 @@
+{
+  "$schema": "../packages/audio-kit/schemas/pack.schema.json",
+  "name": "Organic",
+  "author": "Raphael Salaja",
+  "version": "1.0.0",
+  "description": "Bell-like FM synthesis with reverb — resonant, natural, acoustic-feeling UI sounds",
+  "tags": ["ui", "organic", "bells", "acoustic"],
+  "sounds": {
+    "tap": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 2.76, "depth": 200 } },
+      "envelope": { "attack": 0, "decay": 0.2, "sustain": 0, "release": 0.08 },
+      "effects": [{ "type": "reverb", "decay": 0.4, "damping": 0.6, "mix": 0.08 }],
+      "gain": 0.12
+    },
+    "click": {
+      "source": { "type": "sine", "frequency": 660, "fm": { "ratio": 3, "depth": 250 } },
+      "envelope": { "attack": 0, "decay": 0.25, "sustain": 0, "release": 0.1 },
+      "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+      "gain": 0.14
+    },
+    "key-press": {
+      "source": { "type": "sine", "frequency": 1047, "fm": { "ratio": 2.5, "depth": 180 } },
+      "envelope": { "attack": 0, "decay": 0.15, "sustain": 0, "release": 0.06 },
+      "effects": [{ "type": "reverb", "decay": 0.4, "damping": 0.6, "mix": 0.08 }],
+      "gain": 0.1
+    },
+    "toggle-on": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 523, "fm": { "ratio": 3, "depth": 200 } },
+          "envelope": { "attack": 0, "decay": 0.3, "sustain": 0, "release": 0.12 },
+          "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+          "gain": 0.12
+        },
+        {
+          "source": { "type": "sine", "frequency": 784, "fm": { "ratio": 3, "depth": 180 } },
+          "envelope": { "attack": 0, "decay": 0.28, "sustain": 0, "release": 0.1 },
+          "delay": 0.06,
+          "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+          "gain": 0.1
+        }
+      ]
+    },
+    "toggle-off": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 784, "fm": { "ratio": 3, "depth": 200 } },
+          "envelope": { "attack": 0, "decay": 0.3, "sustain": 0, "release": 0.12 },
+          "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+          "gain": 0.12
+        },
+        {
+          "source": { "type": "sine", "frequency": 523, "fm": { "ratio": 3, "depth": 180 } },
+          "envelope": { "attack": 0, "decay": 0.28, "sustain": 0, "release": 0.1 },
+          "delay": 0.06,
+          "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+          "gain": 0.1
+        }
+      ]
+    },
+    "checkbox": {
+      "source": { "type": "sine", "frequency": 740, "fm": { "ratio": 2.76, "depth": 220 } },
+      "envelope": { "attack": 0, "decay": 0.25, "sustain": 0, "release": 0.1 },
+      "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+      "gain": 0.13
+    },
+    "select": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 3, "depth": 200 } },
+      "envelope": { "attack": 0, "decay": 0.22, "sustain": 0, "release": 0.08 },
+      "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+      "gain": 0.12
+    },
+    "deselect": {
+      "source": { "type": "sine", "frequency": 660, "fm": { "ratio": 2.76, "depth": 180 } },
+      "envelope": { "attack": 0, "decay": 0.2, "sustain": 0, "release": 0.08 },
+      "effects": [{ "type": "reverb", "decay": 0.4, "damping": 0.6, "mix": 0.08 }],
+      "gain": 0.1
+    },
+    "hover": {
+      "source": { "type": "sine", "frequency": 1320, "fm": { "ratio": 2.5, "depth": 150 } },
+      "envelope": { "attack": 0, "decay": 0.12, "sustain": 0, "release": 0.05 },
+      "effects": [{ "type": "reverb", "decay": 0.4, "damping": 0.6, "mix": 0.08 }],
+      "gain": 0.05
+    },
+    "tab-switch": {
+      "source": { "type": "sine", "frequency": 784, "fm": { "ratio": 3, "depth": 200 } },
+      "envelope": { "attack": 0, "decay": 0.2, "sustain": 0, "release": 0.08 },
+      "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+      "gain": 0.1
+    },
+    "expand": {
+      "source": { "type": "sine", "frequency": 523, "fm": { "ratio": 3.5, "depth": 250 } },
+      "envelope": { "attack": 0.005, "decay": 0.35, "sustain": 0.02, "release": 0.15 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.08
+    },
+    "collapse": {
+      "source": { "type": "sine", "frequency": 1047, "fm": { "ratio": 3.5, "depth": 250 } },
+      "envelope": { "attack": 0, "decay": 0.35, "sustain": 0.02, "release": 0.15 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.08
+    },
+    "page-enter": {
+      "source": { "type": "sine", "frequency": 440, "fm": { "ratio": 3, "depth": 300 } },
+      "envelope": { "attack": 0.008, "decay": 0.4, "sustain": 0.02, "release": 0.15 },
+      "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.15 }],
+      "gain": 0.08
+    },
+    "page-exit": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 3, "depth": 300 } },
+      "envelope": { "attack": 0, "decay": 0.4, "sustain": 0.02, "release": 0.15 },
+      "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.15 }],
+      "gain": 0.07
+    },
+    "success": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 523, "fm": { "ratio": 3, "depth": 250 } },
+          "envelope": { "attack": 0, "decay": 0.5, "sustain": 0.03, "release": 0.2 },
+          "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.12 }],
+          "gain": 0.12
+        },
+        {
+          "source": { "type": "sine", "frequency": 659, "fm": { "ratio": 3, "depth": 220 } },
+          "envelope": { "attack": 0, "decay": 0.45, "sustain": 0.02, "release": 0.18 },
+          "delay": 0.1,
+          "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.12 }],
+          "gain": 0.1
+        },
+        {
+          "source": { "type": "sine", "frequency": 784, "fm": { "ratio": 3, "depth": 200 } },
+          "envelope": { "attack": 0, "decay": 0.4, "sustain": 0.02, "release": 0.18 },
+          "delay": 0.2,
+          "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.12 }],
+          "gain": 0.09
+        }
+      ]
+    },
+    "error": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 330, "fm": { "ratio": 2.5, "depth": 300 } },
+          "envelope": { "attack": 0, "decay": 0.35, "sustain": 0, "release": 0.12 },
+          "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+          "gain": 0.15
+        },
+        {
+          "source": { "type": "sine", "frequency": 311, "fm": { "ratio": 2.5, "depth": 280 } },
+          "envelope": { "attack": 0, "decay": 0.3, "sustain": 0, "release": 0.1 },
+          "delay": 0.02,
+          "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+          "gain": 0.12
+        }
+      ]
+    },
+    "warning": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 440, "fm": { "ratio": 2.76, "depth": 250 } },
+          "envelope": { "attack": 0, "decay": 0.3, "sustain": 0.03, "release": 0.12 },
+          "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+          "gain": 0.14
+        },
+        {
+          "source": { "type": "sine", "frequency": 466, "fm": { "ratio": 2.76, "depth": 230 } },
+          "envelope": { "attack": 0, "decay": 0.28, "sustain": 0.02, "release": 0.1 },
+          "delay": 0.015,
+          "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+          "gain": 0.11
+        }
+      ]
+    },
+    "notification": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 660, "fm": { "ratio": 3, "depth": 300 } },
+          "envelope": { "attack": 0, "decay": 0.5, "sustain": 0.03, "release": 0.2 },
+          "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.15 }],
+          "gain": 0.12
+        },
+        {
+          "source": { "type": "sine", "frequency": 990, "fm": { "ratio": 3, "depth": 250 } },
+          "envelope": { "attack": 0, "decay": 0.45, "sustain": 0.02, "release": 0.18 },
+          "delay": 0.12,
+          "effects": [{ "type": "reverb", "decay": 0.7, "damping": 0.4, "mix": 0.15 }],
+          "gain": 0.1
+        }
+      ]
+    },
+    "info": {
+      "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 3.5, "depth": 350 } },
+      "envelope": { "attack": 0, "decay": 0.4, "sustain": 0.03, "release": 0.15 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.1
+    },
+    "copy": {
+      "layers": [
+        {
+          "source": { "type": "sine", "frequency": 1047, "fm": { "ratio": 2.76, "depth": 200 } },
+          "envelope": { "attack": 0, "decay": 0.18, "sustain": 0, "release": 0.07 },
+          "effects": [{ "type": "reverb", "decay": 0.4, "damping": 0.6, "mix": 0.08 }],
+          "gain": 0.1
+        },
+        {
+          "source": { "type": "sine", "frequency": 1320, "fm": { "ratio": 2.76, "depth": 180 } },
+          "envelope": { "attack": 0, "decay": 0.16, "sustain": 0, "release": 0.06 },
+          "delay": 0.06,
+          "effects": [{ "type": "reverb", "decay": 0.4, "damping": 0.6, "mix": 0.08 }],
+          "gain": 0.08
+        }
+      ]
+    },
+    "send": {
+      "source": { "type": "sine", "frequency": 523, "fm": { "ratio": 3, "depth": 300 } },
+      "envelope": { "attack": 0.003, "decay": 0.35, "sustain": 0.02, "release": 0.12 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.1
+    },
+    "delete": {
+      "source": { "type": "sine", "frequency": 440, "fm": { "ratio": 2.5, "depth": 350 } },
+      "envelope": { "attack": 0, "decay": 0.4, "sustain": 0, "release": 0.15 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.13
+    },
+    "undo": {
+      "source": { "type": "sine", "frequency": 784, "fm": { "ratio": 3, "depth": 250 } },
+      "envelope": { "attack": 0, "decay": 0.3, "sustain": 0, "release": 0.1 },
+      "effects": [{ "type": "reverb", "decay": 0.5, "damping": 0.5, "mix": 0.1 }],
+      "gain": 0.09
+    },
+    "pop": {
+      "source": { "type": "sine", "frequency": 523, "fm": { "ratio": 3.5, "depth": 400 } },
+      "envelope": { "attack": 0, "decay": 0.3, "sustain": 0, "release": 0.12 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.15
+    },
+    "swoosh": {
+      "source": { "type": "sine", "frequency": 330, "fm": { "ratio": 3, "depth": 350 } },
+      "envelope": { "attack": 0.01, "decay": 0.35, "sustain": 0, "release": 0.12 },
+      "effects": [{ "type": "reverb", "decay": 0.8, "damping": 0.4, "mix": 0.15 }],
+      "gain": 0.08
+    },
+    "slide": {
+      "source": { "type": "sine", "frequency": 440, "fm": { "ratio": 3, "depth": 300 } },
+      "envelope": { "attack": 0.008, "decay": 0.3, "sustain": 0, "release": 0.1 },
+      "effects": [{ "type": "reverb", "decay": 0.6, "damping": 0.5, "mix": 0.12 }],
+      "gain": 0.07
+    }
+  }
+}

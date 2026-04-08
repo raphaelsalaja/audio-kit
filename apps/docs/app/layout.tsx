@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { TopNav } from "@/components/top-nav";
 import "@/styles/index.css";
 
 export const metadata: Metadata = {
@@ -34,7 +36,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <NuqsAdapter>
+          <ThemeProvider>
+            <TopNav />
+            {children}
+          </ThemeProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

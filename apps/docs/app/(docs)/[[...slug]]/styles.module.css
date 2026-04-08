@@ -1,14 +1,14 @@
 .content {
   flex: 1;
   min-width: 0;
-  padding: var(--page-top) 40px 80px;
+  padding: calc(var(--page-top) + var(--fade-size)) 40px 80px;
 }
 
 .header {
   display: flex;
+  gap: 16px;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
   margin-bottom: 8px;
 }
 

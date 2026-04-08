@@ -1,0 +1,264 @@
+.container {
+  width: 100%;
+  padding-bottom: 64px;
+}
+
+.back {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 32px;
+  color: var(--gray-9);
+  text-decoration: none;
+  transition: color 0.15s;
+  @typography 13, 500;
+}
+
+.back:hover {
+  color: var(--gray-12);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.title {
+  color: var(--gray-12);
+  @typography 24, 700;
+}
+
+.author {
+  color: var(--gray-9);
+  @typography 14;
+}
+
+.description {
+  margin-bottom: 24px;
+  color: var(--gray-11);
+  @typography 14, 400, 1.6;
+}
+
+.snippet {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 32px;
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-2);
+}
+
+.code {
+  overflow: auto;
+  font-family: var(--font-mono);
+  color: var(--gray-12);
+  white-space: nowrap;
+  @typography 13;
+}
+
+.copyBtn {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 6px;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  color: var(--gray-11);
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--gray-a4);
+  border-radius: var(--radius-small);
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+  @typography 13, 500;
+}
+
+.copyBtn:hover {
+  color: var(--gray-12);
+  background: var(--gray-a2);
+  border-color: var(--gray-a6);
+}
+
+.meta {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metaLabel {
+  color: var(--gray-8);
+  text-transform: uppercase;
+  @typography 11, 500, 1.5, 0.55;
+}
+
+.metaValue {
+  font-variant-numeric: tabular-nums;
+  color: var(--gray-12);
+  @typography 16, 600;
+}
+
+.metaLink {
+  color: var(--gray-11);
+  text-decoration: none;
+  transition: color 0.15s;
+  @typography 14, 500;
+}
+
+.metaLink:hover {
+  color: var(--gray-12);
+  text-decoration: underline;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 3px 8px;
+  color: var(--gray-10);
+  background: var(--gray-a3);
+  border-radius: var(--radius-small);
+  @typography 12;
+}
+
+/* sounds section */
+
+.soundsSection {
+  margin-top: 40px;
+}
+
+.sectionTitle {
+  margin-bottom: 20px;
+  color: var(--gray-12);
+  @typography 16, 600;
+}
+
+.soundCategories {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.categoryGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.categoryTitle {
+  color: var(--gray-8);
+  text-transform: uppercase;
+  @typography 11, 500, 1.5, 0.55;
+}
+
+.soundGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+
+.soundCard {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--gray-a3);
+  border-radius: var(--radius-small);
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+}
+
+.soundCard:hover {
+  background: var(--gray-a2);
+  border-color: var(--gray-a5);
+}
+
+.soundCard:active {
+  background: var(--gray-a3);
+}
+
+.soundCard[data-playing="true"] {
+  background: var(--blue-a2);
+  border-color: var(--blue-a5);
+}
+
+.soundCard:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.soundIcon {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--gray-8);
+  background: var(--gray-a3);
+  border-radius: 50%;
+  transition:
+    color 0.12s,
+    background 0.12s;
+}
+
+.soundCard:hover .soundIcon {
+  color: var(--gray-11);
+}
+
+.soundCard[data-playing="true"] .soundIcon {
+  color: var(--blue-11);
+  background: var(--blue-a3);
+}
+
+.soundInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.soundName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--gray-12);
+  white-space: nowrap;
+  @typography 13, 500;
+}
+
+.soundDesc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--gray-8);
+  white-space: nowrap;
+  @typography 11;
+}
+
+.loadingHint {
+  color: var(--gray-8);
+  @typography 12;
+}
+
+@media (max-width: 480px) {
+  .soundGrid {
+    grid-template-columns: 1fr;
+  }
+}

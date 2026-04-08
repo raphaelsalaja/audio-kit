@@ -43,7 +43,7 @@ click();
 import { usePack } from "audio-kit/react";
 
 function App() {
-  const pack = usePack("/packs/ui-essentials.json");
+  const pack = usePack("/packs/core.json");
 
   return (
     <button onClick={() => pack.play("click")} disabled={!pack.ready}>
@@ -58,7 +58,7 @@ function App() {
 ```ts
 import { loadPack } from "audio-kit";
 
-const pack = await loadPack("/packs/ui-essentials.json");
+const pack = await loadPack("/packs/core.json");
 pack.play("click");
 ```
 

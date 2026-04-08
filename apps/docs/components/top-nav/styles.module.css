@@ -1,0 +1,102 @@
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+  height: var(--page-top);
+  background: var(--gray-1);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  max-width: var(--layout-width);
+  height: 100%;
+  padding: 0 var(--page-padding);
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 18px;
+  height: 18px;
+  padding: 3px;
+  color: var(--gray-8);
+  background: var(--gray-3);
+  border-radius: 4px;
+}
+
+.logoText {
+  color: var(--gray-12);
+  @typography 14, 600;
+}
+
+.links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  color: var(--gray-9);
+  text-decoration: none;
+  border-radius: var(--radius-small);
+  transition:
+    color 0.15s,
+    background 0.15s;
+  @typography 13, 500;
+}
+
+.link:hover {
+  color: var(--gray-12);
+  background: var(--gray-a2);
+}
+
+.link.active {
+  color: var(--gray-12);
+  background: var(--gray-a3);
+}
+
+.actions {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-self: end;
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--gray-10);
+  text-decoration: none;
+  border-radius: var(--radius-small);
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.iconLink:hover {
+  color: var(--gray-12);
+  background: var(--gray-a3);
+}
+
+@media (width <= 768px) {
+  .links {
+    display: none;
+  }
+}
