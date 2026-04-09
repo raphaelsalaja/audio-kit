@@ -1,13 +1,16 @@
-import { neon } from "@neondatabase/serverless";
 import { type NextRequest, NextResponse } from "next/server";
+import { getDb } from "../../../../lib/db";
 
-const sql = neon(process.env.DATABASE_URL ?? "");
+export const dynamic = "force-dynamic";
+export const preferredRegion = "iad1";
 
 export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ name: string }> },
 ) {
   const { name } = await params;
+
+  const sql = await getDb();
 
   const rows = await sql`
     SELECT patch_json, source_url
@@ -22,7 +25,10 @@ export async function GET(
 
   if (patch.patch_json) {
     return NextResponse.json(patch.patch_json, {
-      headers: { "Cache-Control": "public, max-age=3600, s-maxage=3600" },
+      headers: {
+        "Cache-Control":
+          "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+      },
     });
   }
 
@@ -50,6 +56,9 @@ export async function GET(
   `;
 
   return NextResponse.json(patchData, {
-    headers: { "Cache-Control": "public, max-age=3600, s-maxage=3600" },
+    headers: {
+      "Cache-Control":
+        "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+    },
   });
 }

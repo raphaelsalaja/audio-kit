@@ -87,7 +87,10 @@ describe("discoverPatchesFromLocal", () => {
       join(tempDir, "patch-b.json"),
       JSON.stringify({ name: "B", sounds: { pop: {}, toggle: {} } }),
     );
-    writeFileSync(join(tempDir, "not-a-patch.json"), JSON.stringify({ foo: 1 }));
+    writeFileSync(
+      join(tempDir, "not-a-patch.json"),
+      JSON.stringify({ foo: 1 }),
+    );
 
     const patches = await discoverPatchesFromLocal(tempDir);
     expect(patches).toHaveLength(2);

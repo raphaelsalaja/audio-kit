@@ -5,8 +5,6 @@ import * as p from "@clack/prompts";
 import pc from "picocolors";
 import {
   type DiscoveredPatch,
-  type InstalledPatch,
-  type PatchIndexEntry,
   discoverPatchesFromGitHub,
   discoverPatchesFromLocal,
   ensureConfig,
@@ -15,8 +13,10 @@ import {
   generateModule,
   getInstalledPatches,
   getPatchesDir,
+  type InstalledPatch,
   isGitHubSource,
   isLocalSource,
+  type PatchIndexEntry,
   regenerateIndex,
   registerPatch,
   validatePatch,
@@ -108,9 +108,7 @@ async function addFromLocal(source: string, options: AddOptions) {
   if (!toInstall || toInstall.length === 0) return;
 
   const installed = await getInstalledPatches();
-  const installedNames = new Set(
-    installed.map((p: InstalledPatch) => p.name),
-  );
+  const installedNames = new Set(installed.map((p: InstalledPatch) => p.name));
 
   const final = options.yes
     ? toInstall
@@ -167,9 +165,7 @@ async function addFromGitHub(source: string, options: AddOptions) {
   }
 
   const installed = await getInstalledPatches();
-  const installedNames = new Set(
-    installed.map((p: InstalledPatch) => p.name),
-  );
+  const installedNames = new Set(installed.map((p: InstalledPatch) => p.name));
 
   const toInstall = await resolvePatchSelection(
     discovered,
@@ -259,9 +255,7 @@ async function addFromRegistry(options: AddOptions) {
   }
 
   const installed = await getInstalledPatches();
-  const installedNames = new Set(
-    installed.map((p: InstalledPatch) => p.name),
-  );
+  const installedNames = new Set(installed.map((p: InstalledPatch) => p.name));
 
   let names: string[];
 
@@ -269,8 +263,7 @@ async function addFromRegistry(options: AddOptions) {
     const patchName = options.patch;
     names = [patchName];
     const match = index.find(
-      (e: PatchIndexEntry) =>
-        e.name.toLowerCase() === patchName.toLowerCase(),
+      (e: PatchIndexEntry) => e.name.toLowerCase() === patchName.toLowerCase(),
     );
     if (!match) {
       p.log.error(`Patch "${patchName}" not found in registry.`);

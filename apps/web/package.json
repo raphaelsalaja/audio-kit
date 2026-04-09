@@ -15,6 +15,7 @@
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.23",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "@web-kits/audio": "workspace:^",
     "@web-kits/icons": "workspace:*",
     "@web-kits/ui": "workspace:*",

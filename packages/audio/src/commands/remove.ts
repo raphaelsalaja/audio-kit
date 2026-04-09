@@ -1,7 +1,11 @@
 import { unlink } from "node:fs/promises";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
-import { getInstalledPatches, getPatchesDir, regenerateIndex } from "./utils.js";
+import {
+  getInstalledPatches,
+  getPatchesDir,
+  regenerateIndex,
+} from "./utils.js";
 
 export interface RemoveOptions {
   yes?: boolean;

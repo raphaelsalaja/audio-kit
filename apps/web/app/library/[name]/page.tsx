@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { PatchDetail } from "@/components/patch-detail";
 import { getPatchByName, getPatchSounds } from "@/lib/patches";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ name: string }>;
 };

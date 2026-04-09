@@ -27,7 +27,7 @@ function withMix(
   create: (
     input: GainNode,
     output: GainNode,
-  ) => { dispose?: () => void } | undefined | void,
+  ) => { dispose?: () => void } | undefined | undefined,
 ): EffectNode {
   const input = ctx.createGain();
   const output = ctx.createGain();

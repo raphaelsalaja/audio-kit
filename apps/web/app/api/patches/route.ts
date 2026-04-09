@@ -1,7 +1,8 @@
-import { neon } from "@neondatabase/serverless";
 import { type NextRequest, NextResponse } from "next/server";
+import { getDb } from "../../../lib/db";
 
-const sql = neon(process.env.DATABASE_URL ?? "");
+export const dynamic = "force-dynamic";
+export const preferredRegion = "iad1";
 
 interface PatchJson {
   name: string;
@@ -10,6 +11,28 @@ interface PatchJson {
   description?: string;
   tags?: string[];
   sounds: Record<string, unknown>;
+}
+
+const ALLOWED_HOSTS = [
+  "raw.githubusercontent.com",
+  "gist.githubusercontent.com",
+  "audio-kit.dev",
+];
+
+function isAllowedUrl(raw: string): URL | null {
+  try {
+    const parsed = new URL(raw);
+    if (parsed.protocol !== "https:") return null;
+    if (
+      !ALLOWED_HOSTS.some(
+        (h) => parsed.hostname === h || parsed.hostname.endsWith(`.${h}`),
+      )
+    )
+      return null;
+    return parsed;
+  } catch {
+    return null;
+  }
 }
 
 function validatePatch(data: unknown): data is PatchJson {
@@ -25,6 +48,7 @@ function validatePatch(data: unknown): data is PatchJson {
 
 export async function POST(request: NextRequest) {
   try {
+    const sql = await getDb();
     const body = await request.json();
     const { url } = body as { url?: string };
 
@@ -35,7 +59,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const res = await fetch(url);
+    const parsed = isAllowedUrl(url);
+    if (!parsed) {
+      return NextResponse.json(
+        {
+          error: `URL must be HTTPS from an allowed host: ${ALLOWED_HOSTS.join(", ")}`,
+        },
+        { status: 400 },
+      );
+    }
+
+    const res = await fetch(parsed.href, {
+      signal: AbortSignal.timeout(10_000),
+      headers: { Accept: "application/json" },
+    });
     if (!res.ok) {
       return NextResponse.json(
         { error: `Failed to fetch patch from URL: ${res.status}` },
@@ -109,8 +146,9 @@ export async function POST(request: NextRequest) {
 
     const soundNames = Object.keys(patchData.sounds);
     await Promise.all(
-      soundNames.map((soundName) =>
-        sql`
+      soundNames.map(
+        (soundName) =>
+          sql`
           INSERT INTO patch_sounds (patch_id, name, category)
           VALUES (${patchId}, ${soundName}, ${"sounds"})
         `,
@@ -130,6 +168,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    const sql = await getDb();
     const rows = await sql`
       SELECT
         p.name,
@@ -157,7 +196,10 @@ export async function GET() {
     }));
 
     return NextResponse.json(patches, {
-      headers: { "Cache-Control": "public, max-age=60, s-maxage=60" },
+      headers: {
+        "Cache-Control":
+          "public, max-age=60, s-maxage=60, stale-while-revalidate=300",
+      },
     });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

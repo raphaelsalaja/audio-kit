@@ -54,11 +54,15 @@ export function definePatch(data: SoundPatch): AudioPatch {
   return createPatchInstance(data);
 }
 
-export async function loadPatch(source: string | SoundPatch): Promise<AudioPatch> {
+export async function loadPatch(
+  source: string | SoundPatch,
+): Promise<AudioPatch> {
   if (typeof source === "string") {
     const response = await fetch(source);
     if (!response.ok)
-      throw new Error(`Failed to load patch from ${source}: ${response.status}`);
+      throw new Error(
+        `Failed to load patch from ${source}: ${response.status}`,
+      );
     const data: SoundPatch = await response.json();
     return createPatchInstance(data);
   }

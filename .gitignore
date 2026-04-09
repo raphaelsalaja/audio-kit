@@ -34,3 +34,4 @@ Thumbs.db
 # editors
 .vscode/*
 !.vscode/settings.json
+.env*.local

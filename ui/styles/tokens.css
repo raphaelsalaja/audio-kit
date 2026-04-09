@@ -3,7 +3,7 @@
   --bg-subtle: var(--gray-2);
   --selection: var(--gray-a2);
   --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
-  --font-sans: Inter, sans-serif;
+  --font-sans: var(--font-inter, Inter), sans-serif;
   --radius-none: 0px;
   --radius-small: 6px;
   --radius-medium: 10px;
@@ -17,12 +17,6 @@
     "liga" 1,
     "calt" 1;
   color: var(--gray-12);
-}
-
-@supports (font-variation-settings: normal) {
-  :root {
-    font-family: InterVariable, sans-serif;
-  }
 }
 
 html {

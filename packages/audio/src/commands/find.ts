@@ -37,7 +37,9 @@ export async function find(args: string[]) {
   }
 
   console.log(
-    pc.dim(`Install with ${pc.reset("npx @web-kits/audio add --patch <name>")}`),
+    pc.dim(
+      `Install with ${pc.reset("npx @web-kits/audio add --patch <name>")}`,
+    ),
   );
   console.log();
 

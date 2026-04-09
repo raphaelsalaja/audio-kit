@@ -165,10 +165,7 @@ function SoundDemo({
   const voiceRef = useRef<{ stop: (t?: number) => void } | null>(null);
   const playingRef = useRef<string | null>(null);
 
-  const soundSet = useMemo(
-    () => new Set(patch.sounds),
-    [patch.sounds],
-  );
+  const soundSet = useMemo(() => new Set(patch.sounds), [patch.sounds]);
 
   const handlePlay = useCallback(
     (soundName: string) => {
@@ -210,8 +207,7 @@ function SoundDemo({
           <h3 className={styles.categoryTitle}>{group.category}</h3>
           <div className={styles.soundGrid}>
             {group.sounds.map((sound) => {
-              const isAvailable =
-                patch.ready && soundSet.has(sound.name);
+              const isAvailable = patch.ready && soundSet.has(sound.name);
               const isPlaying = playing === sound.name;
 
               return (

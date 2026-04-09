@@ -1,7 +1,5 @@
-import { neon } from "@neondatabase/serverless";
 import { cache } from "react";
-
-const sql = neon(process.env.DATABASE_URL ?? "");
+import { getDb } from "./db";
 
 export type PatchWithStats = {
   id: number;
@@ -32,6 +30,7 @@ function rowToPatch(row: Record<string, unknown>): PatchWithStats {
 }
 
 export async function getPatchesAllTime(): Promise<PatchWithStats[]> {
+  const sql = await getDb();
   const rows = await sql`
     SELECT p.*, COUNT(pl.id)::int AS loads
     FROM patches p
@@ -43,6 +42,7 @@ export async function getPatchesAllTime(): Promise<PatchWithStats[]> {
 }
 
 export async function getPatchesTrending(): Promise<PatchWithStats[]> {
+  const sql = await getDb();
   const rows = await sql`
     SELECT p.*, COUNT(pl.id)::int AS loads
     FROM patches p
@@ -55,6 +55,7 @@ export async function getPatchesTrending(): Promise<PatchWithStats[]> {
 }
 
 export async function getPatchesHot(): Promise<PatchWithStats[]> {
+  const sql = await getDb();
   const rows = await sql`
     SELECT p.*,
       SUM(
@@ -74,6 +75,7 @@ export async function getPatchesHot(): Promise<PatchWithStats[]> {
 
 export const getPatchByName = cache(
   async (name: string): Promise<PatchWithStats | null> => {
+    const sql = await getDb();
     const rows = await sql`
     SELECT p.*, COUNT(pl.id)::int AS loads
     FROM patches p
@@ -101,6 +103,7 @@ export type PatchSoundsByCategory = {
 export async function getPatchSounds(
   patchId: number,
 ): Promise<PatchSoundsByCategory[]> {
+  const sql = await getDb();
   const rows = await sql`
     SELECT id, name, category, description
     FROM patch_sounds
