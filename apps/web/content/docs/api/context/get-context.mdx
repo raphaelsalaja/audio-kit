@@ -3,10 +3,10 @@ title: getContext
 description: Access the shared AudioContext instance.
 ---
 
-Returns the shared `AudioContext`, creating it on first call. All audio-kit functions route through this single context.
+Returns the shared `AudioContext`, creating it on first call. All @web-kits/audio functions route through this single context.
 
 ```ts
-import { getContext } from "audio-kit";
+import { getContext } from "@web-kits/audio";
 
 const ctx = getContext();
 ```
@@ -31,7 +31,7 @@ Configure the context on first creation. Options are ignored on subsequent calls
 Close the shared context and release resources. A fresh context is created on the next `getContext()` call.
 
 ```ts
-import { dispose } from "audio-kit";
+import { dispose } from "@web-kits/audio";
 
 dispose();
 ```

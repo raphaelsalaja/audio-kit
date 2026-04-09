@@ -3,7 +3,7 @@ title: Spatial Audio
 description: Position sounds in 3D space.
 ---
 
-audio-kit supports full 3D spatial audio using the Web Audio API's HRTF panning. Position sounds anywhere in 3D space and set up a listener to hear them from a specific vantage point.
+@web-kits/audio supports full 3D spatial audio using the Web Audio API's HRTF panning. Position sounds anywhere in 3D space and set up a listener to hear them from a specific vantage point.
 
 ## Position a sound
 
@@ -28,10 +28,10 @@ defineSound({
 
 ## Set the listener
 
-Tell audio-kit where the listener is. In a game, this would track the camera or player position.
+Tell @web-kits/audio where the listener is. In a game, this would track the camera or player position.
 
 ```ts
-import { setListener } from "audio-kit";
+import { setListener } from "@web-kits/audio";
 
 setListener({
   positionX: 0,

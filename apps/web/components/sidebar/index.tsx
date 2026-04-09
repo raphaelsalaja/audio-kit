@@ -1,6 +1,6 @@
 "use client";
 
-import ArrowUpRight from "@audio-kit/icons/outline/arrow-up-right";
+import ArrowUpRight from "@web-kits/icons/outline/arrow-up-right";
 import type {
   Folder,
   Item,

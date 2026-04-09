@@ -19,7 +19,7 @@ export function MobileHeader({ tree }: { tree: Root }) {
     <>
       <header className={styles.header}>
         <Link href="/" className={styles.logo}>
-          audio-kit
+          @web-kits/audio
         </Link>
         <button
           type="button"
@@ -60,7 +60,7 @@ export function MobileHeader({ tree }: { tree: Root }) {
           <div className={styles.panel} onClick={(e) => e.stopPropagation()}>
             <SidebarRoot onNavigate={() => setOpen(false)}>
               <SidebarDrawer>
-                <SidebarHeader>audio-kit</SidebarHeader>
+                <SidebarHeader>@web-kits/audio</SidebarHeader>
                 <SidebarNav>
                   <SidebarTree tree={tree} />
                 </SidebarNav>

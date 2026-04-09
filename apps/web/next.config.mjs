@@ -2,7 +2,7 @@ import { createMDX } from "fumadocs-mdx/next";
 
 /** @type {import('next').NextConfig} */
 const config = {
-  transpilePackages: ["audio-kit", "@audio-kit/icons", "@audio-kit/ui"],
+  transpilePackages: ["@web-kits/audio", "@web-kits/icons", "@web-kits/ui"],
   async redirects() {
     return [
       {
@@ -17,7 +17,7 @@ const config = {
       },
       {
         source: "/resources/npm",
-        destination: "https://npmjs.com/package/audio-kit",
+        destination: "https://npmjs.com/package/@web-kits/audio",
         permanent: false,
       },
     ];

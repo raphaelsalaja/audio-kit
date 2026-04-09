@@ -1,4 +1,4 @@
-import type { LFO, LFOTarget } from "audio-kit";
+import type { LFO, LFOTarget } from "@web-kits/audio";
 import { useRef } from "react";
 import { PlusIcon, TrashIcon } from "@/components/controls/icons";
 import type { BuilderAction } from "../state";

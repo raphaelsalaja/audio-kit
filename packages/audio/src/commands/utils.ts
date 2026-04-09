@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
-import { join, resolve, isAbsolute } from "node:path";
+import { isAbsolute, join, resolve } from "node:path";
 
 export const REGISTRY_BASE = "https://audio-kit.dev/api";
 

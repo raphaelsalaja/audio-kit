@@ -1,7 +1,7 @@
 "use client";
 
-import Github from "@audio-kit/icons/social-media/github";
-import XTwitter from "@audio-kit/icons/social-media/x-twitter";
+import Github from "@web-kits/icons/social-media/github";
+import XTwitter from "@web-kits/icons/social-media/x-twitter";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -28,7 +28,7 @@ export function TopNav() {
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
           <MusicNote className={styles.logoIcon} />
-          <span className={styles.logoText}>Audio Kit</span>
+          <span className={styles.logoText}>@web-kits/audio</span>
         </Link>
         <div className={styles.links}>
           {LINKS.map((link) => (

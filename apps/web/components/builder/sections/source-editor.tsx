@@ -1,4 +1,4 @@
-import type { Source } from "audio-kit";
+import type { Source } from "@web-kits/audio";
 import type { BuilderAction } from "../state";
 import styles from "../styles.module.css";
 

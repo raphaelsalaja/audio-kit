@@ -4,13 +4,13 @@ description: >-
   Analyze audio files to extract synthesis parameters: fundamental frequency,
   pitch envelope, attack time, duration, harmonic content, filters, effects,
   and stereo positioning. Use when reverse-engineering sounds from sample
-  libraries, comparing audio output against audio-kit definitions, splitting
+  libraries,   comparing audio output against @web-kits/audio definitions, splitting
   audio sprites, or running FFT analysis on WAV/MP3 files.
 ---
 
 # Interpret Sounds
 
-Extracts synthesis parameters from audio files using FFT analysis, then maps the results to audio-kit `SoundDefinition` properties. Use this to reverse-engineer sample libraries, validate audio-kit output against reference sounds, or build definitions from existing audio.
+Extracts synthesis parameters from audio files using FFT analysis, then maps the results to @web-kits/audio `SoundDefinition` properties. Use this to reverse-engineer sample libraries, validate @web-kits/audio output against reference sounds, or build definitions from existing audio.
 
 **Dependencies:** Python 3, `numpy`, `scipy`, `ffmpeg` (CLI).
 
@@ -182,7 +182,7 @@ If the spectrum contains two or more distinct fundamentals that are not harmonic
 { layers: [{ source: { ... }, envelope: { ... } }, { source: { ... }, envelope: { ... } }] }
 ```
 
-### Step 4: Map to audio-kit definitions
+### Step 4: Map to @web-kits/audio definitions
 
 The `SoundDefinition` type is `Layer | MultiLayerSound`. A single `Layer`:
 

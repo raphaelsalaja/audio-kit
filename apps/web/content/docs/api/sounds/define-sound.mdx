@@ -6,7 +6,7 @@ description: Create a reusable play function from a sound definition.
 Takes a sound definition and returns a function that plays it. Call the function to trigger the sound - each call returns a `VoiceHandle` for stopping mid-flight.
 
 ```ts
-import { defineSound } from "audio-kit";
+import { defineSound } from "@web-kits/audio";
 
 const play = defineSound({
   source: { type: "sine", frequency: 440 },

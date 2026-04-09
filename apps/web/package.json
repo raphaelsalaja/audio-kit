@@ -9,14 +9,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@audio-kit/icons": "workspace:*",
-    "@audio-kit/ui": "workspace:*",
     "@base-ui/react": "^1.2.0",
     "@neondatabase/serverless": "^0.10.4",
     "@shikijs/transformers": "^4.0.1",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.13.23",
-    "audio-kit": "workspace:^",
+    "@vercel/analytics": "^2.0.1",
+    "@web-kits/audio": "workspace:^",
+    "@web-kits/icons": "workspace:*",
+    "@web-kits/ui": "workspace:*",
     "calligraph": "^1.4.1",
     "fumadocs-core": "latest",
     "fumadocs-mdx": "latest",

@@ -1,4 +1,4 @@
-import type { Panner3D } from "audio-kit";
+import type { Panner3D } from "@web-kits/audio";
 import type { BuilderAction } from "../state";
 import styles from "../styles.module.css";
 

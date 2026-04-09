@@ -1,21 +1,21 @@
-# audio-kit
+# @web-kits/audio
 
-[![npm](https://img.shields.io/npm/v/audio-kit)](https://www.npmjs.com/package/audio-kit)
-[![license](https://img.shields.io/github/license/raphaelsalaja/audio-kit)](LICENSE)
-[![CI](https://github.com/raphaelsalaja/audio-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaelsalaja/audio-kit/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/%40web-kits%2Faudio)](https://www.npmjs.com/package/@web-kits/audio)
+[![license](https://img.shields.io/github/license/web-kits/audio)](LICENSE)
+[![CI](https://github.com/web-kits/audio/actions/workflows/ci.yml/badge.svg)](https://github.com/web-kits/audio/actions/workflows/ci.yml)
 
 Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
 
 ## Install
 
 ```bash
-npm install audio-kit
+npm install @web-kits/audio
 ```
 
 ## Quick start
 
 ```ts
-import { defineSound, ensureReady } from "audio-kit";
+import { defineSound, ensureReady } from "@web-kits/audio";
 
 const click = defineSound({
   source: { type: "sine", frequency: { start: 1200, end: 300 } },
@@ -30,7 +30,7 @@ click();
 ### React
 
 ```tsx
-import { usePack } from "audio-kit/react";
+import { usePack } from "@web-kits/audio/react";
 
 function App() {
   const pack = usePack("/packs/core.json");
@@ -49,31 +49,30 @@ Browse and install community sound packs directly from GitHub repos:
 
 ```bash
 # Browse the registry
-npx audio-kit add
+npx @web-kits/audio add
 
 # Install from a GitHub repo
-npx audio-kit add user/repo
+npx @web-kits/audio add user/repo
 
 # Create a new pack
-npx audio-kit init
+npx @web-kits/audio init
 
 # List installed packs
-npx audio-kit list
+npx @web-kits/audio list
 ```
 
 ## Monorepo structure
 
 ```
-packages/audio-kit   Core library + CLI (published to npm)
-apps/docs            Documentation site (Fumadocs)
-apps/web             Pack registry and homepage (audio-kit.dev)
+packages/audio       Core library + CLI (published to npm)
+apps/web             Documentation, registry, and homepage
 ui/                  Shared UI components
 packs/               First-party sound packs
 ```
 
 ## Documentation
 
-Full docs at [audio-kit.dev](https://audio-kit.dev).
+Full docs at [web-kits.dev/audio](https://web-kits.dev/audio).
 
 ## References
 

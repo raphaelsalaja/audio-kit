@@ -1,5 +1,5 @@
-import ChevronLeft from "@audio-kit/icons/fill/chevron-left";
-import ChevronRight from "@audio-kit/icons/fill/chevron-right";
+import ChevronLeft from "@web-kits/icons/fill/chevron-left";
+import ChevronRight from "@web-kits/icons/fill/chevron-right";
 import type { Item } from "fumadocs-core/page-tree";
 import Link from "next/link";
 import styles from "./styles.module.css";

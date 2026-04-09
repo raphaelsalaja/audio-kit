@@ -7,7 +7,7 @@ import type {
   Panner3D,
   SoundDefinition,
   Source,
-} from "audio-kit";
+} from "@web-kits/audio";
 
 // ---------------------------------------------------------------------------
 // Builder state: always normalized to multi-layer form
@@ -304,7 +304,7 @@ function cleanLayer(layer: BuilderLayer): Layer {
 export function serializeToCode(state: BuilderState): string {
   const def = toDefinition(state);
   const json = prettyPrint(def, 1);
-  return `import { defineSound } from "audio-kit";\n\nconst play = defineSound(${json});\n\nplay();`;
+  return `import { defineSound } from "@web-kits/audio";\n\nconst play = defineSound(${json});\n\nplay();`;
 }
 
 function prettyPrint(value: unknown, depth: number): string {

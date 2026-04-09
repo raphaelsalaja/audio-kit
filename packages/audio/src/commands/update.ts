@@ -1,3 +1,6 @@
+import { existsSync, mkdirSync } from "node:fs";
+import { writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import * as p from "@clack/prompts";
 import pc from "picocolors";
 import {
@@ -7,13 +10,10 @@ import {
   getPacksDir,
   validatePack,
 } from "./utils.js";
-import { existsSync, mkdirSync } from "node:fs";
-import { writeFile } from "node:fs/promises";
-import { join } from "node:path";
 
 export async function update(_args: string[]) {
   console.log();
-  console.log(pc.bold("audio-kit update"));
+  console.log(pc.bold("@web-kits/audio update"));
   console.log();
 
   const installed = await getInstalledPacks();
@@ -21,7 +21,7 @@ export async function update(_args: string[]) {
   if (installed.length === 0) {
     console.log(pc.dim("No packs installed."));
     console.log(
-      pc.dim(`Install packs with ${pc.reset("npx audio-kit add")}`),
+      pc.dim(`Install packs with ${pc.reset("npx @web-kits/audio add")}`),
     );
     console.log();
     return;
@@ -67,7 +67,7 @@ export async function update(_args: string[]) {
       }
 
       const packData = {
-        $schema: "node_modules/audio-kit/schemas/pack.schema.json",
+        $schema: "node_modules/@web-kits/audio/schemas/pack.schema.json",
         ...data,
       };
 

@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { mkdirSync, writeFileSync, rmSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { getInstalledPacks } from "../src/commands/utils.js";
 
 describe("getInstalledPacks", () => {
@@ -10,7 +10,10 @@ describe("getInstalledPacks", () => {
 
   beforeEach(() => {
     originalCwd = process.cwd();
-    tempDir = join(tmpdir(), `audio-kit-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    tempDir = join(
+      tmpdir(),
+      `audio-kit-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    );
     mkdirSync(tempDir, { recursive: true });
     process.chdir(tempDir);
   });
@@ -39,10 +42,7 @@ describe("getInstalledPacks", () => {
       tags: ["test"],
     };
 
-    writeFileSync(
-      join(packsDir, "test-pack.json"),
-      JSON.stringify(packData),
-    );
+    writeFileSync(join(packsDir, "test-pack.json"), JSON.stringify(packData));
 
     const packs = await getInstalledPacks();
     expect(packs).toHaveLength(1);

@@ -3,25 +3,25 @@ title: Overview
 description: Declarative audio synthesis for the web.
 ---
 
-Audio-kit is a declarative audio synthesis library for the web. Define sounds as plain objects and play them with a single function call.
+@web-kits/audio is a declarative audio synthesis library for the web. Define sounds as plain objects and play them with a single function call.
 
 <Playground />
 
 ## Quickstart
 
-Install `audio-kit` with your package manager of choice.
+Install `@web-kits/audio` with your package manager of choice.
 
 <Tabs items={[
-  { label: "npm", value: "npm install audio-kit" },
-  { label: "yarn", value: "yarn add audio-kit" },
-  { label: "pnpm", value: "pnpm add audio-kit" },
-  { label: "bun", value: "bun add audio-kit" },
+  { label: "npm", value: "npm install @web-kits/audio" },
+  { label: "yarn", value: "yarn add @web-kits/audio" },
+  { label: "pnpm", value: "pnpm add @web-kits/audio" },
+  { label: "bun", value: "bun add @web-kits/audio" },
 ]} />
 
 Define a sound as a plain object and call the returned function to play it.
 
 ```ts
-import { defineSound } from "audio-kit";
+import { defineSound } from "@web-kits/audio";
 
 const pop = defineSound({
   source: { type: "sine", frequency: { start: 400, end: 150 } },

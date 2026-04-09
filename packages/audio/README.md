@@ -1,11 +1,11 @@
-# audio-kit
+# @web-kits/audio
 
 Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
 
 ## Install
 
 ```bash
-npm install audio-kit
+npm install @web-kits/audio
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install audio-kit
 ### Define and play a sound
 
 ```ts
-import { defineSound, ensureReady } from "audio-kit";
+import { defineSound, ensureReady } from "@web-kits/audio";
 
 const pop = defineSound({
   source: { type: "sine", frequency: { start: 1200, end: 300 } },
@@ -28,7 +28,7 @@ pop();
 ### Shorthand helpers
 
 ```ts
-import { sine, noise } from "audio-kit";
+import { sine, noise } from "@web-kits/audio";
 
 const beep = sine(440, 0.1);
 const click = noise("white", 0.02);
@@ -40,7 +40,7 @@ click();
 ### Sound packs (React)
 
 ```tsx
-import { usePack } from "audio-kit/react";
+import { usePack } from "@web-kits/audio/react";
 
 function App() {
   const pack = usePack("/packs/core.json");
@@ -56,7 +56,7 @@ function App() {
 ### Sound packs (vanilla)
 
 ```ts
-import { loadPack } from "audio-kit";
+import { loadPack } from "@web-kits/audio";
 
 const pack = await loadPack("/packs/core.json");
 pack.play("click");
@@ -66,28 +66,28 @@ pack.play("click");
 
 ```bash
 # Browse and install packs from the registry
-npx audio-kit add
+npx @web-kits/audio add
 
 # Install packs from a GitHub repo
-npx audio-kit add user/repo
+npx @web-kits/audio add user/repo
 
 # Create a new sound pack
-npx audio-kit init
+npx @web-kits/audio init
 
 # List installed packs
-npx audio-kit list
+npx @web-kits/audio list
 
 # Remove installed packs
-npx audio-kit remove
+npx @web-kits/audio remove
 ```
 
 ## Pack authoring
 
-Create a pack JSON file with `npx audio-kit init`, then add sound definitions to the `sounds` object:
+Create a pack JSON file with `npx @web-kits/audio init`, then add sound definitions to the `sounds` object:
 
 ```json
 {
-  "$schema": "node_modules/audio-kit/schemas/pack.schema.json",
+  "$schema": "node_modules/@web-kits/audio/schemas/pack.schema.json",
   "name": "my-pack",
   "sounds": {
     "click": {
@@ -102,7 +102,7 @@ Create a pack JSON file with `npx audio-kit init`, then add sound definitions to
 Push it to a GitHub repo. Others can install it with:
 
 ```bash
-npx audio-kit add your-username/your-repo
+npx @web-kits/audio add your-username/your-repo
 ```
 
 ## API

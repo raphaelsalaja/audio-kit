@@ -1,5 +1,5 @@
 {
-  "$schema": "../packages/audio-kit/schemas/pack.schema.json",
+  "$schema": "../packages/legato/schemas/pack.schema.json",
   "name": "Minimal",
   "author": "Raphael Salaja",
   "version": "1.0.0",

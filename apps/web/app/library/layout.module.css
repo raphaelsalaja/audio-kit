@@ -30,8 +30,8 @@
 
 .content {
   width: 100%;
-  max-width: var(--body-width);
   min-width: 0;
+  max-width: var(--body-width);
   padding: calc(var(--page-top) + var(--fade-size)) 40px 80px;
 }
 

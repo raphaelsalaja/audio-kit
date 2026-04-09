@@ -4,7 +4,7 @@ description: Create a patch instance from an inline object.
 ---
 
 ```ts
-import { definePack } from "audio-kit";
+import { definePack } from "@web-kits/audio";
 
 const pack = definePack({
   name: "my-pack",
@@ -31,7 +31,7 @@ Patch JSON files support a `$schema` property for IDE validation:
 
 ```json
 {
-  "$schema": "https://unpkg.com/audio-kit/schemas/pack.schema.json",
+  "$schema": "https://unpkg.com/@web-kits/audio/schemas/pack.schema.json",
   "name": "my-pack",
   "sounds": { ... }
 }

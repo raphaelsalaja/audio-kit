@@ -1,12 +1,12 @@
 "use client";
 
-import Check from "@audio-kit/icons/outline/check";
-import Clone from "@audio-kit/icons/outline/clone";
-import BunIcon from "@audio-kit/icons/social-media/bun";
-import NpmIcon from "@audio-kit/icons/social-media/npm";
-import PnpmIcon from "@audio-kit/icons/social-media/pnpm";
-import YarnIcon from "@audio-kit/icons/social-media/yarn";
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
+import Check from "@web-kits/icons/outline/check";
+import Clone from "@web-kits/icons/outline/clone";
+import BunIcon from "@web-kits/icons/social-media/bun";
+import NpmIcon from "@web-kits/icons/social-media/npm";
+import PnpmIcon from "@web-kits/icons/social-media/pnpm";
+import YarnIcon from "@web-kits/icons/social-media/yarn";
 import { Calligraph } from "calligraph";
 import { AnimatePresence, motion } from "motion/react";
 import type { CSSProperties } from "react";

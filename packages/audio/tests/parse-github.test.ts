@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { parseGitHubSource, isGitHubSource } from "../src/commands/utils.js";
+import { describe, expect, it } from "vitest";
+import { isGitHubSource, parseGitHubSource } from "../src/commands/utils.js";
 
 describe("parseGitHubSource", () => {
   it("parses owner/repo shorthand", () => {
@@ -71,9 +71,9 @@ describe("isGitHubSource", () => {
   });
 
   it("returns true for GitHub URL", () => {
-    expect(
-      isGitHubSource("https://github.com/raphaelsalaja/audio-kit"),
-    ).toBe(true);
+    expect(isGitHubSource("https://github.com/raphaelsalaja/audio-kit")).toBe(
+      true,
+    );
   });
 
   it("returns false for a URL that is not GitHub", () => {

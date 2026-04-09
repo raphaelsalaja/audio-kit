@@ -1,6 +1,6 @@
 "use client";
 
-import type { Filter, Layer, LFO } from "audio-kit";
+import type { Filter, Layer, LFO } from "@web-kits/audio";
 import { useState } from "react";
 import { ChevronIcon, TrashIcon } from "@/components/controls/icons";
 import type { BuilderAction } from "../state";

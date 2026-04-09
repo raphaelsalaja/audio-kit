@@ -10,13 +10,13 @@ Audio provides a type-safe, low-level API client for interacting with the Web Au
 
 ## Install Package
 
-Install `audio-kit` with your package manager of choice.
+Install `@web-kits/audio` with your package manager of choice.
 
 <Tabs items={[
-  { label: "npm", value: "npm install audio-kit" },
-  { label: "yarn", value: "yarn add audio-kit" },
-  { label: "pnpm", value: "pnpm add audio-kit" },
-  { label: "bun", value: "bun add audio-kit" },
+  { label: "npm", value: "npm install @web-kits/audio" },
+  { label: "yarn", value: "yarn add @web-kits/audio" },
+  { label: "pnpm", value: "pnpm add @web-kits/audio" },
+  { label: "bun", value: "bun add @web-kits/audio" },
 ]} />
 
 </Step>
@@ -27,7 +27,7 @@ Install `audio-kit` with your package manager of choice.
 Browsers block audio until a user gesture fires. Call `ensureReady` once to resume the `AudioContext`. Place this in a click or pointer handler before playing any sound.
 
 ```ts title="setup.ts"
-import { ensureReady } from "audio-kit";
+import { ensureReady } from "@web-kits/audio";
 
 button.addEventListener("click", async () => {
   await ensureReady();
@@ -44,7 +44,7 @@ After the first call resolves, subsequent calls return immediately.
 Define a sound as a plain object and call the returned function to play it.
 
 ```ts title="app.ts"
-import { defineSound } from "audio-kit";
+import { defineSound } from "@web-kits/audio";
 
 const pop = defineSound({
   source: { type: "sine", frequency: { start: 400, end: 150 } },

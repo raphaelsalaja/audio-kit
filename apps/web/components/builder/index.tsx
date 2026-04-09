@@ -1,7 +1,11 @@
 "use client";
 
-import type { AudioAnalyser } from "audio-kit";
-import { createMasterAnalyser, defineSound, ensureReady } from "audio-kit";
+import type { AudioAnalyser } from "@web-kits/audio";
+import {
+  createMasterAnalyser,
+  defineSound,
+  ensureReady,
+} from "@web-kits/audio";
 import {
   useCallback,
   useEffect,

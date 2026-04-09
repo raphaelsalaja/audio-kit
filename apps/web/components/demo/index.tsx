@@ -1,7 +1,7 @@
 "use client";
 
-import type { SoundDefinition } from "audio-kit";
-import { defineSound, ensureReady } from "audio-kit";
+import type { SoundDefinition } from "@web-kits/audio";
+import { defineSound, ensureReady } from "@web-kits/audio";
 import type { ReactNode } from "react";
 import { useCallback, useId, useMemo, useRef, useState } from "react";
 import {
@@ -72,7 +72,15 @@ function describeArc(
   return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 0 ${end.x} ${end.y}`;
 }
 
-function KnobArc({ valueRaw, min, max }: { valueRaw: number; min: number; max: number }) {
+function KnobArc({
+  valueRaw,
+  min,
+  max,
+}: {
+  valueRaw: number;
+  min: number;
+  max: number;
+}) {
   const normalized = (valueRaw - min) / (max - min);
   const angleDeg = ARC_START + normalized * ARC_SWEEP;
 
@@ -110,12 +118,7 @@ function KnobArc({ valueRaw, min, max }: { valueRaw: number; min: number; max: n
           strokeLinecap="round"
         />
       )}
-      <circle
-        cx={indicator.x}
-        cy={indicator.y}
-        r={2.5}
-        fill="var(--gray-12)"
-      />
+      <circle cx={indicator.x} cy={indicator.y} r={2.5} fill="var(--gray-12)" />
     </svg>
   );
 }

@@ -1,28 +1,28 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-
+import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TopNav } from "@/components/top-nav";
 import "@/styles/index.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "Audio Kit › %s",
-    default: "Audio Kit",
+    template: "@web-kits/audio › %s",
+    default: "@web-kits/audio",
   },
   description: "Declarative audio synthesis for the web.",
   metadataBase: new URL("https://audio-kit.dev"),
   openGraph: {
     type: "website",
-    siteName: "Audio Kit",
-    title: "Audio Kit",
+    siteName: "@web-kits/audio",
+    title: "@web-kits/audio",
     description: "Declarative audio synthesis for the web.",
     url: "https://audio-kit.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Audio Kit",
+    title: "@web-kits/audio",
     description: "Declarative audio synthesis for the web.",
     creator: "@raphaelsalaja",
   },
@@ -37,6 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <NuqsAdapter>
+          <Analytics />
           <ThemeProvider>
             <TopNav />
             {children}

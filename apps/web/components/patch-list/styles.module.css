@@ -135,10 +135,6 @@
   text-decoration: none;
 }
 
-.nameLink:hover .name {
-  text-decoration: underline;
-}
-
 .name,
 .author {
   overflow: hidden;
@@ -150,6 +146,10 @@
 .name {
   color: var(--gray-12);
   @typography 13, 550;
+}
+
+.nameLink:hover .name {
+  text-decoration: underline;
 }
 
 .author {
@@ -179,4 +179,3 @@
   text-align: center;
   @typography 13;
 }
-

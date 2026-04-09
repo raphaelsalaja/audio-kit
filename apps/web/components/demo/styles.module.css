@@ -120,10 +120,10 @@
 }
 
 .knob {
-  order: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  order: 2;
   touch-action: none;
   cursor: ns-resize;
   user-select: none;

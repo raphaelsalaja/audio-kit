@@ -26,43 +26,43 @@ const COMMANDS: Record<string, (args: string[]) => Promise<void>> = {
 
 function showBanner() {
   console.log();
-  console.log(pc.bold("audio-kit"));
+  console.log(pc.bold("@web-kits/audio"));
   console.log();
   console.log(pc.dim("Manage sound packs for your project."));
   console.log();
   console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit add")} ${pc.dim("[source]")}    ${pc.dim("Install sound packs")}`,
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio add")} ${pc.dim("[source]")}    ${pc.dim("Install sound packs")}`,
   );
   console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit find")} ${pc.dim("[query]")}    ${pc.dim("Search for packs")}`,
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio find")} ${pc.dim("[query]")}    ${pc.dim("Search for packs")}`,
   );
   console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit list")}              ${pc.dim("List installed packs")}`,
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio list")}              ${pc.dim("List installed packs")}`,
   );
   console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit remove")}            ${pc.dim("Remove installed packs")}`,
-  );
-  console.log();
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit check")}             ${pc.dim("Check for updates")}`,
-  );
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit update")}            ${pc.dim("Update installed packs")}`,
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio remove")}            ${pc.dim("Remove installed packs")}`,
   );
   console.log();
   console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx audio-kit init")}              ${pc.dim("Create a new sound pack")}`,
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio check")}             ${pc.dim("Check for updates")}`,
+  );
+  console.log(
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio update")}            ${pc.dim("Update installed packs")}`,
   );
   console.log();
   console.log(
-    `${pc.dim("try:")} npx audio-kit add raphaelsalaja/audio-kit`,
+    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio init")}              ${pc.dim("Create a new sound pack")}`,
+  );
+  console.log();
+  console.log(
+    `${pc.dim("try:")} npx @web-kits/audio add raphaelsalaja/audio-kit`,
   );
   console.log();
 }
 
 function showHelp() {
   console.log(`
-${pc.bold("Usage:")} audio-kit <command> [options]
+${pc.bold("Usage:")} @web-kits/audio <command> [options]
 
 ${pc.bold("Manage Packs:")}
   add [source]    Install sound packs
@@ -97,14 +97,14 @@ ${pc.bold("Options:")}
   --version, -v   Show version number
 
 ${pc.bold("Examples:")}
-  ${pc.dim("$")} audio-kit add raphaelsalaja/audio-kit
-  ${pc.dim("$")} audio-kit add ./packs/
-  ${pc.dim("$")} audio-kit add raphaelsalaja/audio-kit --list
-  ${pc.dim("$")} audio-kit add --pack core -y
-  ${pc.dim("$")} audio-kit remove core -y
-  ${pc.dim("$")} audio-kit find ambient
-  ${pc.dim("$")} audio-kit check
-  ${pc.dim("$")} audio-kit update
+  ${pc.dim("$")} @web-kits/audio add raphaelsalaja/audio-kit
+  ${pc.dim("$")} @web-kits/audio add ./packs/
+  ${pc.dim("$")} @web-kits/audio add raphaelsalaja/audio-kit --list
+  ${pc.dim("$")} @web-kits/audio add --pack core -y
+  ${pc.dim("$")} @web-kits/audio remove core -y
+  ${pc.dim("$")} @web-kits/audio find ambient
+  ${pc.dim("$")} @web-kits/audio check
+  ${pc.dim("$")} @web-kits/audio update
 `);
 }
 
@@ -142,7 +142,7 @@ export async function run() {
   if (!handler) {
     console.log(pc.red(`Unknown command: ${command}`));
     console.log(
-      `Run ${pc.bold("audio-kit --help")} for usage.`,
+      `Run ${pc.bold("@web-kits/audio --help")} for usage information.`,
     );
     process.exit(1);
   }

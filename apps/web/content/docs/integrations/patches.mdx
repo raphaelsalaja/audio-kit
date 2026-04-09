@@ -41,7 +41,7 @@ A patch is a JSON file that maps names to sound definitions. Ship them as static
 ## Load from a URL
 
 ```ts
-import { loadPack } from "audio-kit";
+import { loadPack } from "@web-kits/audio";
 
 const pack = await loadPack("/packs/minimal.json");
 const voice = pack.play("tap");
@@ -50,7 +50,7 @@ const voice = pack.play("tap");
 ## Define inline
 
 ```ts
-import { definePack } from "audio-kit";
+import { definePack } from "@web-kits/audio";
 
 const pack = definePack({
   name: "my-pack",
@@ -78,13 +78,13 @@ pack.play("beep");
 
 ## JSON Schema
 
-audio-kit ships a JSON Schema for patches. Add it to your patch files to get autocomplete, inline validation, and error highlighting in VS Code, Cursor, and other editors.
+@web-kits/audio ships a JSON Schema for patches. Add it to your patch files to get autocomplete, inline validation, and error highlighting in VS Code, Cursor, and other editors.
 
 Add a `$schema` property at the top of your patch JSON:
 
 ```json
 {
-  "$schema": "https://unpkg.com/audio-kit/schemas/pack.schema.json",
+  "$schema": "https://unpkg.com/@web-kits/audio/schemas/pack.schema.json",
   "name": "my-pack",
   "sounds": {
     "tap": {
@@ -102,7 +102,7 @@ If you're working in a monorepo and want to reference the schema locally:
 
 ```json
 {
-  "$schema": "../../../packages/audio-kit/schemas/pack.schema.json"
+  "$schema": "../../../packages/legato/schemas/pack.schema.json"
 }
 ```
 

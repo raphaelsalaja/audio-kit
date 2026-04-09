@@ -1,7 +1,7 @@
 "use client";
 
-import type { SoundDefinition } from "audio-kit";
-import { defineSound, ensureReady } from "audio-kit";
+import type { SoundDefinition } from "@web-kits/audio";
+import { defineSound, ensureReady } from "@web-kits/audio";
 import { useCallback, useRef, useState } from "react";
 import styles from "./styles.module.css";
 
@@ -75,11 +75,11 @@ export function Hero() {
     async (name: string, definition: SoundDefinition) => {
       await ensureReady();
 
-      if (!playFnCache.current.has(name)) {
-        playFnCache.current.set(name, defineSound(definition));
+      let play = playFnCache.current.get(name);
+      if (!play) {
+        play = defineSound(definition);
+        playFnCache.current.set(name, play);
       }
-
-      const play = playFnCache.current.get(name)!;
       play();
 
       setPlaying(name);
@@ -90,7 +90,7 @@ export function Hero() {
   );
 
   function handleCopy() {
-    navigator.clipboard.writeText("npm install audio-kit");
+    navigator.clipboard.writeText("npm install @web-kits/audio");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
@@ -99,7 +99,7 @@ export function Hero() {
     <div className={styles.hero}>
       <div className={styles.header}>
         <div className={styles.titleRow}>
-          <h1 className={styles.title}>Audio Kit</h1>
+          <h1 className={styles.title}>@web-kits/audio</h1>
           <span className={styles.version}>0.1.0</span>
         </div>
         <p className={styles.tagline}>
@@ -147,7 +147,7 @@ export function Hero() {
       </div>
 
       <div className={styles.install}>
-        <code className={styles.installCode}>npm install audio-kit</code>
+        <code className={styles.installCode}>npm install @web-kits/audio</code>
         <button
           type="button"
           className={styles.installCopy}

@@ -1,4 +1,4 @@
-# Contributing to audio-kit
+# Contributing to @web-kits/audio
 
 Thanks for your interest in contributing! This guide covers everything you need to get started.
 
@@ -35,7 +35,7 @@ pnpm lint
 ## Monorepo layout
 
 ```
-packages/audio-kit   Core library + CLI
+packages/legato   Core library + CLI
 apps/docs            Documentation site (Fumadocs)
 apps/web             Pack registry and homepage
 ui/                  Shared UI components
@@ -114,7 +114,7 @@ See the full [Conventional Commits Cheatsheet](https://gist.github.com/qoomon/5d
 To contribute a first-party sound pack:
 
 1. Create a JSON file under `packs/`.
-2. Follow the pack schema (`npx audio-kit init` generates a template).
+2. Follow the pack schema (`npx @web-kits/audio init` generates a template).
 3. Include well-named, well-tuned sound definitions.
 4. Open a PR with a brief description of the pack.
 

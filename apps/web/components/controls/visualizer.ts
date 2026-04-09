@@ -1,7 +1,7 @@
 "use client";
 
-import type { AudioAnalyser } from "audio-kit";
-import { createMasterAnalyser } from "audio-kit";
+import type { AudioAnalyser } from "@web-kits/audio";
+import { createMasterAnalyser } from "@web-kits/audio";
 import { useCallback, useEffect, useRef } from "react";
 
 export function useVisualizer(

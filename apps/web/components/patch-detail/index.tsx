@@ -1,6 +1,6 @@
 "use client";
 
-import { usePack } from "audio-kit/react";
+import { usePack } from "@web-kits/audio/react";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import type { PatchSoundsByCategory, PatchWithStats } from "@/lib/patches";

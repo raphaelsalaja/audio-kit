@@ -1,9 +1,9 @@
 ---
 title: React
-description: Use audio-kit with React hooks.
+description: Use @web-kits/audio with React hooks.
 ---
 
-Audio kit comes with a set of React hooks to help you use audio in your React applications.
+@web-kits/audio comes with a set of React hooks to help you use audio in your React applications.
 
 <Steps>
 
@@ -14,10 +14,10 @@ Audio kit comes with a set of React hooks to help you use audio in your React ap
 Install the package with your package manager of choice.
 
 <Tabs items={[
-  { label: "npm", value: "npm install audio-kit/react" },
-  { label: "yarn", value: "yarn add audio-kit/react" },
-  { label: "pnpm", value: "pnpm add audio-kit/react" },
-  { label: "bun", value: "bun add audio-kit/react" },
+  { label: "npm", value: "npm install @web-kits/audio" },
+  { label: "yarn", value: "yarn add @web-kits/audio" },
+  { label: "pnpm", value: "pnpm add @web-kits/audio" },
+  { label: "bun", value: "bun add @web-kits/audio" },
 ]} />
 </Step>
 
@@ -28,7 +28,7 @@ Install the package with your package manager of choice.
 Wrap your app (or a subtree) with `SoundProvider` to manage global enabled/volume state. When the user's OS has `prefers-reduced-motion: reduce` enabled, `SoundProvider` automatically disables sound.
 
 ```tsx title="app.tsx"
-import { SoundProvider } from "audio-kit/react";
+import { SoundProvider } from "@web-kits/audio/react";
 
 function App() {
   const [enabled, setEnabled] = useState(true);
@@ -55,7 +55,7 @@ function App() {
 `useSound` takes a sound definition and returns a stable play function. The play function returns a `VoiceHandle` you can use to stop the voice, or `undefined` when sound is disabled.
 
 ```tsx title="button.tsx"
-import { useSound } from "audio-kit/react";
+import { useSound } from "@web-kits/audio/react";
 
 function SaveButton() {
   const play = useSound({

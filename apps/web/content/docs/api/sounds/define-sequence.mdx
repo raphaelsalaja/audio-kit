@@ -6,7 +6,7 @@ description: Create a timed sound sequence with play/stop controls.
 Schedules a series of sounds over time. Returns a controller with `play()` and `stop()` methods. Uses a lookahead scheduler for sample-accurate timing, even in background tabs.
 
 ```ts
-import { defineSequence } from "audio-kit";
+import { defineSequence } from "@web-kits/audio";
 
 const seq = defineSequence([
   { sound: clickDef, at: 0 },

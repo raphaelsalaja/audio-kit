@@ -1,10 +1,10 @@
 "use client";
 
-import Check from "@audio-kit/icons/outline/check";
-import ChevronDown from "@audio-kit/icons/outline/chevron-down";
-import Clone from "@audio-kit/icons/outline/clone";
-import Markdown from "@audio-kit/icons/outline/markdown";
 import { Menu } from "@base-ui/react/menu";
+import Check from "@web-kits/icons/outline/check";
+import ChevronDown from "@web-kits/icons/outline/chevron-down";
+import Clone from "@web-kits/icons/outline/clone";
+import Markdown from "@web-kits/icons/outline/markdown";
 import { Calligraph } from "calligraph";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";

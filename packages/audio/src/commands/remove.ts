@@ -29,7 +29,7 @@ export function parseRemoveOptions(args: string[]): {
 export async function remove(args: string[]) {
   const { packs: packNames, options } = parseRemoveOptions(args);
 
-  p.intro("audio-kit remove");
+  p.intro("@web-kits/audio remove");
 
   const packs = await getInstalledPacks();
 

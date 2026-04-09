@@ -5,7 +5,7 @@ export async function find(args: string[]) {
   const query = args.join(" ").toLowerCase();
 
   console.log();
-  console.log(pc.bold("audio-kit find"));
+  console.log(pc.bold("@web-kits/audio find"));
   console.log();
 
   let index: Awaited<ReturnType<typeof fetchPackIndex>>;
@@ -37,7 +37,7 @@ export async function find(args: string[]) {
   }
 
   console.log(
-    pc.dim(`Install with ${pc.reset("npx audio-kit add --pack <name>")}`),
+    pc.dim(`Install with ${pc.reset("npx @web-kits/audio add --pack <name>")}`),
   );
   console.log();
 

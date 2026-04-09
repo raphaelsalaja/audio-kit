@@ -49,7 +49,7 @@ export function parseAddOptions(args: string[]): {
 export async function add(args: string[]) {
   const { source, options } = parseAddOptions(args);
 
-  p.intro("audio-kit add");
+  p.intro("@web-kits/audio add");
 
   if (!source) {
     await addFromRegistry(options);
@@ -427,7 +427,7 @@ async function writePack(filename: string, data: Record<string, unknown>) {
   }
 
   const packData = {
-    $schema: "node_modules/audio-kit/schemas/pack.schema.json",
+    $schema: "node_modules/@web-kits/audio/schemas/pack.schema.json",
     ...data,
   };
 

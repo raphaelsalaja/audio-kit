@@ -1,13 +1,13 @@
 export function GET() {
-  const content = `# Audio Kit
+  const content = `# @web-kits/audio
 
 > Declarative audio synthesis for the web.
 
 ## Overview
 
-Audio Kit lets you describe sounds as plain objects and play them with a single function call. No imperative node wiring. No class hierarchies. Just JSON in, audio out.
+@web-kits/audio lets you describe sounds as plain objects and play them with a single function call. No imperative node wiring. No class hierarchies. Just JSON in, audio out.
 
-- Package: audio-kit (npm)
+- Package: @web-kits/audio (npm)
 - Repository: https://github.com/raphaelsalaja/audio-kit
 - Docs: https://audio-kit.dev
 
@@ -41,7 +41,7 @@ reverb, delay, chorus, phaser, flanger, tremolo, vibrato, bitcrusher, compressor
 ### Envelope (ADSR)
 { attack?, decay, sustain?, release? }
 
-## React Bindings (audio-kit/react)
+## React Bindings (@web-kits/audio/react)
 
 - useSound(definition, options?) - Returns play function
 - useSequence(steps, options?) - Returns { play, stop }
@@ -53,7 +53,7 @@ reverb, delay, chorus, phaser, flanger, tremolo, vibrato, bitcrusher, compressor
 ## Patches
 
 JSON files with name, sounds, and optional $schema for validation.
-CLI: npx audio-kit add | list | remove | init
+CLI: npx @web-kits/audio add | list | remove | init
 
 ## Documentation Pages
 

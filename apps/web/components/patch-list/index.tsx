@@ -1,7 +1,5 @@
 "use client";
 
-import Magnifier from "@audio-kit/icons/outline/magnifier";
-import Xmark from "@audio-kit/icons/outline/xmark";
 import {
   type ColumnDef,
   flexRender,
@@ -10,6 +8,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
+import Magnifier from "@web-kits/icons/outline/magnifier";
+import Xmark from "@web-kits/icons/outline/xmark";
 import Link from "next/link";
 import { parseAsString, useQueryState } from "nuqs";
 import { useMemo, useRef } from "react";
@@ -51,7 +51,9 @@ function Highlight({ text, query }: { text: string; query: string }) {
 export function PatchList({ patches }: { patches: PatchWithStats[] }) {
   const [query, setQuery] = useQueryState(
     "q",
-    parseAsString.withDefault("").withOptions({ shallow: true, throttleMs: 300 }),
+    parseAsString
+      .withDefault("")
+      .withOptions({ shallow: true, throttleMs: 300 }),
   );
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -118,42 +120,41 @@ export function PatchList({ patches }: { patches: PatchWithStats[] }) {
     overscan: 10,
   });
 
-
   return (
     <div className={styles.container}>
-        <div className={styles.toolbar}>
-          <div className={styles.searchBar}>
-            <Magnifier
-              className={styles.searchIcon}
-              width={14}
-              height={14}
-              aria-hidden="true"
-            />
-            <input
-              ref={inputRef}
-              type="text"
-              className={styles.searchInput}
-              placeholder="Search packs..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            {query && (
-              <button
-                type="button"
-                className={styles.searchClear}
-                onClick={clearQuery}
-                aria-label="Clear search"
-              >
-                <Xmark
-                  width={12}
-                  height={12}
-                  strokewidth={2}
-                  aria-hidden="true"
-                />
-              </button>
-            )}
-          </div>
+      <div className={styles.toolbar}>
+        <div className={styles.searchBar}>
+          <Magnifier
+            className={styles.searchIcon}
+            width={14}
+            height={14}
+            aria-hidden="true"
+          />
+          <input
+            ref={inputRef}
+            type="text"
+            className={styles.searchInput}
+            placeholder="Search packs..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          {query && (
+            <button
+              type="button"
+              className={styles.searchClear}
+              onClick={clearQuery}
+              aria-label="Clear search"
+            >
+              <Xmark
+                width={12}
+                height={12}
+                strokewidth={2}
+                aria-hidden="true"
+              />
+            </button>
+          )}
         </div>
+      </div>
 
       {/* Table */}
       {rows.length === 0 ? (
@@ -232,7 +233,9 @@ export function PatchList({ patches }: { patches: PatchWithStats[] }) {
                   style={{
                     height:
                       virtualizer.getTotalSize() -
-                      ((items) => items[items.length - 1]?.end ?? 0)(virtualizer.getVirtualItems()),
+                      ((items) => items[items.length - 1]?.end ?? 0)(
+                        virtualizer.getVirtualItems(),
+                      ),
                     padding: 0,
                     border: "none",
                   }}

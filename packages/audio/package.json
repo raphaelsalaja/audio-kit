@@ -1,6 +1,6 @@
 {
-  "name": "audio-kit",
-  "version": "0.1.0",
+  "name": "@web-kits/audio",
+  "version": "0.0.1",
   "description": "A declarative synthesizer for the web",
   "author": "Raphael Salaja",
   "license": "MIT",
@@ -24,7 +24,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "audio-kit": "./dist/bin.js"
+    "@web-kits/audio": "./dist/bin.js"
   },
   "exports": {
     ".": {

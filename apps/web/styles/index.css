@@ -1,7 +1,7 @@
-@import "@audio-kit/ui/styles/colors.css";
-@import "@audio-kit/ui/styles/reset.css";
-@import "@audio-kit/ui/styles/tokens.css";
-@import "@audio-kit/ui/styles/shadows.css";
+@import "@web-kits/ui/styles/colors.css";
+@import "@web-kits/ui/styles/reset.css";
+@import "@web-kits/ui/styles/tokens.css";
+@import "@web-kits/ui/styles/shadows.css";
 
 :root {
   --sidebar-width: 200px;

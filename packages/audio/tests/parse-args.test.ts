@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { parseAddOptions } from "../src/commands/add.js";
 import { parseRemoveOptions } from "../src/commands/remove.js";
 

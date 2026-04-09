@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import * as p from "@clack/prompts";
 
 export async function init(_args: string[]) {
-  p.intro("audio-kit init");
+  p.intro("@web-kits/audio init");
 
   const name = await p.text({
     message: "Pack name",
@@ -56,7 +56,7 @@ export async function init(_args: string[]) {
   }
 
   const pack = {
-    $schema: "node_modules/audio-kit/schemas/pack.schema.json",
+    $schema: "node_modules/@web-kits/audio/schemas/pack.schema.json",
     name: name as string,
     author: (author as string) || undefined,
     version: "1.0.0",

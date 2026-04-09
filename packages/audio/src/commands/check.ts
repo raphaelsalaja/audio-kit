@@ -3,7 +3,7 @@ import { fetchPackIndex, getInstalledPacks } from "./utils.js";
 
 export async function check(_args: string[]) {
   console.log();
-  console.log(pc.bold("audio-kit check"));
+  console.log(pc.bold("@web-kits/audio check"));
   console.log();
   console.log(pc.dim("Checking for updates..."));
   console.log();
@@ -13,7 +13,7 @@ export async function check(_args: string[]) {
   if (installed.length === 0) {
     console.log(pc.dim("No packs installed."));
     console.log(
-      pc.dim(`Install packs with ${pc.reset("npx audio-kit add")}`),
+      pc.dim(`Install packs with ${pc.reset("npx @web-kits/audio add")}`),
     );
     console.log();
     return;
@@ -47,14 +47,16 @@ export async function check(_args: string[]) {
     return;
   }
 
-  console.log(`${pc.green("✓")} ${available.length} pack(s) can be refreshed from the registry:`);
+  console.log(
+    `${pc.green("✓")} ${available.length} pack(s) can be refreshed from the registry:`,
+  );
   console.log();
   for (const name of available) {
     console.log(`  ${pc.cyan("↑")} ${name}`);
   }
   console.log();
   console.log(
-    `${pc.dim("Run")} ${pc.reset("npx audio-kit update")} ${pc.dim("to re-download latest versions")}`,
+    `${pc.dim("Run")} ${pc.reset("npx @web-kits/audio update")} ${pc.dim("to re-download latest versions")}`,
   );
 
   if (notInRegistry.length > 0) {

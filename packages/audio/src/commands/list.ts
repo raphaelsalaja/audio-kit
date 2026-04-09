@@ -2,13 +2,13 @@ import * as p from "@clack/prompts";
 import { getInstalledPacks, getPacksDir } from "./utils.js";
 
 export async function list(_args: string[]) {
-  p.intro("audio-kit list");
+  p.intro("@web-kits/audio list");
 
   const packs = await getInstalledPacks();
 
   if (packs.length === 0) {
     p.log.warn(`No packs found in ${getPacksDir()}`);
-    p.outro("Run `audio-kit add` to install packs.");
+    p.outro("Run `@web-kits/audio add` to install packs.");
     return;
   }
 
