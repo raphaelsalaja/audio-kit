@@ -1,4 +1,4 @@
-import pc from "picocolors";
+import * as p from "@clack/prompts";
 import { add } from "./add.js";
 import { check } from "./check.js";
 import { find } from "./find.js";
@@ -25,87 +25,103 @@ const COMMANDS: Record<string, (args: string[]) => Promise<void>> = {
 };
 
 function showBanner() {
-  console.log();
-  console.log(pc.bold("@web-kits/audio"));
-  console.log();
-  console.log(pc.dim("Manage sound patches for your project."));
-  console.log();
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio add")} ${pc.dim("[source]")}    ${pc.dim("Install sound patches")}`,
+  p.intro("@web-kits/audio");
+
+  p.log.message("Manage sound patches for your project.");
+
+  p.log.message(
+    [
+      "Patches",
+      "  add [source]    Install sound patches",
+      "  find [query]    Search for patches",
+      "  list            List installed patches",
+      "  remove          Remove installed patches",
+    ].join("\n"),
   );
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio find")} ${pc.dim("[query]")}    ${pc.dim("Search for patches")}`,
+
+  p.log.message(
+    [
+      "Updates",
+      "  check           Check for updates",
+      "  update          Update installed patches",
+    ].join("\n"),
   );
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio list")}              ${pc.dim("List installed patches")}`,
+
+  p.log.message(
+    ["Project", "  init            Create a new sound patch"].join("\n"),
   );
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio remove")}            ${pc.dim("Remove installed patches")}`,
-  );
-  console.log();
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio check")}             ${pc.dim("Check for updates")}`,
-  );
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio update")}            ${pc.dim("Update installed patches")}`,
-  );
-  console.log();
-  console.log(
-    `  ${pc.dim("$")} ${pc.reset("npx @web-kits/audio init")}              ${pc.dim("Create a new sound patch")}`,
-  );
-  console.log();
-  console.log(
-    `${pc.dim("try:")} npx @web-kits/audio add raphaelsalaja/audio-kit`,
-  );
-  console.log();
+
+  p.outro("try: npx @web-kits/audio add raphaelsalaja/audio-kit");
 }
 
 function showHelp() {
-  console.log(`
-${pc.bold("Usage:")} @web-kits/audio <command> [options]
+  p.intro("@web-kits/audio");
 
-${pc.bold("Manage Patches:")}
-  add [source]    Install sound patches
-  find [query]    Search for patches in the registry
-  list, ls        List installed patches
-  remove, rm      Remove installed patches
+  p.log.message(
+    [
+      "Usage: @web-kits/audio <command> [options]",
+      "",
+      "Manage Patches:",
+      "  add [source]    Install sound patches",
+      "  find [query]    Search for patches in the registry",
+      "  list, ls        List installed patches",
+      "  remove, rm      Remove installed patches",
+      "",
+      "Updates:",
+      "  check           Check for available updates",
+      "  update          Update all installed patches",
+      "",
+      "Project:",
+      "  init            Create a new sound patch",
+    ].join("\n"),
+  );
 
-${pc.bold("Updates:")}
-  check           Check for available updates
-  update          Update all installed patches
+  p.log.message(
+    [
+      "Add Options:",
+      "  -l, --list      Preview available patches without installing",
+      "  -y, --yes       Skip confirmation prompts",
+      "  --patch <name>  Install a specific patch by name",
+      "",
+      "Remove Options:",
+      "  -y, --yes       Skip confirmation prompts",
+    ].join("\n"),
+  );
 
-${pc.bold("Project:")}
-  init            Create a new sound patch
+  p.log.message(
+    [
+      "Source Formats:",
+      "  ./local/path                    Local file or directory",
+      "  owner/repo                      GitHub shorthand",
+      "  https://github.com/user/repo    Full GitHub URL",
+      "  https://...patch.json           Direct URL to a patch file",
+      "  (no argument)                   Browse the registry",
+    ].join("\n"),
+  );
 
-${pc.bold("Add Options:")}
-  -l, --list      Preview available patches without installing
-  -y, --yes       Skip confirmation prompts
-  --patch <name>  Install a specific patch by name
+  p.log.message(
+    [
+      "Options:",
+      "  --help, -h      Show this help message",
+      "  --version, -v   Show version number",
+    ].join("\n"),
+  );
 
-${pc.bold("Remove Options:")}
-  -y, --yes       Skip confirmation prompts
+  p.note(
+    [
+      "  @web-kits/audio add raphaelsalaja/audio-kit",
+      "  @web-kits/audio add ./.web-kits/",
+      "  @web-kits/audio add raphaelsalaja/audio-kit --list",
+      "  @web-kits/audio add --patch core -y",
+      "  @web-kits/audio remove core -y",
+      "  @web-kits/audio find ambient",
+      "  @web-kits/audio check",
+      "  @web-kits/audio update",
+    ].join("\n"),
+    "Examples",
+  );
 
-${pc.bold("Source Formats:")}
-  ./local/path                    Local file or directory
-  owner/repo                      GitHub shorthand
-  https://github.com/user/repo    Full GitHub URL
-  https://...patch.json           Direct URL to a patch file
-  ${pc.dim("(no argument)")}                   Browse the registry
-
-${pc.bold("Options:")}
-  --help, -h      Show this help message
-  --version, -v   Show version number
-
-${pc.bold("Examples:")}
-  ${pc.dim("$")} @web-kits/audio add raphaelsalaja/audio-kit
-  ${pc.dim("$")} @web-kits/audio add ./.web-kits/patches/
-  ${pc.dim("$")} @web-kits/audio add raphaelsalaja/audio-kit --list
-  ${pc.dim("$")} @web-kits/audio add --patch core -y
-  ${pc.dim("$")} @web-kits/audio remove core -y
-  ${pc.dim("$")} @web-kits/audio find ambient
-  ${pc.dim("$")} @web-kits/audio check
-  ${pc.dim("$")} @web-kits/audio update
-`);
+  p.outro("");
 }
 
 export async function run() {
@@ -140,10 +156,8 @@ export async function run() {
 
   const handler = COMMANDS[command];
   if (!handler) {
-    console.log(pc.red(`Unknown command: ${command}`));
-    console.log(
-      `Run ${pc.bold("@web-kits/audio --help")} for usage information.`,
-    );
+    p.log.error(`Unknown command: ${command}`);
+    p.log.message("Run @web-kits/audio --help for usage information.");
     process.exit(1);
   }
 

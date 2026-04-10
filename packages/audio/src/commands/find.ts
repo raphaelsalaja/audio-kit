@@ -1,24 +1,27 @@
-import pc from "picocolors";
+import * as p from "@clack/prompts";
 import { fetchPatchIndex } from "./utils.js";
 
 export async function find(args: string[]) {
   const query = args.join(" ").toLowerCase();
 
-  console.log();
-  console.log(pc.bold("@web-kits/audio find"));
-  console.log();
+  p.intro("@web-kits/audio find");
+
+  const s = p.spinner();
+  s.start("Fetching registry...");
 
   let index: Awaited<ReturnType<typeof fetchPatchIndex>>;
   try {
     index = await fetchPatchIndex();
+    s.stop(`Found ${index.length} patch(es) in registry`);
   } catch (err) {
-    console.log(pc.red(`Failed to fetch registry: ${err}`));
+    s.stop("Failed to fetch registry.");
+    p.log.error(String(err));
     process.exit(1);
   }
 
   if (index.length === 0) {
-    console.log(pc.dim("No patches available in the registry."));
-    console.log();
+    p.log.warn("No patches available in the registry.");
+    p.outro("");
     return;
   }
 
@@ -31,27 +34,19 @@ export async function find(args: string[]) {
     : index;
 
   if (matches.length === 0) {
-    console.log(pc.dim(`No patches found for "${query}"`));
-    console.log();
+    p.log.warn(`No patches found for "${query}"`);
+    p.outro("");
     return;
   }
 
-  console.log(
-    pc.dim(
-      `Install with ${pc.reset("npx @web-kits/audio add --patch <name>")}`,
-    ),
-  );
-  console.log();
+  p.log.info("Install with npx @web-kits/audio add --patch <name>");
 
   for (const entry of matches) {
     const tags =
-      entry.tags && entry.tags.length > 0
-        ? `  ${pc.dim(entry.tags.join(", "))}`
-        : "";
-    console.log(`  ${pc.bold(entry.name)}${tags}`);
-    if (entry.description) {
-      console.log(`  ${pc.dim(entry.description)}`);
-    }
-    console.log();
+      entry.tags && entry.tags.length > 0 ? `  ${entry.tags.join(", ")}` : "";
+    const desc = entry.description ? `\n  ${entry.description}` : "";
+    p.log.step(`${entry.name}${tags}${desc}`);
   }
+
+  p.outro(`${matches.length} result(s)`);
 }

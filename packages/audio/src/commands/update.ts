@@ -2,7 +2,6 @@ import { existsSync, mkdirSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import * as p from "@clack/prompts";
-import pc from "picocolors";
 import {
   fetchPatchIndex,
   fetchPatchJson,
@@ -14,26 +13,26 @@ import {
 } from "./utils.js";
 
 export async function update(_args: string[]) {
-  console.log();
-  console.log(pc.bold("@web-kits/audio update"));
-  console.log();
+  p.intro("@web-kits/audio update");
 
   const installed = await getInstalledPatches();
 
   if (installed.length === 0) {
-    console.log(pc.dim("No patches installed."));
-    console.log(
-      pc.dim(`Install patches with ${pc.reset("npx @web-kits/audio add")}`),
-    );
-    console.log();
+    p.log.warn("No patches installed.");
+    p.outro("Install patches with npx @web-kits/audio add");
     return;
   }
+
+  const s = p.spinner();
+  s.start("Fetching registry...");
 
   let registry: Awaited<ReturnType<typeof fetchPatchIndex>>;
   try {
     registry = await fetchPatchIndex();
+    s.stop(`Found ${registry.length} registry patch(es)`);
   } catch (err) {
-    console.log(pc.red(`Failed to fetch registry: ${err}`));
+    s.stop("Failed to fetch registry.");
+    p.log.error(String(err));
     process.exit(1);
   }
 
@@ -44,13 +43,13 @@ export async function update(_args: string[]) {
   );
 
   if (toUpdate.length === 0) {
-    console.log(pc.dim("No installed patches found in the registry."));
-    console.log();
+    p.log.warn("No installed patches found in the registry.");
+    p.outro("");
     return;
   }
 
-  const s = p.spinner();
-  s.start(`Updating ${toUpdate.length} patch(es)...`);
+  const dl = p.spinner();
+  dl.start(`Updating ${toUpdate.length} patch(es)...`);
 
   let successCount = 0;
   let failCount = 0;
@@ -86,14 +85,11 @@ export async function update(_args: string[]) {
 
   await regenerateIndex(dir);
 
-  s.stop("Update complete");
+  dl.stop(`Updated ${successCount} patch(es)`);
 
-  console.log();
-  if (successCount > 0) {
-    console.log(`${pc.green("✓")} Updated ${successCount} patch(es)`);
-  }
   if (failCount > 0) {
-    console.log(`${pc.red("✗")} Failed to update ${failCount} patch(es)`);
+    p.log.warn(`Failed to update ${failCount} patch(es)`);
   }
-  console.log();
+
+  p.outro("Done!");
 }
