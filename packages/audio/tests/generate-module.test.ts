@@ -13,11 +13,13 @@ describe("generateModule", () => {
 
     const output = generateModule(data);
 
-    expect(output).toContain('import { defineSound } from "@web-kits/audio"');
-    expect(output).toContain("export const click = defineSound(");
-    expect(output).toContain("export const pop = defineSound(");
+    expect(output).toContain(
+      'import type { SoundDefinition, SoundPatch } from "@web-kits/audio"',
+    );
+    expect(output).toContain("export const click: SoundDefinition =");
+    expect(output).toContain("export const pop: SoundDefinition =");
     expect(output).toContain("export const _patch: SoundPatch =");
-    expect(output).toContain('"name": "retro"');
+    expect(output).toContain('"name":"retro"');
   });
 
   it("camelCases hyphenated sound names", () => {
@@ -29,8 +31,8 @@ describe("generateModule", () => {
     };
 
     const output = generateModule(data);
-    expect(output).toContain("export const tabSwitch = defineSound(");
-    expect(output).not.toContain("tab-switch = defineSound(");
+    expect(output).toContain("export const tabSwitch: SoundDefinition =");
+    expect(output).not.toContain("tab-switch: SoundDefinition =");
   });
 
   it("includes a patch comment for scanning", () => {

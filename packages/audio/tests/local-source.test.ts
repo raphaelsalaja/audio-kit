@@ -13,7 +13,7 @@ describe("isLocalSource", () => {
   beforeEach(() => {
     tempDir = join(
       tmpdir(),
-      `audio-kit-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      `audio-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
     );
     mkdirSync(tempDir, { recursive: true });
   });
@@ -41,7 +41,7 @@ describe("isLocalSource", () => {
   });
 
   it("returns false for owner/repo shorthand", () => {
-    expect(isLocalSource("raphaelsalaja/audio-kit")).toBe(false);
+    expect(isLocalSource("raphaelsalaja/audio")).toBe(false);
   });
 });
 
@@ -51,7 +51,7 @@ describe("discoverPatchesFromLocal", () => {
   beforeEach(() => {
     tempDir = join(
       tmpdir(),
-      `audio-kit-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      `audio-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
     );
     mkdirSync(tempDir, { recursive: true });
   });

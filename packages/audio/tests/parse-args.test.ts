@@ -4,30 +4,30 @@ import { parseRemoveOptions } from "../src/commands/remove.js";
 
 describe("parseAddOptions", () => {
   it("parses source with no flags", () => {
-    const result = parseAddOptions(["raphaelsalaja/audio-kit"]);
-    expect(result.source).toBe("raphaelsalaja/audio-kit");
+    const result = parseAddOptions(["raphaelsalaja/audio"]);
+    expect(result.source).toBe("raphaelsalaja/audio");
     expect(result.options).toEqual({});
   });
 
   it("parses --yes flag", () => {
-    const result = parseAddOptions(["raphaelsalaja/audio-kit", "--yes"]);
-    expect(result.source).toBe("raphaelsalaja/audio-kit");
+    const result = parseAddOptions(["raphaelsalaja/audio", "--yes"]);
+    expect(result.source).toBe("raphaelsalaja/audio");
     expect(result.options.yes).toBe(true);
   });
 
   it("parses -y shorthand", () => {
-    const result = parseAddOptions(["-y", "raphaelsalaja/audio-kit"]);
-    expect(result.source).toBe("raphaelsalaja/audio-kit");
+    const result = parseAddOptions(["-y", "raphaelsalaja/audio"]);
+    expect(result.source).toBe("raphaelsalaja/audio");
     expect(result.options.yes).toBe(true);
   });
 
   it("parses --list flag", () => {
-    const result = parseAddOptions(["raphaelsalaja/audio-kit", "--list"]);
+    const result = parseAddOptions(["raphaelsalaja/audio", "--list"]);
     expect(result.options.list).toBe(true);
   });
 
   it("parses -l shorthand", () => {
-    const result = parseAddOptions(["-l", "raphaelsalaja/audio-kit"]);
+    const result = parseAddOptions(["-l", "raphaelsalaja/audio"]);
     expect(result.options.list).toBe(true);
   });
 
@@ -39,13 +39,13 @@ describe("parseAddOptions", () => {
 
   it("parses all flags together", () => {
     const result = parseAddOptions([
-      "raphaelsalaja/audio-kit",
+      "raphaelsalaja/audio",
       "-y",
       "--patch",
       "core",
       "-l",
     ]);
-    expect(result.source).toBe("raphaelsalaja/audio-kit");
+    expect(result.source).toBe("raphaelsalaja/audio");
     expect(result.options.yes).toBe(true);
     expect(result.options.list).toBe(true);
     expect(result.options.patch).toBe("core");

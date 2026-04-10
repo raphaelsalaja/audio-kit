@@ -12,7 +12,7 @@ describe("getPatchesDir", () => {
     originalCwd = process.cwd();
     const raw = join(
       tmpdir(),
-      `audio-kit-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      `audio-test-${Date.now()}-${Math.random().toString(36).slice(2)}`,
     );
     mkdirSync(raw, { recursive: true });
     tempDir = realpathSync(raw);

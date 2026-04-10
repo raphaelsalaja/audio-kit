@@ -3,10 +3,10 @@ import { isGitHubSource, parseGitHubSource } from "../src/commands/utils.js";
 
 describe("parseGitHubSource", () => {
   it("parses owner/repo shorthand", () => {
-    const result = parseGitHubSource("raphaelsalaja/audio-kit");
+    const result = parseGitHubSource("raphaelsalaja/audio");
     expect(result).toEqual({
       owner: "raphaelsalaja",
-      repo: "audio-kit",
+      repo: "audio",
       branch: "main",
       path: "",
     });
@@ -14,11 +14,11 @@ describe("parseGitHubSource", () => {
 
   it("parses full GitHub URL", () => {
     const result = parseGitHubSource(
-      "https://github.com/raphaelsalaja/audio-kit",
+      "https://github.com/raphaelsalaja/audio",
     );
     expect(result).toEqual({
       owner: "raphaelsalaja",
-      repo: "audio-kit",
+      repo: "audio",
       branch: "main",
       path: "",
     });
@@ -26,11 +26,11 @@ describe("parseGitHubSource", () => {
 
   it("parses GitHub URL with branch", () => {
     const result = parseGitHubSource(
-      "https://github.com/raphaelsalaja/audio-kit/tree/develop",
+      "https://github.com/raphaelsalaja/audio/tree/develop",
     );
     expect(result).toEqual({
       owner: "raphaelsalaja",
-      repo: "audio-kit",
+      repo: "audio",
       branch: "develop",
       path: "",
     });
@@ -38,11 +38,11 @@ describe("parseGitHubSource", () => {
 
   it("parses GitHub URL with branch and path", () => {
     const result = parseGitHubSource(
-      "https://github.com/raphaelsalaja/audio-kit/tree/main/packs",
+      "https://github.com/raphaelsalaja/audio/tree/main/packs",
     );
     expect(result).toEqual({
       owner: "raphaelsalaja",
-      repo: "audio-kit",
+      repo: "audio",
       branch: "main",
       path: "packs",
     });
@@ -57,7 +57,7 @@ describe("parseGitHubSource", () => {
   });
 
   it("returns null for a single word", () => {
-    expect(parseGitHubSource("audio-kit")).toBeNull();
+    expect(parseGitHubSource("audio")).toBeNull();
   });
 
   it("returns null for empty string", () => {
@@ -67,11 +67,11 @@ describe("parseGitHubSource", () => {
 
 describe("isGitHubSource", () => {
   it("returns true for owner/repo", () => {
-    expect(isGitHubSource("raphaelsalaja/audio-kit")).toBe(true);
+    expect(isGitHubSource("raphaelsalaja/audio")).toBe(true);
   });
 
   it("returns true for GitHub URL", () => {
-    expect(isGitHubSource("https://github.com/raphaelsalaja/audio-kit")).toBe(
+    expect(isGitHubSource("https://github.com/raphaelsalaja/audio")).toBe(
       true,
     );
   });

@@ -1,8 +1,8 @@
 # @web-kits/audio
 
 [![npm](https://img.shields.io/npm/v/%40web-kits%2Faudio)](https://www.npmjs.com/package/@web-kits/audio)
-[![license](https://img.shields.io/github/license/web-kits/audio)](LICENSE)
-[![CI](https://github.com/web-kits/audio/actions/workflows/ci.yml/badge.svg)](https://github.com/web-kits/audio/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/raphaelsalaja/audio)](LICENSE)
+[![CI](https://github.com/raphaelsalaja/audio/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaelsalaja/audio/actions/workflows/ci.yml)
 
 Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
 
@@ -72,7 +72,7 @@ ui/                  Shared UI components
 
 ## Documentation
 
-Full docs at [web-kits.dev/audio](https://web-kits.dev/audio).
+Full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
 
 ## References
 

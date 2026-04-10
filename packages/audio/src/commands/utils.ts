@@ -3,7 +3,7 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, isAbsolute, join, resolve } from "node:path";
 import * as p from "@clack/prompts";
 
-export const REGISTRY_BASE = "https://audio-kit.dev/api";
+export const REGISTRY_BASE = "https://audio.raphaelsalaja.com/api";
 
 
 const CONFIG_DIR = ".web-kits";

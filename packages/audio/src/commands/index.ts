@@ -51,7 +51,7 @@ function showBanner() {
     ["Project", "  init            Create a new sound patch"].join("\n"),
   );
 
-  p.outro("try: npx @web-kits/audio add raphaelsalaja/audio-kit");
+  p.outro("try: npx @web-kits/audio add raphaelsalaja/audio");
 }
 
 function showHelp() {
@@ -109,9 +109,9 @@ function showHelp() {
 
   p.note(
     [
-      "  @web-kits/audio add raphaelsalaja/audio-kit",
+      "  @web-kits/audio add raphaelsalaja/audio",
       "  @web-kits/audio add ./.web-kits/",
-      "  @web-kits/audio add raphaelsalaja/audio-kit --list",
+      "  @web-kits/audio add raphaelsalaja/audio --list",
       "  @web-kits/audio add --patch core -y",
       "  @web-kits/audio remove core -y",
       "  @web-kits/audio find ambient",

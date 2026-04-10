@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://audio-kit.dev/sitemap.xml",
+    sitemap: "https://audio.raphaelsalaja.com/sitemap.xml",
   };
 }

@@ -10,8 +10,8 @@ Thanks for your interest in contributing! This guide covers everything you need 
 ## Setup
 
 ```bash
-git clone https://github.com/raphaelsalaja/audio-kit.git
-cd audio-kit
+git clone https://github.com/raphaelsalaja/audio.git
+cd audio
 pnpm install
 pnpm build
 ```

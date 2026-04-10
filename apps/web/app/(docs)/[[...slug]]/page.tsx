@@ -86,7 +86,7 @@ export async function generateMetadata(props: {
     openGraph: {
       title: page.data.title,
       description: page.data.description,
-      url: `https://audio-kit.dev${page.url}`,
+      url: `https://audio.raphaelsalaja.com${page.url}`,
     },
   };
 }

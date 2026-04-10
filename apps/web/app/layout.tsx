@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     default: "@web-kits/audio",
   },
   description: "Declarative audio synthesis for the web.",
-  metadataBase: new URL("https://audio-kit.dev"),
+  metadataBase: new URL("https://audio.raphaelsalaja.com"),
   openGraph: {
     type: "website",
     siteName: "@web-kits/audio",
     title: "@web-kits/audio",
     description: "Declarative audio synthesis for the web.",
-    url: "https://audio-kit.dev",
+    url: "https://audio.raphaelsalaja.com",
   },
   twitter: {
     card: "summary_large_image",

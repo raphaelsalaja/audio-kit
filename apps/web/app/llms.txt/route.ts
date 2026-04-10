@@ -8,8 +8,8 @@ export function GET() {
 @web-kits/audio lets you describe sounds as plain objects and play them with a single function call. No imperative node wiring. No class hierarchies. Just JSON in, audio out.
 
 - Package: @web-kits/audio (npm)
-- Repository: https://github.com/raphaelsalaja/audio-kit
-- Docs: https://audio-kit.dev
+- Repository: https://github.com/raphaelsalaja/audio
+- Docs: https://audio.raphaelsalaja.com
 
 ## Core API
 

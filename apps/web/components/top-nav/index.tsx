@@ -81,7 +81,7 @@ export function TopNav() {
             <XTwitter width={15} height={15} />
           </a>
           <a
-            href="https://github.com/raphaelsalaja/audio-kit"
+            href="https://github.com/raphaelsalaja/audio"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.iconLink}

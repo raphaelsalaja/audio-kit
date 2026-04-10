@@ -122,8 +122,8 @@ npx @web-kits/audio add your-username/your-repo
 
 ## Documentation
 
-Full docs at [audio-kit.dev](https://audio-kit.dev).
+Full docs at [audio.raphaelsalaja.com](https://audio.raphaelsalaja.com).
 
 ## License
 
-[MIT](https://github.com/raphaelsalaja/audio-kit/blob/main/LICENSE)
+[MIT](https://github.com/raphaelsalaja/audio/blob/main/LICENSE)

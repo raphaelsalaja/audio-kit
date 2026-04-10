@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { source } from "@/lib/source";
 
-const BASE_URL = "https://audio-kit.dev";
+const BASE_URL = "https://audio.raphaelsalaja.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = source.getPages().map((page) => ({

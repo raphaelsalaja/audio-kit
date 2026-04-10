@@ -1,5 +1,5 @@
 {
-  "name": "audio-kit",
+  "name": "audio",
   "private": true,
   "scripts": {
     "build": "turbo run build",

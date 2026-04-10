@@ -16,7 +16,7 @@ interface PatchJson {
 const ALLOWED_HOSTS = [
   "raw.githubusercontent.com",
   "gist.githubusercontent.com",
-  "audio-kit.dev",
+  "audio.raphaelsalaja.com",
 ];
 
 function isAllowedUrl(raw: string): URL | null {
@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
       ok: true,
       name: slug,
       sounds: soundCount,
-      url: `https://audio-kit.dev/library/${slug}`,
+      url: `https://audio.raphaelsalaja.com/library/${slug}`,
     });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

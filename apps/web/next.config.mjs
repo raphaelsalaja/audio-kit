@@ -39,7 +39,7 @@ const config = {
     return [
       {
         source: "/resources/github",
-        destination: "https://github.com/raphaelsalaja/audio-kit",
+        destination: "https://github.com/raphaelsalaja/audio",
         permanent: false,
       },
       {
