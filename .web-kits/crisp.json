@@ -3,7 +3,7 @@
   "name": "Crisp",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Bright FM synthesis with precise, snappy tones — polished and responsive",
+  "description": "Bright FM synthesis with precise, snappy transients and clear tone",
   "tags": ["ui", "crisp", "bright", "fm"],
   "sounds": {
     "tap": {

@@ -1,6 +1,6 @@
-import { SoundProvider } from "@web-kits/audio/react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SoundProvider } from "@web-kits/audio/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";

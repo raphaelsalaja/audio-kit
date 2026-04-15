@@ -8,7 +8,7 @@
 .demo {
   margin-bottom: 16px;
   overflow: hidden;
-  background: var(--gray-a2);
+  background: var(--ds-gray-a2);
   border-radius: var(--radius-large);
 }
 
@@ -21,7 +21,7 @@
 }
 
 .label {
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   white-space: nowrap;
   @typography 13, 500;
 }
@@ -36,7 +36,7 @@
 }
 
 .canvas {
-  --vis-color: var(--gray-a5);
+  --vis-color: var(--ds-gray-a5);
   position: absolute;
   inset: 0;
   width: 100%;
@@ -45,7 +45,7 @@
 }
 
 :global(.dark) .canvas {
-  --vis-color: var(--gray-a4);
+  --vis-color: var(--ds-gray-a4);
 }
 
 .playButton {
@@ -58,7 +58,7 @@
   width: 36px;
   height: 36px;
   cursor: pointer;
-  background: var(--gray-a3);
+  background: var(--ds-gray-a3);
   border: none;
   border-radius: 50%;
   transition:
@@ -70,26 +70,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gray-10);
+  color: var(--ds-gray-10);
   transition: color 0.15s;
 }
 
 .playButton:hover {
-  background: var(--gray-a4);
+  background: var(--ds-gray-a4);
   transform: scale(1.05);
 }
 
 .playButton:hover .playButtonIcon {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .playButton[data-active] {
-  background: var(--gray-a5);
+  background: var(--ds-gray-a5);
   transform: scale(0.95);
 }
 
 .playButton[data-active] .playButtonIcon {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .knobs {
@@ -113,7 +113,7 @@
 
 .knobContainer > label {
   order: 1;
-  color: var(--gray-10);
+  color: var(--ds-gray-10);
   text-align: center;
   white-space: nowrap;
   @typography 11, 500;
@@ -139,7 +139,7 @@
   order: 3;
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  color: var(--gray-9);
+  color: var(--ds-gray-9);
   text-align: center;
   @typography 10;
 }

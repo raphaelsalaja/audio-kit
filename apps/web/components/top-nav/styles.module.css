@@ -5,7 +5,7 @@
   left: 0;
   z-index: 30;
   height: var(--page-top);
-  background: var(--gray-1);
+  background: var(--ds-gray-1);
 }
 
 .inner {
@@ -29,13 +29,13 @@
   width: 18px;
   height: 18px;
   padding: 3px;
-  color: var(--gray-8);
-  background: var(--gray-3);
+  color: var(--ds-gray-8);
+  background: var(--ds-gray-3);
   border-radius: 4px;
 }
 
 .logoText {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 14, 600;
 }
 
@@ -50,7 +50,7 @@
   align-items: center;
   height: 28px;
   padding: 0 10px;
-  color: var(--gray-9);
+  color: var(--ds-gray-9);
   text-decoration: none;
   border-radius: var(--radius-small);
   transition:
@@ -60,13 +60,13 @@
 }
 
 .link:hover {
-  color: var(--gray-12);
-  background: var(--gray-a2);
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-a2);
 }
 
 .link.active {
-  color: var(--gray-12);
-  background: var(--gray-a3);
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-a3);
 }
 
 .actions {
@@ -82,7 +82,7 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  color: var(--gray-10);
+  color: var(--ds-gray-10);
   text-decoration: none;
   border-radius: var(--radius-small);
   transition:
@@ -91,8 +91,8 @@
 }
 
 .iconLink:hover {
-  color: var(--gray-12);
-  background: var(--gray-a3);
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-a3);
 }
 
 /* ------------------------------------------------------------------ */
@@ -106,7 +106,7 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   cursor: pointer;
   background: none;
   border: none;
@@ -117,8 +117,8 @@
 }
 
 .menuButton:hover {
-  color: var(--gray-12);
-  background: var(--gray-a3);
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-a3);
 }
 
 /* ------------------------------------------------------------------ */
@@ -150,8 +150,8 @@
   flex-direction: column;
   max-height: 80dvh;
   pointer-events: auto;
-  background: var(--gray-1);
-  border-top: 1px solid var(--gray-a3);
+  background: var(--ds-gray-1);
+  border-top: 1px solid var(--ds-gray-a3);
   border-radius: 12px 12px 0 0;
   transform: translateY(var(--drawer-swipe-movement-y));
   transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
@@ -173,7 +173,7 @@
   width: 32px;
   height: 4px;
   margin: 12px auto 0;
-  background: var(--gray-a5);
+  background: var(--ds-gray-a5);
   border-radius: 9999px;
 }
 

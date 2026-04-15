@@ -1,17 +1,12 @@
+import { count, eq, sql } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
 import { getDb } from "../../../lib/db";
+import { derivePatchMeta } from "../../../lib/patch-derive";
+import type { PatchJson } from "../../../lib/schema";
+import { patches, patchLoads, patchSounds } from "../../../lib/schema";
 
 export const dynamic = "force-dynamic";
 export const preferredRegion = "iad1";
-
-interface PatchJson {
-  name: string;
-  author?: string;
-  version?: string;
-  description?: string;
-  tags?: string[];
-  sounds: Record<string, unknown>;
-}
 
 const ALLOWED_HOSTS = [
   "raw.githubusercontent.com",
@@ -48,7 +43,7 @@ function validatePatch(data: unknown): data is PatchJson {
 
 export async function POST(request: NextRequest) {
   try {
-    const sql = await getDb();
+    const db = await getDb();
     const body = await request.json();
     const { url } = body as { url?: string };
 
@@ -105,55 +100,71 @@ export async function POST(request: NextRequest) {
     const tags = patchData.tags ?? [];
     const author = patchData.author ?? "unknown";
     const description = patchData.description ?? "";
+    const derived = derivePatchMeta(patchData);
 
-    const existing = await sql`
-      SELECT id FROM patches WHERE name = ${slug}
-    `;
+    const existing = await db
+      .select({ id: patches.id })
+      .from(patches)
+      .where(eq(patches.name, slug));
 
     let patchId: number;
 
     if (existing.length > 0) {
-      patchId = existing[0].id as number;
-      await sql`
-        UPDATE patches SET
-          author = ${author},
-          description = ${description},
-          tags = ${tags as string[]},
-          sound_count = ${soundCount},
-          source_url = ${url},
-          patch_json = ${JSON.stringify(patchData)}::jsonb
-        WHERE id = ${patchId}
-      `;
+      patchId = existing[0].id;
+      await db
+        .update(patches)
+        .set({
+          author,
+          description,
+          tags,
+          soundCount,
+          sourceUrl: url,
+          patchJson: patchData,
+          version: patchData.version ?? null,
+          license: patchData.license ?? null,
+          compatibility: patchData.compatibility ?? null,
+          updatedAt: new Date(),
+          sourceTypes: derived.sourceTypes,
+          hasEffects: derived.hasEffects,
+          hasLayers: derived.hasLayers,
+          fileSize: derived.fileSize,
+        })
+        .where(eq(patches.id, patchId));
     } else {
-      const inserted = await sql`
-        INSERT INTO patches (name, author, description, tags, sound_count, url, source_url, patch_json)
-        VALUES (
-          ${slug},
-          ${author},
-          ${description},
-          ${tags as string[]},
-          ${soundCount},
-          ${slug},
-          ${url},
-          ${JSON.stringify(patchData)}::jsonb
-        )
-        RETURNING id
-      `;
-      patchId = inserted[0].id as number;
+      const inserted = await db
+        .insert(patches)
+        .values({
+          name: slug,
+          author,
+          description,
+          tags,
+          soundCount,
+          url: slug,
+          sourceUrl: url,
+          patchJson: patchData,
+          version: patchData.version ?? null,
+          license: patchData.license ?? null,
+          compatibility: patchData.compatibility ?? null,
+          sourceTypes: derived.sourceTypes,
+          hasEffects: derived.hasEffects,
+          hasLayers: derived.hasLayers,
+          fileSize: derived.fileSize,
+        })
+        .returning({ id: patches.id });
+      patchId = inserted[0].id;
     }
 
-    await sql`DELETE FROM patch_sounds WHERE patch_id = ${patchId}`;
+    await db.delete(patchSounds).where(eq(patchSounds.patchId, patchId));
 
-    const soundNames = Object.keys(patchData.sounds);
-    await Promise.all(
-      soundNames.map(
-        (soundName) =>
-          sql`
-          INSERT INTO patch_sounds (patch_id, name, category)
-          VALUES (${patchId}, ${soundName}, ${"sounds"})
-        `,
-      ),
-    );
+    const soundEntries = Object.keys(patchData.sounds).map((soundName) => ({
+      patchId,
+      name: soundName,
+      category: derived.categories.get(soundName) ?? "general",
+    }));
+
+    if (soundEntries.length > 0) {
+      await db.insert(patchSounds).values(soundEntries);
+    }
 
     return NextResponse.json({
       ok: true,
@@ -168,34 +179,34 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const sql = await getDb();
-    const rows = await sql`
-      SELECT
-        p.name,
-        p.author,
-        p.description,
-        p.tags,
-        p.sound_count,
-        p.source_url,
-        COUNT(pl.id)::int AS loads
-      FROM patches p
-      LEFT JOIN patch_loads pl ON pl.patch_id = p.id
-      GROUP BY p.id
-      ORDER BY loads DESC
-    `;
+    const db = await getDb();
+    const rows = await db
+      .select({
+        name: patches.name,
+        author: patches.author,
+        description: patches.description,
+        tags: patches.tags,
+        soundCount: patches.soundCount,
+        sourceUrl: patches.sourceUrl,
+        loads: count(patchLoads.id),
+      })
+      .from(patches)
+      .leftJoin(patchLoads, eq(patchLoads.patchId, patches.id))
+      .groupBy(patches.id)
+      .orderBy(sql`count(${patchLoads.id}) DESC`);
 
-    const patches = rows.map((row) => ({
-      name: row.name as string,
-      file: `${row.name as string}.json`,
-      author: row.author as string,
-      description: (row.description as string) ?? "",
-      tags: (row.tags as string[]) ?? [],
-      soundCount: row.sound_count as number,
-      sourceUrl: (row.source_url as string) ?? null,
-      loads: Number(row.loads),
+    const result = rows.map((row) => ({
+      name: row.name,
+      file: `${row.name}.json`,
+      author: row.author,
+      description: row.description ?? "",
+      tags: row.tags ?? [],
+      soundCount: row.soundCount,
+      sourceUrl: row.sourceUrl,
+      loads: row.loads,
     }));
 
-    return NextResponse.json(patches, {
+    return NextResponse.json(result, {
       headers: {
         "Cache-Control":
           "public, max-age=60, s-maxage=60, stale-while-revalidate=300",

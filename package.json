@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "icons": "turbo run build --filter=@web-kits/icons",
     "lint": "turbo run lint && prettier --write \"**/*.mdx\"",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",

@@ -1,9 +1,9 @@
 "use client";
 
+import { click } from "@audio/core";
+import { useSound } from "@web-kits/audio/react";
 import ChevronLeft from "@web-kits/icons/fill/chevron-left";
 import ChevronRight from "@web-kits/icons/fill/chevron-right";
-import { useSound } from "@web-kits/audio/react";
-import { click } from "@audio/core";
 import type { Item } from "fumadocs-core/page-tree";
 import Link from "next/link";
 import styles from "./styles.module.css";
@@ -30,7 +30,11 @@ export function PageNav({ previous, next }: PageNavProps) {
         </Link>
       ) : null}
       {next ? (
-        <Link href={next.url} className={`${styles.card} ${styles.next}`} onClick={playClick}>
+        <Link
+          href={next.url}
+          className={`${styles.card} ${styles.next}`}
+          onClick={playClick}
+        >
           <span className={styles.direction}>
             Next
             <ChevronRight width={12} height={12} />

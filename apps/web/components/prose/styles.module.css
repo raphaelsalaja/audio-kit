@@ -10,34 +10,34 @@
   --prose-bullet-disc-offset: 8px;
 
   min-width: 0;
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   @typography 14;
 }
 
 .prose h1 {
   margin-bottom: var(--prose-block-spacing-small);
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 20, 600;
 }
 
 .prose h2 {
   margin-top: var(--prose-block-spacing-large);
   margin-bottom: calc(var(--prose-block-spacing-small));
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 16, 550;
 }
 
 .prose h3 {
   margin-top: var(--prose-block-spacing);
   margin-bottom: var(--prose-block-spacing-small);
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 15, 700;
 }
 
 .prose h4 {
   margin-top: var(--prose-block-spacing-small);
   margin-bottom: var(--prose-block-spacing-small);
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 14, 600;
 }
 
@@ -47,20 +47,20 @@
 }
 
 .prose :is(p, li, td, th) a {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   text-decoration: underline;
-  text-decoration-color: var(--gray-a6);
+  text-decoration-color: var(--ds-gray-a6);
   text-underline-offset: 2px;
   transition: text-decoration-color 0.15s;
 }
 
 .prose :is(p, li, td, th) a:hover {
-  text-decoration-color: var(--gray-12);
+  text-decoration-color: var(--ds-gray-12);
 }
 
 .prose strong {
   font-weight: 600;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .prose ul,
@@ -83,7 +83,7 @@
 }
 
 .prose li::marker {
-  color: var(--gray-8);
+  color: var(--ds-gray-8);
 }
 
 .prose code {
@@ -92,7 +92,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   vertical-align: 1.5px;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   border-radius: 3px;
   box-shadow: var(--shadow-2);
 }
@@ -100,14 +100,14 @@
 .prose blockquote {
   padding-left: 16px;
   margin-bottom: 16px;
-  color: var(--gray-10);
-  border-left: 3px solid var(--gray-a6);
+  color: var(--ds-gray-10);
+  border-left: 3px solid var(--ds-gray-a6);
 }
 
 .prose hr {
   margin: 32px 0;
   border: none;
-  border-top: 1px solid var(--gray-a4);
+  border-top: 1px solid var(--ds-gray-a4);
 }
 
 .tableFrame {
@@ -185,8 +185,8 @@
 }
 
 .prose th {
-  color: var(--gray-10);
-  background: var(--gray-a2);
+  color: var(--ds-gray-10);
+  background: var(--ds-gray-a2);
   @typography 13, 550;
 }
 
@@ -201,7 +201,7 @@
 }
 
 .prose td {
-  border-bottom: 1px solid var(--gray-a2);
+  border-bottom: 1px solid var(--ds-gray-a2);
 }
 
 .prose tr:last-child td {

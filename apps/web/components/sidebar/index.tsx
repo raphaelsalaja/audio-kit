@@ -1,8 +1,8 @@
 "use client";
 
-import ArrowUpRight from "@web-kits/icons/outline/arrow-up-right";
+import { collapse, expand, tap } from "@audio/core";
 import { useSound } from "@web-kits/audio/react";
-import { tap, expand, collapse } from "@audio/core";
+import ArrowUpRight from "@web-kits/icons/outline/arrow-up-right";
 import type {
   Folder,
   Item,

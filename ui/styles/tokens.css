@@ -1,29 +1,118 @@
+/* Grays */
+@import "@radix-ui/themes/tokens/colors/slate.css";
+@import "@radix-ui/themes/tokens/colors/gray.css";
+
+/* Accents */
+@import "@radix-ui/themes/tokens/colors/gold.css";
+@import "@radix-ui/themes/tokens/colors/bronze.css";
+@import "@radix-ui/themes/tokens/colors/brown.css";
+@import "@radix-ui/themes/tokens/colors/yellow.css";
+@import "@radix-ui/themes/tokens/colors/amber.css";
+@import "@radix-ui/themes/tokens/colors/orange.css";
+@import "@radix-ui/themes/tokens/colors/tomato.css";
+@import "@radix-ui/themes/tokens/colors/red.css";
+@import "@radix-ui/themes/tokens/colors/ruby.css";
+@import "@radix-ui/themes/tokens/colors/crimson.css";
+@import "@radix-ui/themes/tokens/colors/pink.css";
+@import "@radix-ui/themes/tokens/colors/plum.css";
+@import "@radix-ui/themes/tokens/colors/purple.css";
+@import "@radix-ui/themes/tokens/colors/violet.css";
+@import "@radix-ui/themes/tokens/colors/iris.css";
+@import "@radix-ui/themes/tokens/colors/indigo.css";
+@import "@radix-ui/themes/tokens/colors/blue.css";
+@import "@radix-ui/themes/tokens/colors/cyan.css";
+@import "@radix-ui/themes/tokens/colors/teal.css";
+@import "@radix-ui/themes/tokens/colors/jade.css";
+@import "@radix-ui/themes/tokens/colors/green.css";
+@import "@radix-ui/themes/tokens/colors/grass.css";
+@import "@radix-ui/themes/tokens/colors/lime.css";
+@import "@radix-ui/themes/tokens/colors/mint.css";
+@import "@radix-ui/themes/tokens/colors/sky.css";
+
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/white-alpha.css";
+
 :root {
-  --bg: var(--gray-1);
-  --bg-subtle: var(--gray-2);
-  --selection: var(--gray-a2);
+  --ds-gray-1: var(--slate-1);
+  --ds-gray-2: var(--slate-2);
+  --ds-gray-3: var(--slate-3);
+  --ds-gray-4: var(--slate-4);
+  --ds-gray-5: var(--slate-5);
+  --ds-gray-6: var(--slate-6);
+  --ds-gray-7: var(--slate-7);
+  --ds-gray-8: var(--slate-8);
+  --ds-gray-9: var(--slate-9);
+  --ds-gray-10: var(--slate-10);
+  --ds-gray-11: var(--slate-11);
+  --ds-gray-12: var(--slate-12);
+
+  --ds-gray-a1: var(--slate-a1);
+  --ds-gray-a2: var(--slate-a2);
+  --ds-gray-a3: var(--slate-a3);
+  --ds-gray-a4: var(--slate-a4);
+  --ds-gray-a5: var(--slate-a5);
+  --ds-gray-a6: var(--slate-a6);
+  --ds-gray-a7: var(--slate-a7);
+  --ds-gray-a8: var(--slate-a8);
+  --ds-gray-a9: var(--slate-a9);
+  --ds-gray-a10: var(--slate-a10);
+  --ds-gray-a11: var(--slate-a11);
+  --ds-gray-a12: var(--slate-a12);
+
+  --ds-accent-1: var(--sky-1);
+  --ds-accent-2: var(--sky-2);
+  --ds-accent-3: var(--sky-3);
+  --ds-accent-4: var(--sky-4);
+  --ds-accent-5: var(--sky-5);
+  --ds-accent-6: var(--sky-6);
+  --ds-accent-7: var(--sky-7);
+  --ds-accent-8: var(--sky-8);
+  --ds-accent-9: var(--sky-9);
+  --ds-accent-10: var(--sky-10);
+  --ds-accent-11: var(--sky-11);
+  --ds-accent-12: var(--sky-12);
+
+  --ds-accent-a1: var(--sky-a1);
+  --ds-accent-a2: var(--sky-a2);
+  --ds-accent-a3: var(--sky-a3);
+  --ds-accent-a4: var(--sky-a4);
+  --ds-accent-a5: var(--sky-a5);
+  --ds-accent-a6: var(--sky-a6);
+  --ds-accent-a7: var(--sky-a7);
+  --ds-accent-a8: var(--sky-a8);
+  --ds-accent-a9: var(--sky-a9);
+  --ds-accent-a10: var(--sky-a10);
+  --ds-accent-a11: var(--sky-a11);
+  --ds-accent-a12: var(--sky-a12);
+
+  /* font */
   --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
   --font-sans: var(--font-inter, Inter), sans-serif;
+
+  /* radius */
   --radius-none: 0px;
   --radius-small: 6px;
   --radius-medium: 10px;
   --radius-large: 12px;
   --radius-full: 9999px;
-}
 
-:root {
-  font-family: var(--font-sans);
-  font-feature-settings:
-    "liga" 1,
-    "calt" 1;
-  color: var(--gray-12);
-}
+  /* breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
 
-html {
-  scrollbar-color: var(--gray-a4) transparent;
-  background: var(--gray-1);
-}
-
-code {
-  font-family: var(--font-mono);
+  /* other */
+  --sidebar-width: 200px;
+  --table-of-contents-width: 200px;
+  --body-width: 768px;
+  --page-top: 64px;
+  --page-padding: 32px;
+  --fade-size: 40px;
+  --layout-width: calc(
+    var(--sidebar-width) +
+    var(--body-width) +
+    var(--table-of-contents-width)
+  );
 }

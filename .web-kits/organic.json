@@ -3,7 +3,7 @@
   "name": "Organic",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Bell-like FM synthesis with reverb — resonant, natural, acoustic-feeling UI sounds",
+  "description": "Resonant FM bell tones with natural reverb and acoustic warmth",
   "tags": ["ui", "organic", "bells", "acoustic"],
   "sounds": {
     "tap": {

@@ -105,7 +105,7 @@ function KnobArc({
       <path
         d={trackPath}
         fill="none"
-        stroke="var(--gray-a4)"
+        stroke="var(--ds-gray-a4)"
         strokeWidth={strokeWidth}
         strokeLinecap="round"
       />
@@ -113,12 +113,17 @@ function KnobArc({
         <path
           d={valuePath}
           fill="none"
-          stroke="var(--gray-12)"
+          stroke="var(--ds-gray-12)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
         />
       )}
-      <circle cx={indicator.x} cy={indicator.y} r={2.5} fill="var(--gray-12)" />
+      <circle
+        cx={indicator.x}
+        cy={indicator.y}
+        r={2.5}
+        fill="var(--ds-gray-12)"
+      />
     </svg>
   );
 }

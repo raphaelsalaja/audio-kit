@@ -3,7 +3,7 @@
   "name": "Minimal",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Pure sine waves, ultra-clean feedback — the quietest, most transparent UI sounds",
+  "description": "Ultra-clean sine wave tones for quiet, transparent UI feedback",
   "tags": ["ui", "minimal", "clean", "sine"],
   "sounds": {
     "tap": {

@@ -70,7 +70,7 @@ function CheckboxWidget({ play }: WidgetProps) {
           </AnimatePresence>
         </Checkbox.Indicator>
       </Checkbox.Root>
-      Enable notifications
+      Enable Notifications
     </label>
   );
 }

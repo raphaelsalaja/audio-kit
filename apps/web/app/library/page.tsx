@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { PatchList } from "@/components/patch-list";
 import { getPatchesAllTime } from "@/lib/patches";
 
@@ -10,20 +9,8 @@ export const metadata: Metadata = {
   description: "Browse and discover community sound patches for your UI.",
 };
 
-export default function PatchesPage() {
-  return (
-    <Suspense>
-      <PatchesSection />
-    </Suspense>
-  );
-}
-
-async function PatchesSection() {
+export default async function PatchesPage() {
   const patches = await getPatchesAllTime();
 
-  return (
-    <div id="library">
-      <PatchList patches={patches} />
-    </div>
-  );
+  return <PatchList patches={patches} />;
 }

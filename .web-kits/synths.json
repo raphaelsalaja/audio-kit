@@ -3,7 +3,7 @@
   "name": "Synths",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Synthesized instruments — bass, pads, leads, keys, bells, and arps",
+  "description": "Synthesized bass, pads, leads, keys, bells, and arps",
   "tags": ["synths", "instruments", "bass", "pads", "leads", "keys"],
   "sounds": {
     "bass": {

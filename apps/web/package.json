@@ -20,6 +20,8 @@
     "@web-kits/icons": "workspace:*",
     "@web-kits/ui": "workspace:*",
     "calligraph": "^1.4.1",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.2",
     "fumadocs-core": "latest",
     "fumadocs-mdx": "latest",
     "hast-util-to-jsx-runtime": "^2.3.6",
@@ -34,10 +36,13 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@types/mdx": "^2.0.0",
     "@types/node": "^25.2.3",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

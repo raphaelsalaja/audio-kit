@@ -3,7 +3,7 @@
   "name": "Retro",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "8-bit square waves with chiptune character — nostalgic, pixelated UI sounds",
+  "description": "Nostalgic 8-bit square waves and chiptune-style pixelated UI sounds",
   "tags": ["ui", "retro", "8-bit", "chiptune"],
   "sounds": {
     "tap": {

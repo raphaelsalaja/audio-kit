@@ -3,7 +3,7 @@
   "name": "Mechanical",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Noise-based, clicky, tactile sounds — industrial and precise UI feedback",
+  "description": "Clicky, tactile, noise-based sounds with industrial precision",
   "tags": ["ui", "mechanical", "industrial", "tactile"],
   "sounds": {
     "tap": {

@@ -1,7 +1,7 @@
 "use client";
 
-import { useSound } from "@web-kits/audio/react";
 import { tick } from "@audio/core";
+import { useSound } from "@web-kits/audio/react";
 import type { TOCItemType } from "fumadocs-core/toc";
 import {
   createContext,

@@ -1,25 +1,20 @@
-@import "@web-kits/ui/styles/colors.css";
 @import "@web-kits/ui/styles/reset.css";
 @import "@web-kits/ui/styles/tokens.css";
 @import "@web-kits/ui/styles/shadows.css";
 
-:root {
-  --sidebar-width: 200px;
-  --table-of-contents-width: 200px;
-  --body-width: 768px;
-  --page-top: 64px;
-  --page-padding: 32px;
-  --fade-size: 40px;
-  --layout-width: calc(
-    var(--sidebar-width) +
-    var(--body-width) +
-    var(--table-of-contents-width)
-  );
-}
-
 html {
   scrollbar-gutter: stable;
   overscroll-behavior-y: none;
+  font-family: var(--font-sans);
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  color: var(--mauve-12);
+  scrollbar-color: var(--mauve-a4) transparent;
   scrollbar-width: none;
-  background: var(--gray-1);
+  background: var(--ds-gray-1);
+}
+
+code {
+  font-family: var(--font-mono);
 }

@@ -1,10 +1,10 @@
 "use client";
 
+import { click, drawerClose, drawerOpen } from "@audio/core";
 import { DrawerPreview as Drawer } from "@base-ui/react/drawer";
 import { useSound } from "@web-kits/audio/react";
 import Github from "@web-kits/icons/social-media/github";
 import XTwitter from "@web-kits/icons/social-media/x-twitter";
-import { click, drawerOpen, drawerClose } from "@audio/core";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
@@ -17,7 +17,7 @@ import styles from "./styles.module.css";
 const LINKS = [
   {
     href: "/",
-    label: "Documentation",
+    label: "Docs",
     match: (p: string) => !p.startsWith("/library"),
   },
   {

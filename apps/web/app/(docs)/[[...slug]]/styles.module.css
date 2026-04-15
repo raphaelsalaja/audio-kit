@@ -1,7 +1,8 @@
 .content {
   flex: 1;
   min-width: 0;
-  padding: calc(var(--page-top) + var(--fade-size)) 40px 80px;
+  padding-top: calc(var(--page-top) + var(--fade-size));
+  padding-bottom: 80px;
 }
 
 .header {
@@ -16,22 +17,22 @@
   display: flex;
   gap: 12px;
   align-items: baseline;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 20, 600;
 }
 
 .name {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 20, 600;
 }
 
 .version {
-  color: var(--gray-9);
+  color: var(--ds-gray-9);
   @typography 13, 400;
 }
 
 .description {
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   @typography 14;
 }
 
@@ -40,13 +41,13 @@
 }
 
 .sectionTitle {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 18, 700;
 }
 
 .sectionDescription {
   margin-top: 4px;
-  color: var(--gray-9);
+  color: var(--ds-gray-9);
   @typography 13, 400;
 }
 
@@ -70,9 +71,9 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: var(--gray-10);
-  background: var(--gray-a2);
-  border: 1px solid var(--gray-a3);
+  color: var(--ds-gray-10);
+  background: var(--ds-gray-a2);
+  border: 1px solid var(--ds-gray-a3);
   border-radius: var(--radius-medium);
 }
 
@@ -84,18 +85,25 @@
 }
 
 .featureTitle {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 14, 600;
 }
 
 .featureDescription {
-  color: var(--gray-9);
+  color: var(--ds-gray-9);
   @typography 13, 400, 1.5;
+}
+
+@media (width <= 1280px) {
+  .content {
+    padding-inline: 0px;
+  }
 }
 
 @media (width <= 768px) {
   .content {
-    padding: 24px 16px 60px;
+    padding: calc(var(--page-top) + var(--fade-size)) 40px 80px;
+    padding-inline: 0px;
   }
 
   .title {

@@ -4,7 +4,7 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  color: var(--gray-10);
+  color: var(--ds-gray-10);
   cursor: pointer;
   background: none;
   border: none;
@@ -15,6 +15,6 @@
 }
 
 .toggle:hover {
-  color: var(--gray-12);
-  background: var(--gray-a3);
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-a3);
 }

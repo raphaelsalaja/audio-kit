@@ -3,7 +3,7 @@
   "name": "Playful",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Bouncy pitch sweeps and energetic tones — cartoon-ish, fun UI feedback",
+  "description": "Bouncy pitch sweeps and energetic tones with cartoon-like character",
   "tags": ["ui", "playful", "bouncy", "fun"],
   "sounds": {
     "tap": {

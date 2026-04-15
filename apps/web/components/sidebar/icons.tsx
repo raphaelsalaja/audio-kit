@@ -130,7 +130,7 @@ const iconMap: Record<string, IconEntry> = {
     color: "var(--amber-9)",
   },
 
-  "/api/reference": { icon: ConnectedDots, color: "var(--gray-9)" },
+  "/api/reference": { icon: ConnectedDots, color: "var(--ds-gray-9)" },
   "/api/reference/types": { icon: ConnectedDots, color: "var(--red-9)" },
 
   "/resources/changelog": {
@@ -140,12 +140,12 @@ const iconMap: Record<string, IconEntry> = {
   "/resources/llms": { icon: Sparkle, color: "var(--violet-9)" },
   "/resources/github": {
     icon: Github,
-    color: "var(--gray-9)",
+    color: "var(--ds-gray-9)",
     external: true,
   },
   "/resources/twitter": {
     icon: XTwitter,
-    color: "var(--gray-9)",
+    color: "var(--ds-gray-9)",
     external: true,
   },
   "/resources/npm": {

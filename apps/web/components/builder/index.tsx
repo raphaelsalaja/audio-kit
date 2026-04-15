@@ -89,7 +89,7 @@ export function SoundBuilder() {
     ctx.stroke();
 
     const cs = getComputedStyle(canvas);
-    ctx.strokeStyle = cs.getPropertyValue("--gray-8").trim() || "#999";
+    ctx.strokeStyle = cs.getPropertyValue("--ds-gray-8").trim() || "#999";
     ctx.lineWidth = 1.5 * dpr;
     ctx.lineJoin = "round";
     ctx.beginPath();

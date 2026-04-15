@@ -22,8 +22,8 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  color: var(--gray-11);
-  background: var(--gray-a3);
+  color: var(--ds-gray-11);
+  background: var(--ds-gray-a3);
   border-radius: 50%;
   @typography 13, 500;
 }
@@ -35,7 +35,7 @@
 .line {
   flex: 1;
   width: 1px;
-  background: var(--gray-a4);
+  background: var(--ds-gray-a4);
 }
 
 .step:last-child .line {
@@ -57,5 +57,5 @@
   min-height: 28px;
   margin-top: 0;
   margin-bottom: 0;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }

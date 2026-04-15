@@ -314,9 +314,11 @@ export function usePatch(source: string | SoundPatch): AudioPatch {
   useEffect(() => {
     if (typeof source !== "string") return;
     let cancelled = false;
-    loadPatch(source).then((p) => {
-      if (!cancelled) setPatch(p);
-    });
+    loadPatch(source)
+      .then((p) => {
+        if (!cancelled) setPatch(p);
+      })
+      .catch(() => {});
     return () => {
       cancelled = true;
     };

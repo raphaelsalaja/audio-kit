@@ -133,7 +133,7 @@ function drawADSR(canvas: HTMLCanvasElement | null, env: Envelope) {
   const ySustain = pad + drawH * (1 - s);
 
   const style = getComputedStyle(canvas);
-  const strokeColor = style.getPropertyValue("--gray-8").trim() || "#888";
+  const strokeColor = style.getPropertyValue("--ds-gray-8").trim() || "#888";
 
   ctx.beginPath();
   ctx.moveTo(x0, y0);

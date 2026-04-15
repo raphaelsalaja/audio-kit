@@ -9,6 +9,7 @@
   width: var(--sidebar-width);
   height: 100dvh;
   padding-top: calc(var(--page-top) + var(--fade-size));
+  margin-right: 48px;
   overflow-y: auto;
   scrollbar-width: none;
 
@@ -24,7 +25,7 @@
 }
 
 .logo {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .nav {
@@ -38,7 +39,7 @@
   align-items: center;
   height: var(--sidebar-item-height);
   font-variation-settings: "wght" 500;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .sectionLabel:first-child {
@@ -62,7 +63,7 @@
   gap: 6px;
   align-items: center;
   height: var(--sidebar-item-height);
-  color: var(--gray-10);
+  color: var(--ds-gray-10);
   transition:
     color 0.15s,
     font-variation-settings 0.15s;
@@ -70,7 +71,7 @@
 
 .link:hover {
   font-variation-settings: "wght" 500;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .link:hover .icon {
@@ -79,7 +80,7 @@
 
 .active {
   font-variation-settings: "wght" 500;
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .tag {
@@ -108,7 +109,7 @@
   width: 100%;
   height: var(--sidebar-item-height);
   font: inherit;
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   cursor: pointer;
   background: none;
   border: none;
@@ -122,7 +123,7 @@
   width: 100%;
   height: var(--sidebar-item-height);
   font: inherit;
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   transition: color 0.15s;
 }
 
@@ -150,7 +151,7 @@
 
 .folderLabel:hover,
 .folderLabelRow:hover {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .folderLabel .icon,
@@ -165,7 +166,7 @@
 
 .folderLabelActive,
 .folderLabelRow.folderLabelActive {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .folderLabelActive .icon,
@@ -180,7 +181,7 @@
   justify-content: center;
   padding: 0;
   margin: 0;
-  color: var(--gray-8);
+  color: var(--ds-gray-8);
   cursor: pointer;
   background: none;
   border: none;
@@ -188,7 +189,7 @@
 }
 
 .chevronButton:hover {
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
 }
 
 .chevron {
@@ -215,13 +216,13 @@
 
 .folderChildren::before {
   inset-block: 0.375rem 0;
-  background: var(--gray-a4);
+  background: var(--ds-gray-a4);
 }
 
 .folderChildren::after {
   inset-block: 0;
   height: var(--sidebar-item-height);
-  background: var(--gray-12);
+  background: var(--ds-gray-12);
   opacity: var(--active-opacity, 0);
   transform: translateY(var(--active-top, 0.375rem));
   transition: 0.26s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -234,12 +235,12 @@
   align-items: center;
   justify-content: space-between;
   height: var(--sidebar-item-height);
-  color: var(--gray-10);
+  color: var(--ds-gray-10);
   transition: color 0.15s;
 }
 
 .externalLink:hover {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .externalLink:hover .icon {
@@ -265,7 +266,7 @@
 .divider {
   height: 1px;
   margin: 8px;
-  background: var(--gray-a4);
+  background: var(--ds-gray-a4);
 }
 
 .drawer {

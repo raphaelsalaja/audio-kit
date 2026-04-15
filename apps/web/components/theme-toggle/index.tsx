@@ -1,7 +1,10 @@
 "use client";
 
+import { toggleOff, toggleOn } from "@audio/core";
 import { useSound } from "@web-kits/audio/react";
-import { toggleOn, toggleOff } from "@audio/core";
+import Moon from "@web-kits/icons/fill/moon";
+import Sun from "@web-kits/icons/fill/sun";
+import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
@@ -18,6 +21,20 @@ export function ThemeToggle() {
 
   const isDark = resolvedTheme === "dark";
 
+  const MotionMoon = motion(Moon);
+
+  const MotionSun = motion(Sun);
+
+  const props = {
+    initial: { opacity: 0, scale: 0.9, filter: "blur(2px)" },
+    animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+    exit: { opacity: 0, scale: 0.9, filter: "blur(2px)" },
+    transition: { duration: 0.2, ease: "easeInOut" },
+    width: 14,
+    height: 14,
+    style: { display: "flex" },
+  } as const;
+
   return (
     <button
       type="button"
@@ -27,26 +44,14 @@ export function ThemeToggle() {
         else playToggleOn();
         setTheme(isDark ? "light" : "dark");
       }}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true"
-      >
+      <AnimatePresence mode="wait" initial={false}>
         {isDark ? (
-          <circle cx="8" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+          <MotionMoon key="moon" {...props} />
         ) : (
-          <path
-            d="M8 1v1m0 12v1m7-7h-1M2 8H1m12.07-4.07-.71.71M3.64 12.36l-.71.71m10.14 0-.71-.71M3.64 3.64l-.71-.71M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
+          <MotionSun key="sun" {...props} />
         )}
-      </svg>
+      </AnimatePresence>
     </button>
   );
 }

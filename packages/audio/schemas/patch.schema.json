@@ -28,6 +28,14 @@
         "type": "string"
       }
     },
+    "license": {
+      "type": "string",
+      "description": "SPDX license identifier (e.g. MIT, Apache-2.0)"
+    },
+    "compatibility": {
+      "type": "string",
+      "description": "Semver range for @web-kits/audio compatibility (e.g. >=1.0.0)"
+    },
     "sounds": {
       "type": "object",
       "description": "Map of sound names to their definitions",

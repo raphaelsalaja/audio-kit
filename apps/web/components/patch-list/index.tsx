@@ -1,7 +1,8 @@
 "use client";
 
+import { tap } from "@audio/core";
+import { Field } from "@base-ui/react";
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -9,42 +10,14 @@ import {
 } from "@tanstack/react-table";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { useSound } from "@web-kits/audio/react";
-import { tap } from "@audio/core";
 import Magnifier from "@web-kits/icons/outline/magnifier";
-import Xmark from "@web-kits/icons/outline/xmark";
-import Link from "next/link";
+import { clsx } from "clsx";
+import { useRouter } from "next/navigation";
 import { parseAsString, useQueryState } from "nuqs";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import type { PatchWithStats } from "@/lib/patches";
+import { createColumns } from "./columns";
 import styles from "./styles.module.css";
-
-function formatLoads(n: number): string {
-  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
-  return String(Math.round(n));
-}
-
-function Highlight({ text, query }: { text: string; query: string }) {
-  if (!query.trim()) return <>{text}</>;
-  const regex = new RegExp(
-    `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-    "i",
-  );
-  const parts = text.split(regex);
-  return (
-    <>
-      {parts.map((part, i) =>
-        regex.test(part) ? (
-          // biome-ignore lint/suspicious/noArrayIndexKey: split fragments have no stable id
-          <mark key={i} className={styles.highlight}>
-            {part}
-          </mark>
-        ) : (
-          part
-        ),
-      )}
-    </>
-  );
-}
 
 export function PatchList({ patches }: { patches: PatchWithStats[] }) {
   const [query, setQuery] = useQueryState(
@@ -53,141 +26,136 @@ export function PatchList({ patches }: { patches: PatchWithStats[] }) {
       .withDefault("")
       .withOptions({ shallow: true, throttleMs: 300 }),
   );
-  const inputRef = useRef<HTMLInputElement>(null);
+
+  const router = useRouter();
+
   const playTap = useSound(tap);
 
-  function clearQuery() {
-    setQuery("");
-    inputRef.current?.focus();
-  }
-
-  const globalFilter = query;
-
-  const columns = useMemo<ColumnDef<PatchWithStats, unknown>[]>(
-    () => [
-      {
-        accessorKey: "name",
-        header: "Name",
-        cell: ({ row }) => (
-          <Link
-            href={`/library/${row.original.name}`}
-            className={styles.nameLink}
-            onClick={playTap}
-          >
-            <span className={styles.name}>
-              <Highlight text={row.original.name} query={query} />
-            </span>
-            <span className={styles.author}>
-              <Highlight text={row.original.author} query={query} />
-            </span>
-          </Link>
-        ),
-        enableGlobalFilter: true,
-      },
-      {
-        accessorKey: "soundCount",
-        header: "Sounds",
-        cell: ({ getValue }) => getValue() as number,
-        meta: { align: "right" as const },
-      },
-      {
-        accessorKey: "loads",
-        header: "Installs",
-        cell: ({ getValue }) => formatLoads(getValue() as number),
-        meta: { align: "right" as const },
-      },
-    ],
-    [query, playTap],
-  );
+  const columns = useMemo(() => createColumns(), []);
 
   const table = useReactTable({
     data: patches,
     columns,
-    state: { globalFilter },
+    state: { globalFilter: query },
+    globalFilterFn: (row, _columnId, filterValue) => {
+      const s = (filterValue as string).toLowerCase();
+      const { name, author, description } = row.original;
+      return (
+        name.toLowerCase().includes(s) ||
+        author.toLowerCase().includes(s) ||
+        description.toLowerCase().includes(s)
+      );
+    },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getRowId: (row) => String(row.id),
   });
 
   const { rows } = table.getRowModel();
-  const visibleHeaders = table.getHeaderGroups()[0]?.headers ?? [];
+  const tableRef = useRef<HTMLTableElement>(null);
 
-  const ROW_HEIGHT = 48;
+  const supportsHighlight =
+    typeof window !== "undefined" &&
+    "highlights" in CSS &&
+    typeof Highlight !== "undefined";
+
+  useEffect(() => {
+    if (!supportsHighlight) return;
+    const id = "search-results-highlight-style";
+    const style = document.createElement("style");
+    style.id = id;
+    style.textContent =
+      "::highlight(search-results) { background-color: var(--ds-accent-a3); color: inherit; }";
+    document.head.appendChild(style);
+    return () => style.remove();
+  }, [supportsHighlight]);
+
+  useEffect(() => {
+    if (!supportsHighlight) return;
+    CSS.highlights.delete("search-results");
+
+    const term = query.trim().toLowerCase();
+    if (!term || !tableRef.current) return;
+
+    const walker = document.createTreeWalker(
+      tableRef.current,
+      NodeFilter.SHOW_TEXT,
+    );
+    const ranges: Range[] = [];
+    for (
+      let node = walker.nextNode();
+      node !== null;
+      node = walker.nextNode()
+    ) {
+      const text = node.textContent?.toLowerCase() ?? "";
+      let start = 0;
+      while (start < text.length) {
+        const idx = text.indexOf(term, start);
+        if (idx === -1) break;
+        const range = new Range();
+        range.setStart(node, idx);
+        range.setEnd(node, idx + term.length);
+        ranges.push(range);
+        start = idx + term.length;
+      }
+    }
+
+    if (ranges.length > 0) {
+      CSS.highlights.set("search-results", new Highlight(...ranges));
+    }
+  }, [supportsHighlight, query]);
 
   const virtualizer = useWindowVirtualizer({
     count: rows.length,
-    estimateSize: () => ROW_HEIGHT,
+    estimateSize: () => 40,
     overscan: 10,
   });
 
   return (
     <div className={styles.container}>
       <div className={styles.toolbar}>
-        <div className={styles.searchBar}>
+        <Field.Root className={styles.search}>
           <Magnifier
-            className={styles.searchIcon}
+            className={styles.icon}
             width={14}
             height={14}
+            strokewidth={2}
             aria-hidden="true"
           />
-          <input
-            ref={inputRef}
-            type="text"
-            className={styles.searchInput}
-            placeholder="Search patches..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+
+          <Field.Control
+            placeholder="Find Sound..."
+            className={styles.control}
+            onValueChange={(value) => setQuery(value)}
           />
-          {query && (
-            <button
-              type="button"
-              className={styles.searchClear}
-              onClick={clearQuery}
-              aria-label="Clear search"
-            >
-              <Xmark
-                width={12}
-                height={12}
-                strokewidth={2}
-                aria-hidden="true"
-              />
-            </button>
-          )}
-        </div>
+        </Field.Root>
       </div>
 
       {rows.length === 0 ? (
         <div className={styles.empty}>No patches found.</div>
       ) : (
-        <table className={styles.table}>
+        <table ref={tableRef} className={styles.table}>
           <thead className={styles.thead}>
-            <tr>
-              {visibleHeaders.map((header) => {
-                const meta = header.column.columnDef.meta as
-                  | { align?: string }
-                  | undefined;
-                return (
-                  <th
-                    key={header.id}
-                    className={styles.th}
-                    data-align={meta?.align}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                  </th>
-                );
-              })}
+            <tr className={styles.tr}>
+              {table.getFlatHeaders().map((header) => (
+                <th
+                  key={header.id}
+                  className={styles.th}
+                  data-align={header.column.columnDef.meta?.align}
+                  data-column={header.column.id}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
             {virtualizer.getVirtualItems().length > 0 && (
-              <tr>
+              <tr className={styles.tr}>
                 <td
-                  colSpan={visibleHeaders.length}
                   style={{
                     height: virtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -198,37 +166,39 @@ export function PatchList({ patches }: { patches: PatchWithStats[] }) {
             )}
             {virtualizer.getVirtualItems().map((virtualRow) => {
               const row = rows[virtualRow.index];
+              const isLast = virtualRow.index === rows.length - 1;
+
               return (
                 <tr
                   key={row.id}
-                  className={styles.row}
+                  className={clsx(styles.tr, isLast && styles.last)}
                   data-index={virtualRow.index}
                   ref={(node) => virtualizer.measureElement(node)}
+                  onClick={() => {
+                    playTap();
+                    router.push(`/library/${row.original.name}`);
+                  }}
                 >
-                  {row.getVisibleCells().map((cell) => {
-                    const meta = cell.column.columnDef.meta as
-                      | { align?: string }
-                      | undefined;
-                    return (
-                      <td
-                        key={cell.id}
-                        className={styles.td}
-                        data-align={meta?.align}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    );
-                  })}
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className={styles.td}
+                      data-align={cell.column.columnDef.meta?.align}
+                      data-column={cell.column.id}
+                      data-fill={cell.column.columnDef.meta?.fill || undefined}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </td>
+                  ))}
                 </tr>
               );
             })}
             {virtualizer.getVirtualItems().length > 0 && (
-              <tr>
+              <tr className={styles.tr}>
                 <td
-                  colSpan={visibleHeaders.length}
                   style={{
                     height:
                       virtualizer.getTotalSize() -

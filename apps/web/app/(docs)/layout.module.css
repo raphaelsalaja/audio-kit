@@ -19,12 +19,12 @@
 
 .layout::before {
   top: var(--page-top);
-  background: linear-gradient(to bottom, var(--gray-1), transparent);
+  background: linear-gradient(to bottom, var(--ds-gray-1), transparent);
 }
 
 .layout::after {
   bottom: 0;
-  background: linear-gradient(to top, var(--gray-1), transparent);
+  background: linear-gradient(to top, var(--ds-gray-1), transparent);
 }
 
 .main {

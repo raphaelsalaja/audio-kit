@@ -6,6 +6,7 @@
   height: 100dvh;
 
   padding-top: calc(var(--page-top) + var(--fade-size));
+  margin-left: 48px;
   overflow-y: auto;
 }
 
@@ -15,7 +16,7 @@
   align-items: center;
   padding-left: 12px;
   margin-bottom: 12px;
-  color: var(--gray-11);
+  color: var(--ds-gray-11);
   @typography 12, 500;
 }
 
@@ -45,22 +46,22 @@
 .link {
   display: block;
   padding-block: 6px;
-  color: var(--gray-9);
+  color: var(--ds-gray-9);
   border-radius: var(--radius-small);
   transition: color 0.15s;
   @typography 12;
 }
 
 .link:hover {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
 }
 
 .link[data-active] {
-  color: var(--gray-12);
+  color: var(--ds-gray-12);
   @typography 12, 550;
 }
 
-@media (width <= 1120px) {
+@media (width <= 1280px) {
   .toc {
     display: none;
   }

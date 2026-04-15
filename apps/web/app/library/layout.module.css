@@ -1,6 +1,5 @@
 .layout {
   display: flex;
-  justify-content: center;
   max-width: var(--layout-width);
   min-height: 100dvh;
   padding: 0 var(--page-padding);
@@ -20,23 +19,16 @@
 
 .layout::before {
   top: var(--page-top);
-  background: linear-gradient(to bottom, var(--gray-1), transparent);
+  background: linear-gradient(to bottom, var(--ds-gray-1), transparent);
 }
 
 .layout::after {
   bottom: 0;
-  background: linear-gradient(to top, var(--gray-1), transparent);
+  background: linear-gradient(to top, var(--ds-gray-1), transparent);
 }
 
 .content {
   width: 100%;
   min-width: 0;
-  max-width: var(--body-width);
-  padding: calc(var(--page-top) + var(--fade-size)) 40px 80px;
-}
-
-@media (width <= 768px) {
-  .content {
-    padding: calc(var(--page-top) + var(--fade-size)) 16px 60px;
-  }
+  padding-top: calc(var(--page-top) + var(--fade-size));
 }

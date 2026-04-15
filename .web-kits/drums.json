@@ -3,7 +3,7 @@
   "name": "Drums",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Synthesized drum kit — kicks, snares, hi-hats, and percussion",
+  "description": "Synthesized kicks, snares, hi-hats, and percussion samples",
   "tags": ["drums", "percussion", "beats", "rhythm"],
   "sounds": {
     "kick": {

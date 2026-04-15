@@ -1,8 +1,8 @@
 "use client";
 
+import { copy, tabSwitch } from "@audio/core";
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
 import { useSound } from "@web-kits/audio/react";
-import { copy, tabSwitch } from "@audio/core";
 import Check from "@web-kits/icons/outline/check";
 import Clone from "@web-kits/icons/outline/clone";
 import BunIcon from "@web-kits/icons/social-media/bun";
