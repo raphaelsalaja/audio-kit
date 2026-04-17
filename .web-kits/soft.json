@@ -3,8 +3,7 @@
   "name": "Soft",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Warm triangle waves with gentle envelopes and rounded character",
-  "tags": ["ui", "soft", "warm", "gentle"],
+  "description": "A warm triangle-wave pack with gentle envelopes and rounded timbre, intended for calm, friendly products that need reassuring feedback without sharp attacks or harsh brightness.",
   "sounds": {
     "tap": {
       "source": { "type": "triangle", "frequency": 800 },

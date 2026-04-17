@@ -33,31 +33,35 @@
 @import "@radix-ui/colors/white-alpha.css";
 
 :root {
-  --ds-gray-1: var(--slate-1);
-  --ds-gray-2: var(--slate-2);
-  --ds-gray-3: var(--slate-3);
-  --ds-gray-4: var(--slate-4);
-  --ds-gray-5: var(--slate-5);
-  --ds-gray-6: var(--slate-6);
-  --ds-gray-7: var(--slate-7);
-  --ds-gray-8: var(--slate-8);
-  --ds-gray-9: var(--slate-9);
-  --ds-gray-10: var(--slate-10);
-  --ds-gray-11: var(--slate-11);
-  --ds-gray-12: var(--slate-12);
+  --ds-gray-1: var(--gray-1);
+  --ds-gray-2: var(--gray-2);
+  --ds-gray-3: var(--gray-3);
+  --ds-gray-4: var(--gray-4);
+  --ds-gray-5: var(--gray-5);
+  --ds-gray-6: var(--gray-6);
+  --ds-gray-7: var(--gray-7);
+  --ds-gray-8: var(--gray-8);
+  --ds-gray-9: var(--gray-9);
+  --ds-gray-10: var(--gray-10);
+  --ds-gray-11: var(--gray-11);
+  --ds-gray-12: var(--gray-12);
 
-  --ds-gray-a1: var(--slate-a1);
-  --ds-gray-a2: var(--slate-a2);
-  --ds-gray-a3: var(--slate-a3);
-  --ds-gray-a4: var(--slate-a4);
-  --ds-gray-a5: var(--slate-a5);
-  --ds-gray-a6: var(--slate-a6);
-  --ds-gray-a7: var(--slate-a7);
-  --ds-gray-a8: var(--slate-a8);
-  --ds-gray-a9: var(--slate-a9);
+  --ds-gray-a1: var(--gray-a1);
+  --ds-gray-a2: var(--gray-a2);
+  --ds-gray-a3: var(--gray-a3);
+  --ds-gray-a4: var(--gray-a4);
+  --ds-gray-a5: var(--gray-a5);
+  --ds-gray-a6: var(--gray-a6);
+  --ds-gray-a7: var(--gray-a7);
+  --ds-gray-a8: var(--gray-a8);
+  --ds-gray-a9: var(--gray-a9);
   --ds-gray-a10: var(--slate-a10);
-  --ds-gray-a11: var(--slate-a11);
-  --ds-gray-a12: var(--slate-a12);
+  --ds-gray-a11: var(--gray-a11);
+  --ds-gray-a12: var(--gray-a12);
+
+  --ds-gray-surface: var(--gray-surface);
+  --ds-gray-indicator: var(--gray-indicator);
+  --ds-gray-track: var(--gray-track);
 
   --ds-accent-1: var(--sky-1);
   --ds-accent-2: var(--sky-2);
@@ -88,6 +92,7 @@
   /* font */
   --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
   --font-sans: var(--font-inter, Inter), sans-serif;
+  --font-feature-settings: "liga" 1, "calt" 1;
 
   /* radius */
   --radius-none: 0px;
@@ -115,4 +120,32 @@
     var(--body-width) +
     var(--table-of-contents-width)
   );
+  --patch-layout-width: calc(var(--body-width) - (var(--sidebar-width) * 2));
+}
+
+:root {
+  --ds-background: white;
+}
+
+:root,
+.light,
+.light-theme {
+  --ds-background: white;
+
+  @supports (color: color(display-p3 1 1 1)) {
+    @media (color-gamut: p3) {
+      --ds-background: color(display-p3 1 1 1);
+    }
+  }
+}
+
+.dark,
+.dark-theme {
+  --ds-background: #000000;
+
+  @supports (color: color(display-p3 1 1 1)) {
+    @media (color-gamut: p3) {
+      --ds-background: color(display-p3 0 0 0);
+    }
+  }
 }

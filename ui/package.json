@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     "./*": "./src/*.tsx",
-    "./styles/*": "./styles/*"
+    "./styles/*": "./styles/*",
+    "./lib/*": "./lib/*.ts"
   },
   "scripts": {
     "lint": "biome check --fix --unsafe .",

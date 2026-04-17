@@ -97,7 +97,6 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-|-$/g, "");
     const soundCount = Object.keys(patchData.sounds).length;
-    const tags = patchData.tags ?? [];
     const author = patchData.author ?? "unknown";
     const description = patchData.description ?? "";
     const derived = derivePatchMeta(patchData);
@@ -116,7 +115,6 @@ export async function POST(request: NextRequest) {
         .set({
           author,
           description,
-          tags,
           soundCount,
           sourceUrl: url,
           patchJson: patchData,
@@ -137,7 +135,6 @@ export async function POST(request: NextRequest) {
           name: slug,
           author,
           description,
-          tags,
           soundCount,
           url: slug,
           sourceUrl: url,
@@ -185,7 +182,6 @@ export async function GET() {
         name: patches.name,
         author: patches.author,
         description: patches.description,
-        tags: patches.tags,
         soundCount: patches.soundCount,
         sourceUrl: patches.sourceUrl,
         loads: count(patchLoads.id),
@@ -200,7 +196,6 @@ export async function GET() {
       file: `${row.name}.json`,
       author: row.author,
       description: row.description ?? "",
-      tags: row.tags ?? [],
       soundCount: row.soundCount,
       sourceUrl: row.sourceUrl,
       loads: row.loads,

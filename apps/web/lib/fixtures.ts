@@ -8,23 +8,6 @@ const SOURCE_TYPES = [
   "wavetable",
   "granular",
 ];
-const TAGS = [
-  "ambient",
-  "bass",
-  "bells",
-  "brass",
-  "drums",
-  "fx",
-  "keys",
-  "lead",
-  "pad",
-  "pluck",
-  "strings",
-  "synth",
-  "texture",
-  "vocal",
-];
-
 function pickRandom<T>(arr: T[], min = 1, max = 3): T[] {
   return faker.helpers.arrayElements(arr, { min, max });
 }
@@ -34,7 +17,6 @@ function fakePatch(id: number): PatchWithStats {
     `${faker.word.adjective()}-${faker.word.noun()}`,
   );
   const author = faker.internet.username().toLowerCase();
-  const tags = pickRandom(TAGS, 1, 4);
   const sourceTypes = pickRandom(SOURCE_TYPES, 1, 2);
   const soundCount = faker.number.int({ min: 1, max: 24 });
   const createdAt = faker.date.past({ years: 2 });
@@ -45,7 +27,6 @@ function fakePatch(id: number): PatchWithStats {
     name,
     author,
     description: faker.lorem.sentence(),
-    tags,
     soundCount,
     url: `https://example.com/patches/${name}`,
     source: faker.helpers.arrayElement(["github", "upload", null]),
@@ -54,7 +35,6 @@ function fakePatch(id: number): PatchWithStats {
       name,
       author,
       description: faker.lorem.sentence(),
-      tags,
       sounds: Object.fromEntries(
         Array.from({ length: soundCount }, (_, i) => [
           `sound_${i}`,

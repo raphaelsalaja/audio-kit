@@ -14,7 +14,7 @@
 .indent {
   position: relative;
   min-height: 100dvh;
-  background: var(--ds-gray-1);
+  background: var(--ds-background);
   transform-origin: center top;
   transition:
     scale 0.4s cubic-bezier(0.32, 0.72, 0, 1),

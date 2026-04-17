@@ -3,8 +3,7 @@
   "name": "Playful",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Bouncy pitch sweeps and energetic tones with cartoon-like character",
-  "tags": ["ui", "playful", "bouncy", "fun"],
+  "description": "A lively pack of bouncy pitch sweeps and energetic tones with a playful, cartoon-like character, perfect for gamified flows, rewards, and moments that should feel fun and upbeat.",
   "sounds": {
     "tap": {
       "source": { "type": "sine", "frequency": { "start": 1400, "end": 800 } },

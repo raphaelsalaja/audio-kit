@@ -3,62 +3,162 @@
   "name": "Drums",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Synthesized kicks, snares, hi-hats, and percussion samples",
-  "tags": ["drums", "percussion", "beats", "rhythm"],
+  "description": "A rhythm-focused kit of synthesized kicks, snares, hi-hats, and percussive one-shots that adds punch and momentum to micro-interactions, game loops, and dynamic product moments.",
   "sounds": {
     "kick": {
-      "source": { "type": "sine", "frequency": { "start": 150, "end": 40 } },
-      "envelope": { "attack": 0.001, "decay": 0.25, "sustain": 0, "release": 0.1 },
+      "source": {
+        "type": "sine",
+        "frequency": {
+          "start": 150,
+          "end": 40
+        }
+      },
+      "envelope": {
+        "attack": 0.001,
+        "decay": 0.25,
+        "sustain": 0,
+        "release": 0.1
+      },
       "gain": 0.8
     },
     "snare": {
       "layers": [
         {
-          "source": { "type": "noise", "color": "white" },
-          "envelope": { "attack": 0.001, "decay": 0.15, "sustain": 0, "release": 0.05 },
-          "filter": { "type": "highpass", "frequency": 2000 },
+          "source": {
+            "type": "noise",
+            "color": "white"
+          },
+          "envelope": {
+            "attack": 0.001,
+            "decay": 0.15,
+            "sustain": 0,
+            "release": 0.05
+          },
+          "filter": {
+            "type": "highpass",
+            "frequency": 2000
+          },
           "gain": 0.5
         },
         {
-          "source": { "type": "sine", "frequency": { "start": 200, "end": 120 } },
-          "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.05 },
+          "source": {
+            "type": "sine",
+            "frequency": {
+              "start": 200,
+              "end": 120
+            }
+          },
+          "envelope": {
+            "attack": 0.001,
+            "decay": 0.1,
+            "sustain": 0,
+            "release": 0.05
+          },
           "gain": 0.6
         }
       ]
     },
     "hat-closed": {
-      "source": { "type": "noise", "color": "white" },
-      "envelope": { "attack": 0.001, "decay": 0.08, "sustain": 0, "release": 0.03 },
-      "filter": { "type": "highpass", "frequency": 6000 },
+      "source": {
+        "type": "noise",
+        "color": "white"
+      },
+      "envelope": {
+        "attack": 0.001,
+        "decay": 0.08,
+        "sustain": 0,
+        "release": 0.03
+      },
+      "filter": {
+        "type": "highpass",
+        "frequency": 6000
+      },
       "gain": 0.4
     },
     "hat-open": {
-      "source": { "type": "noise", "color": "white" },
-      "envelope": { "attack": 0.001, "decay": 0.25, "sustain": 0, "release": 0.1 },
-      "filter": { "type": "highpass", "frequency": 6000 },
+      "source": {
+        "type": "noise",
+        "color": "white"
+      },
+      "envelope": {
+        "attack": 0.001,
+        "decay": 0.25,
+        "sustain": 0,
+        "release": 0.1
+      },
+      "filter": {
+        "type": "highpass",
+        "frequency": 6000
+      },
       "gain": 0.35
     },
     "tom": {
-      "source": { "type": "sine", "frequency": { "start": 200, "end": 80 } },
-      "envelope": { "attack": 0.001, "decay": 0.2, "sustain": 0, "release": 0.08 },
+      "source": {
+        "type": "sine",
+        "frequency": {
+          "start": 200,
+          "end": 80
+        }
+      },
+      "envelope": {
+        "attack": 0.001,
+        "decay": 0.2,
+        "sustain": 0,
+        "release": 0.08
+      },
       "gain": 0.6
     },
     "clap": {
-      "source": { "type": "noise", "color": "white" },
-      "envelope": { "attack": 0.001, "decay": 0.12, "sustain": 0, "release": 0.04 },
-      "filter": { "type": "bandpass", "frequency": 2500, "resonance": 2 },
+      "source": {
+        "type": "noise",
+        "color": "white"
+      },
+      "envelope": {
+        "attack": 0.001,
+        "decay": 0.12,
+        "sustain": 0,
+        "release": 0.04
+      },
+      "filter": {
+        "type": "bandpass",
+        "frequency": 2500,
+        "resonance": 2
+      },
       "gain": 0.5
     },
     "rim": {
-      "source": { "type": "noise", "color": "pink" },
-      "envelope": { "attack": 0.001, "decay": 0.1, "sustain": 0, "release": 0.05 },
-      "filter": { "type": "bandpass", "frequency": 3000, "resonance": 3 },
+      "source": {
+        "type": "noise",
+        "color": "pink"
+      },
+      "envelope": {
+        "attack": 0.001,
+        "decay": 0.1,
+        "sustain": 0,
+        "release": 0.05
+      },
+      "filter": {
+        "type": "bandpass",
+        "frequency": 3000,
+        "resonance": 3
+      },
       "gain": 0.5
     },
     "shaker": {
-      "source": { "type": "noise", "color": "white" },
-      "envelope": { "attack": 0.005, "decay": 0.06, "sustain": 0, "release": 0.03 },
-      "filter": { "type": "highpass", "frequency": 8000 },
+      "source": {
+        "type": "noise",
+        "color": "white"
+      },
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.06,
+        "sustain": 0,
+        "release": 0.03
+      },
+      "filter": {
+        "type": "highpass",
+        "frequency": 8000
+      },
       "gain": 0.3
     }
   }

@@ -3,8 +3,7 @@
   "name": "Mechanical",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Clicky, tactile, noise-based sounds with industrial precision",
-  "tags": ["ui", "mechanical", "industrial", "tactile"],
+  "description": "A tactile set of clicky, noise-shaped sounds with an industrial edge, tuned for switches, controls, and system actions where you want deliberate, physical-feeling feedback.",
   "sounds": {
     "tap": {
       "source": { "type": "noise", "color": "white" },

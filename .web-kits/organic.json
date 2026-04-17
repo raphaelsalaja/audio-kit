@@ -3,8 +3,7 @@
   "name": "Organic",
   "author": "Raphael Salaja",
   "version": "1.0.0",
-  "description": "Resonant FM bell tones with natural reverb and acoustic warmth",
-  "tags": ["ui", "organic", "bells", "acoustic"],
+  "description": "A resonant FM collection with bell-like tones, natural reverb tails, and acoustic warmth, crafted to make digital interactions feel softer, more human, and less synthetic.",
   "sounds": {
     "tap": {
       "source": { "type": "sine", "frequency": 880, "fm": { "ratio": 2.76, "depth": 200 } },

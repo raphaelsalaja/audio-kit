@@ -1,6 +1,6 @@
 .layout {
   display: flex;
-  max-width: var(--layout-width);
+  max-width: var(--body-width);
   min-height: 100dvh;
   padding: 0 var(--page-padding);
   margin: 0 auto;

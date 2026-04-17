@@ -51,8 +51,15 @@ export function useVisualizer(
       const gap = 2;
       const barWidth = (w - gap * (barCount - 1)) / barCount;
       const style = getComputedStyle(canvas);
-      const color =
-        style.getPropertyValue("--vis-color").trim() || "rgba(0,0,0,0.15)";
+      const flat =
+        style.getPropertyValue("--vis-color").trim() || "";
+      const colorLow =
+        style.getPropertyValue("--vis-color-low").trim() || "";
+      const useGradient = !!colorLow;
+      const colorMid =
+        style.getPropertyValue("--vis-color-mid").trim() || "";
+      const colorHigh =
+        style.getPropertyValue("--vis-color-high").trim() || "";
 
       let hasSignal = false;
 
@@ -72,7 +79,17 @@ export function useVisualizer(
         if (barH > 0.5) {
           ctx.beginPath();
           ctx.roundRect(x, h - barH, barWidth, barH, radius);
-          ctx.fillStyle = color;
+
+          if (useGradient) {
+            const grad = ctx.createLinearGradient(0, h, 0, h - barH);
+            grad.addColorStop(0, colorLow);
+            if (colorMid) grad.addColorStop(0.5, colorMid);
+            if (colorHigh) grad.addColorStop(1, colorHigh);
+            ctx.fillStyle = grad;
+          } else {
+            ctx.fillStyle = flat || "rgba(0,0,0,0.15)";
+          }
+
           ctx.fill();
         }
       }

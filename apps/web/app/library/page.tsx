@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PatchList } from "@/components/patch-list";
+import { View } from "@/app/library/_components/view";
 import { getPatchesAllTime } from "@/lib/patches";
 
 export const dynamic = "force-dynamic";
@@ -12,5 +12,5 @@ export const metadata: Metadata = {
 export default async function PatchesPage() {
   const patches = await getPatchesAllTime();
 
-  return <PatchList patches={patches} />;
+  return <View patches={patches} />;
 }

@@ -3,16 +3,11 @@
 @import "@web-kits/ui/styles/shadows.css";
 
 html {
-  scrollbar-gutter: stable;
   overscroll-behavior-y: none;
   font-family: var(--font-sans);
-  font-feature-settings:
-    "liga" 1,
-    "calt" 1;
-  color: var(--mauve-12);
-  scrollbar-color: var(--mauve-a4) transparent;
+  font-feature-settings: var(--font-feature-settings);
+  color: var(--ds-gray-12);
   scrollbar-width: none;
-  background: var(--ds-gray-1);
 }
 
 code {

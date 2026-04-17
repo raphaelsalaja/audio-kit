@@ -17,7 +17,6 @@ export interface PatchJson {
   author?: string;
   version?: string;
   description?: string;
-  tags?: string[];
   license?: string;
   compatibility?: string;
   sounds: Record<string, unknown>;
@@ -30,7 +29,6 @@ export const patches = pgTable(
     name: text().notNull(),
     author: text().notNull(),
     description: text().notNull(),
-    tags: text().array().default([]).notNull(),
     soundCount: integer("sound_count").default(0).notNull(),
     url: text().notNull(),
     source: text(),

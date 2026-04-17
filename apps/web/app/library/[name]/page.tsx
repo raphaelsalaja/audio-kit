@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PatchDetail } from "@/components/patch-detail";
+import * as View from "@/app/library/[name]/_components/view";
 import { getPatchByName, getPatchSounds } from "@/lib/patches";
 
 export const dynamic = "force-dynamic";
@@ -20,12 +20,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PatchPage({ params }: Props) {
+export default async function Page({ params }: Props) {
   const { name } = await params;
+
   const patch = await getPatchByName(name);
+
   if (!patch) notFound();
 
   const sounds = await getPatchSounds(patch.id);
 
-  return <PatchDetail patch={patch} sounds={sounds} />;
+  return (
+    <View.Root patch={patch} sounds={sounds}>
+      <View.Breadcrumb />
+      <View.Main>
+        <View.Header />
+        <View.Install />
+        <View.Sounds />
+      </View.Main>
+    </View.Root>
+  );
 }

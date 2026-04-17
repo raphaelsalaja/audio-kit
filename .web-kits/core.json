@@ -3,8 +3,7 @@
   "name": "Core",
   "author": "Raphael Salaja",
   "version": "3.1.0",
-  "description": "Essential clicks, toggles, pops, notifications, and transitions",
-  "tags": ["ui", "interactions", "feedback", "transitions", "notifications"],
+  "description": "A foundational UI sound pack with essential clicks, toggles, pops, notifications, and transitions, designed to feel clear and familiar across everyday product interactions without overwhelming the interface.",
   "sounds": {
     "click": {
       "source": { "type": "sine", "frequency": { "start": 200, "end": 700 }, "fm": { "ratio": 0.5, "depth": 80 } },
