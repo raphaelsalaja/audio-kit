@@ -1,14 +1,27 @@
 import type { MetadataRoute } from "next";
-import { source } from "@/lib/source";
+import { getPatchesAllTime } from "@/lib/db/patches";
+import { source } from "@/lib/docs/source";
 
 const BASE_URL = "https://audio.raphaelsalaja.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = source.getPages().map((page) => ({
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const docPages = source.getPages().map((page) => ({
     url: `${BASE_URL}${page.url}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
   }));
+
+  let patchPages: MetadataRoute.Sitemap = [];
+  try {
+    const patches = await getPatchesAllTime();
+    patchPages = patches.map((patch) => ({
+      url: `${BASE_URL}/library/${patch.name}`,
+      lastModified: patch.updatedAt ?? new Date(),
+      changeFrequency: "weekly" as const,
+    }));
+  } catch {
+    // DB unavailable at build time — skip patch entries
+  }
 
   return [
     {
@@ -21,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "daily",
     },
-    ...pages,
+    ...docPages,
+    ...patchPages,
   ];
 }

@@ -12,8 +12,6 @@
     "@base-ui/react": "^1.2.0",
     "@neondatabase/serverless": "^0.10.4",
     "@shikijs/transformers": "^4.0.1",
-    "@tanstack/react-table": "^8.21.3",
-    "@tanstack/react-virtual": "^3.13.23",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@web-kits/audio": "workspace:^",
@@ -36,7 +34,6 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@faker-js/faker": "^10.4.0",
     "@types/mdx": "^2.0.0",
     "@types/node": "^25.2.3",
     "@types/react": "19.2.14",

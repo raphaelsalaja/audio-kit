@@ -9,7 +9,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useVisualizer } from "@/components/controls/visualizer";
-import type { PatchWithStats } from "@/lib/patches";
+import type { PatchWithStats } from "@/lib/db/patches";
 import styles from "./styles.module.css";
 
 interface CardProps {

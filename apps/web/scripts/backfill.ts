@@ -4,9 +4,9 @@ import { resolve } from "node:path";
 import { neon } from "@neondatabase/serverless";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/neon-http";
-import { derivePatchMeta } from "../lib/patch-derive";
-import type { PatchJson } from "../lib/schema";
-import * as schema from "../lib/schema";
+import { derivePatchMeta } from "../lib/db/patch-derive";
+import type { PatchJson } from "../lib/db/schema";
+import * as schema from "../lib/db/schema";
 
 const PATCHES_DIR = resolve(process.cwd(), "../../.web-kits");
 

@@ -6,7 +6,7 @@ import {
   SidebarTree,
 } from "@/components/sidebar";
 import { SidebarSlotSetter } from "@/components/sidebar-slot";
-import { source } from "@/lib/source";
+import { source } from "@/lib/docs/source";
 import styles from "./layout.module.css";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {

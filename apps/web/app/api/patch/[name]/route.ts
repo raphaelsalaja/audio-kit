@@ -3,8 +3,8 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { eq, sql } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
-import { getDb } from "../../../../lib/db";
-import { patches, patchLoads } from "../../../../lib/schema";
+import { getDb } from "@/lib/db";
+import { patches, patchLoads } from "@/lib/db/schema";
 
 export const dynamic = "force-dynamic";
 export const preferredRegion = "iad1";

@@ -1,9 +1,9 @@
 import { count, eq, sql } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
-import { getDb } from "../../../lib/db";
-import { derivePatchMeta } from "../../../lib/patch-derive";
-import type { PatchJson } from "../../../lib/schema";
-import { patches, patchLoads, patchSounds } from "../../../lib/schema";
+import { getDb } from "@/lib/db";
+import { derivePatchMeta } from "@/lib/db/patch-derive";
+import type { PatchJson } from "@/lib/db/schema";
+import { patches, patchLoads, patchSounds } from "@/lib/db/schema";
 
 export const dynamic = "force-dynamic";
 export const preferredRegion = "iad1";

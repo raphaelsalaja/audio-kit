@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import * as View from "@/app/library/[name]/_components/view";
-import { getPatchByName, getPatchSounds } from "@/lib/patches";
+import { getPatchByName, getPatchSounds } from "@/lib/db/patches";
 
 export const dynamic = "force-dynamic";
 
@@ -14,9 +14,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const patch = await getPatchByName(name);
   if (!patch) return { title: "Not Found" };
 
+  const title = `${patch.name} by ${patch.author}`;
+  const url = `https://audio.raphaelsalaja.com/library/${name}`;
+
   return {
-    title: `${patch.name} by ${patch.author}`,
+    title,
     description: patch.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description: patch.description ?? undefined,
+      url,
+    },
   };
 }
 

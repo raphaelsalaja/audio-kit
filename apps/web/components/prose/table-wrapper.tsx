@@ -1,6 +1,6 @@
 "use client";
 
-import { useScrollFade } from "@/lib/use-scroll-fade";
+import { useScrollFade } from "@/lib/hooks/use-scroll-fade";
 import styles from "./styles.module.css";
 
 export function TableWrapper({ children }: { children: React.ReactNode }) {

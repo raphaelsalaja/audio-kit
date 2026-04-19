@@ -13,7 +13,7 @@ import { Calligraph } from "calligraph";
 import { AnimatePresence, motion } from "motion/react";
 import type { CSSProperties } from "react";
 import { useCallback, useRef, useState } from "react";
-import { useScrollFade } from "@/lib/use-scroll-fade";
+import { useScrollFade } from "@/lib/hooks/use-scroll-fade";
 import styles from "./styles.module.css";
 
 const MotionCheck = motion(Check);

@@ -5,7 +5,7 @@ import MagnifierSlash from "@web-kits/icons/fill/magnifier-slash";
 import Magnifier from "@web-kits/icons/outline/magnifier";
 import { parseAsString, useQueryState } from "nuqs";
 import { useMemo } from "react";
-import type { PatchWithStats } from "@/lib/patches";
+import type { PatchWithStats } from "@/lib/db/patches";
 import { Card } from "../card";
 import styles from "./styles.module.css";
 

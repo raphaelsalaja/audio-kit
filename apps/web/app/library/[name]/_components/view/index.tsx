@@ -22,7 +22,7 @@ import {
   useRef,
   useState,
 } from "react";
-import type { PatchSoundsByCategory, PatchWithStats } from "@/lib/patches";
+import type { PatchSoundsByCategory, PatchWithStats } from "@/lib/db/patches";
 import styles from "./styles.module.css";
 
 function formatLoads(n: number): string {

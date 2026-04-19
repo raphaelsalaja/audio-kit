@@ -12,7 +12,7 @@ import proseStyles from "@/components/prose/styles.module.css";
 import { TableWrapper } from "@/components/prose/table-wrapper";
 import { Step, Steps } from "@/components/steps";
 import { TableOfContents } from "@/components/toc";
-import { source } from "@/lib/source";
+import { source } from "@/lib/docs/source";
 import styles from "./styles.module.css";
 
 function Table(props: ComponentPropsWithoutRef<"table">) {
