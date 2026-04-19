@@ -45,7 +45,7 @@ export function TopNav() {
       <div className={styles.inner}>
         <Link href="/" className={styles.logo}>
           <MusicNote className={styles.logoIcon} />
-          <span className={styles.logoText}>@web-kits/audio</span>
+          <span className={styles.logoText}>web-kits/audio</span>
         </Link>
         <div className={styles.links}>
           {LINKS.map((link) => (

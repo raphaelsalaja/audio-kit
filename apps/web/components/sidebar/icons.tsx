@@ -139,23 +139,23 @@ const iconMap: Record<string, IconEntry> = {
     color: "var(--orange-9)",
   },
   "/resources/llms": { icon: Sparkle, color: "var(--violet-9)" },
-  "/resources/github": {
+  "/github": {
     icon: Github,
     color: "var(--ds-gray-9)",
     external: true,
   },
-  "/resources/twitter": {
+  "/twitter": {
     icon: XTwitter,
     color: "var(--ds-gray-9)",
     external: true,
   },
-  "/resources/npm": {
+  "/npm": {
     icon: Download,
     color: "var(--red-9)",
     external: true,
     tag: "v0.0.6",
   },
-  "/resources/buy-me-a-coffee": {
+  "/buy-me-a-coffee": {
     icon: HotDrink,
     color: "var(--amber-9)",
     external: true,

@@ -3,6 +3,10 @@
   "pages": [
     "index",
     "getting-started",
+    "github",
+    "twitter",
+    "npm",
+    "buy-me-a-coffee",
     "---Concepts---",
     "...concepts",
     "---Integrations---",
