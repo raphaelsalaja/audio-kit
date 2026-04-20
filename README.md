@@ -6,6 +6,13 @@
 
 Declarative audio synthesis for the web. Describe sounds as plain objects, play them with one function call.
 
+> ~11 kB gzipped, tree-shakeable, works with vanilla JS or React.
+
+<!-- TODO(launch): replace with playground GIF, ~6s, hosted via GitHub issue/PR upload -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/raphaelsalaja/audio/main/assets/playground.gif" alt="Playground demo" width="640" />
+</p>
+
 ## Install
 
 ```bash

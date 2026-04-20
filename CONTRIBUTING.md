@@ -4,7 +4,7 @@ Thanks for your interest in contributing! This guide covers everything you need 
 
 ## Prerequisites
 
-- **Node.js** 20+
+- **Node.js** 20+ (enforced via `engines` in `package.json`)
 - **pnpm** 9+
 
 ## Setup

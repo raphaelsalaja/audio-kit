@@ -52,6 +52,9 @@
     "prepublishOnly": "bunchee",
     "test": "vitest run"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "peerDependencies": {
     "react": ">=18"
   },
