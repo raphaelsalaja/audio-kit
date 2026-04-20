@@ -1,6 +1,6 @@
 {
   "name": "@web-kits/audio",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A declarative synthesizer for the web",
   "author": "Raphael Salaja",
   "license": "MIT",
