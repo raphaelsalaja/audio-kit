@@ -1,9 +1,9 @@
 ---
-title: create-sound skill
-description: Cursor agent skill that generates a SoundDefinition from a prompt, an audio file, or both.
+title: Skill
+description: An agent skill that generates a SoundDefinition from a prompt, an audio file, or both.
 ---
 
-`create-sound` is a [Cursor agent skill](https://docs.cursor.com/agent/skills) that lives at [`skills/create-sound/`](https://github.com/raphaelsalaja/audio/tree/main/skills/create-sound). When the user asks the agent to design a UI sound — by prompt, by sharing a WAV/MP3 sprite, or both — the skill walks a knowledge base of small markdown rules and emits a typed [`SoundDefinition`](/docs/api/sounds/define-sound) ready to paste into a `.web-kits/<patch>.ts` file.
+`create-sound` is a [agent skill](https://docs.cursor.com/agent/skills) that lives at [`skills/create-sound/`](https://github.com/raphaelsalaja/audio/tree/main/skills/create-sound). When the user asks the agent to design a UI sound — by prompt, by sharing a WAV/MP3 sprite, or both — the skill walks a knowledge base of small markdown rules and emits a typed [`SoundDefinition`](/docs/api/sounds/define-sound) ready to paste into a `.web-kits/<patch>.ts` file.
 
 The skill mirrors the [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) layout: each rule is its own short markdown file in `rules/`, and a build step compiles them into a single `SKILL.md` that Cursor autoloads.
 

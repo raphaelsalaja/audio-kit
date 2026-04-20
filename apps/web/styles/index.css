@@ -8,6 +8,7 @@ html {
   font-feature-settings: var(--font-feature-settings);
   color: var(--ds-gray-12);
   scrollbar-width: none;
+  background-color: var(--gray-1);
 }
 
 code {

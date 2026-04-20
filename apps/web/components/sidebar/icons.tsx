@@ -19,6 +19,7 @@ import Slider from "@web-kits/icons/fill-duo/slider";
 import Sparkle from "@web-kits/icons/fill-duo/sparkle";
 import Speaker from "@web-kits/icons/fill-duo/speaker";
 import Stack from "@web-kits/icons/fill-duo/stack";
+import TaskDebug from "@web-kits/icons/fill-duo/task-debug";
 import WaveformLines from "@web-kits/icons/fill-duo/waveform-lines";
 import Github from "@web-kits/icons/social-media/github";
 import XTwitter from "@web-kits/icons/social-media/x-twitter";
@@ -139,6 +140,7 @@ const iconMap: Record<string, IconEntry> = {
     color: "var(--orange-9)",
   },
   "/resources/llms": { icon: Sparkle, color: "var(--violet-9)" },
+  "/resources/skill": { icon: TaskDebug, color: "var(--pink-9)" },
   "/github": {
     icon: Github,
     color: "var(--ds-gray-9)",
