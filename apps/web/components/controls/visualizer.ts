@@ -101,6 +101,12 @@ export function useVisualizer(
 
   const stop = useCallback(() => {
     activeRef.current = false;
+    cancelAnimationFrame(frameRef.current);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
   }, []);
 
   useEffect(() => {

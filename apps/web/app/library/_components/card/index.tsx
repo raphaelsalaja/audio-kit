@@ -7,39 +7,69 @@ import { generateRadixColorsScaleFromName } from "@web-kits/ui/lib/colors";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useVisualizer } from "@/components/controls/visualizer";
 import type { PatchWithStats } from "@/lib/db/patches";
 import styles from "./styles.module.css";
 
 interface CardProps {
   patch: PatchWithStats;
+  isActive: boolean;
+  registerStop: (patchId: number, stop: () => void) => () => void;
+  requestPlay: (patchId: number) => void;
+  clearActive: (patchId: number) => void;
 }
 
-export function Card({ patch }: CardProps) {
+export function Card({
+  patch,
+  isActive,
+  registerStop,
+  requestPlay,
+  clearActive,
+}: CardProps) {
   const [playing, setPlaying] = useState(false);
   const patchRef = useRef<Awaited<ReturnType<typeof loadPatch>> | null>(null);
   const voiceRef = useRef<{ stop: (t?: number) => void } | null>(null);
+  const playRequestRef = useRef(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { start: startVis, stop: stopVis } = useVisualizer(canvasRef);
+
+  const stopPlayback = useCallback(() => {
+    playRequestRef.current += 1;
+    if (voiceRef.current) {
+      voiceRef.current.stop();
+      voiceRef.current = null;
+    }
+    stopVis();
+    setPlaying(false);
+  }, [stopVis]);
+
+  useEffect(() => registerStop(patch.id, stopPlayback), [patch.id, registerStop, stopPlayback]);
+
+  useEffect(() => {
+    if (!isActive && playing) stopPlayback();
+  }, [isActive, playing, stopPlayback]);
 
   const handlePlay = useCallback(
     async (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
 
-      if (voiceRef.current) {
-        voiceRef.current.stop();
-        voiceRef.current = null;
-        stopVis();
-        setPlaying(false);
+      if (isActive && voiceRef.current) {
+        stopPlayback();
+        clearActive(patch.id);
         return;
       }
+
+      requestPlay(patch.id);
+      playRequestRef.current += 1;
+      const requestId = playRequestRef.current;
 
       try {
         if (!patchRef.current) {
           patchRef.current = await loadPatch(`/api/patch/${patch.name}`);
         }
+        if (requestId !== playRequestRef.current) return;
 
         const p = patchRef.current;
         const sounds = p.sounds;
@@ -52,17 +82,28 @@ export function Card({ patch }: CardProps) {
         setPlaying(true);
 
         setTimeout(() => {
+          if (requestId !== playRequestRef.current) return;
           if (voiceRef.current === voice) {
-            voiceRef.current = null;
-            stopVis();
-            setPlaying(false);
+            stopPlayback();
+            clearActive(patch.id);
           }
         }, 400);
       } catch {
+        if (requestId !== playRequestRef.current) return;
+        stopPlayback();
+        clearActive(patch.id);
         setPlaying(false);
       }
     },
-    [patch.name, startVis, stopVis],
+    [
+      isActive,
+      stopPlayback,
+      clearActive,
+      patch.id,
+      requestPlay,
+      patch.name,
+      startVis,
+    ],
   );
 
   const colorVars = useMemo(
