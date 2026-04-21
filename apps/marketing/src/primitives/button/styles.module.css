@@ -1,0 +1,15 @@
+.button {
+  height: 100px;
+  padding: 0 56px;
+  font-family: var(--font-sans);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--ds-gray-1);
+  letter-spacing: -0.01em;
+  appearance: none;
+  cursor: pointer;
+  background: var(--ds-gray-12);
+  border: none;
+  border-radius: 48px;
+  box-shadow: var(--shadow-2);
+}

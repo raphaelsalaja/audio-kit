@@ -12,18 +12,49 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.11",
-    "@changesets/cli": "^2.30.0",
+    "@biomejs/biome": "2.4.12",
+    "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
     "husky": "^9.1.7",
-    "prettier": "^3.8.1",
-    "turbo": "^2.9.5",
-    "typescript": "^6.0.2"
+    "prettier": "^3.8.3",
+    "turbo": "^2.9.6",
+    "typescript": "^6.0.3"
   },
   "packageManager": "pnpm@9.15.4",
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=9.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "remotion": "4.0.450",
+      "@remotion/bundler": "4.0.450",
+      "@remotion/cli": "4.0.450",
+      "@remotion/compositor-darwin-arm64": "4.0.450",
+      "@remotion/compositor-darwin-x64": "4.0.450",
+      "@remotion/compositor-linux-arm64-gnu": "4.0.450",
+      "@remotion/compositor-linux-arm64-musl": "4.0.450",
+      "@remotion/compositor-linux-x64-gnu": "4.0.450",
+      "@remotion/compositor-linux-x64-musl": "4.0.450",
+      "@remotion/compositor-win32-x64-msvc": "4.0.450",
+      "@remotion/google-fonts": "4.0.450",
+      "@remotion/licensing": "4.0.450",
+      "@remotion/media": "4.0.450",
+      "@remotion/media-parser": "4.0.450",
+      "@remotion/media-utils": "4.0.450",
+      "@remotion/motion-blur": "4.0.450",
+      "@remotion/paths": "4.0.450",
+      "@remotion/player": "4.0.450",
+      "@remotion/renderer": "4.0.450",
+      "@remotion/shapes": "4.0.450",
+      "@remotion/streaming": "4.0.450",
+      "@remotion/studio": "4.0.450",
+      "@remotion/studio-server": "4.0.450",
+      "@remotion/studio-shared": "4.0.450",
+      "@remotion/transitions": "4.0.450",
+      "@remotion/web-renderer": "4.0.450",
+      "@remotion/zod-types": "4.0.450"
+    }
   }
 }

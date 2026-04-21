@@ -3,6 +3,7 @@
   "pages": [
     "index",
     "getting-started",
+    "cli",
     "github",
     "twitter",
     "npm",

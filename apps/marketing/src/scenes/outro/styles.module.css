@@ -1,0 +1,27 @@
+.stage {
+  align-items: center;
+  justify-content: center;
+  padding: 0 160px;
+  background: white;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.segment {
+  display: inline-block;
+  will-change: color, opacity;
+}
+
+.wash {
+  pointer-events: none;
+  background: #ffffff;
+}

@@ -1,0 +1,8 @@
+node_modules
+out
+.remotion
+public/sounds
+src/sounds.generated.ts
+src/music.generated.ts
+
+build

@@ -24,6 +24,32 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "@web-kits/marketing#bake": {
+      "inputs": [
+        "scripts/bake-sounds.ts",
+        "../../.web-kits/*.json",
+        "../../packages/audio/src/**"
+      ],
+      "outputs": [
+        "public/sounds/**",
+        "src/generated/sounds.ts"
+      ]
+    },
+    "@web-kits/marketing#dev": {
+      "dependsOn": [
+        "@web-kits/marketing#bake"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "@web-kits/marketing#render": {
+      "dependsOn": [
+        "@web-kits/marketing#bake"
+      ],
+      "outputs": [
+        "out/**"
+      ]
     }
   },
   "ui": "tui"

@@ -1,0 +1,41 @@
+{
+  "name": "@web-kits/marketing",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm bake && pnpm music && remotion studio",
+    "studio": "remotion studio",
+    "bake": "tsx scripts/bake-sounds.ts",
+    "music": "tsx scripts/generate-music.ts",
+    "prebuild": "pnpm bake && pnpm music",
+    "build": "remotion bundle",
+    "render": "pnpm bake && pnpm music && remotion render Marketing out/launch-video.mp4 --codec=h264 --concurrency=4",
+    "lint": "biome check --fix --unsafe .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.450",
+    "@remotion/cli": "4.0.450",
+    "@remotion/google-fonts": "4.0.450",
+    "@remotion/media": "4.0.450",
+    "@remotion/motion-blur": "^4.0.450",
+    "@remotion/renderer": "4.0.450",
+    "@remotion/transitions": "^4.0.450",
+    "@web-kits/audio": "workspace:^",
+    "@web-kits/ui": "workspace:^",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.450"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "css-loader": "^7.1.4",
+    "node-web-audio-api": "^1.0.9",
+    "style-loader": "^4.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

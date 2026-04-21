@@ -1,0 +1,31 @@
+.container {
+  position: relative;
+  display: inline-flex;
+  gap: 4px;
+  padding: 8px;
+  background: transparent;
+  border-radius: 28px;
+}
+
+.indicator {
+  position: absolute;
+  top: 8px;
+  width: 152px;
+  height: calc(100% - 16px);
+  background: var(--ds-gray-3);
+  border-radius: 20px;
+}
+
+.item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 152px;
+  height: 68px;
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}

@@ -58,9 +58,9 @@ export function ThemeToggle() {
       onClick={() => {
         const nextResolved =
           next === "system"
-            ? (window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light")
+            ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light"
             : next;
         if (nextResolved === "dark" && resolvedTheme !== "dark") {
           playToggleOff();

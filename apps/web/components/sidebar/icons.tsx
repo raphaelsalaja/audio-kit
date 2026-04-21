@@ -1,3 +1,4 @@
+import { version as audioVersion } from "@web-kits/audio/package.json";
 import HotDrink from "@web-kits/icons/fill/hot-drink";
 import Atom from "@web-kits/icons/fill-duo/atom";
 import CircleWaveformLines from "@web-kits/icons/fill-duo/circle-waveform-lines";
@@ -21,6 +22,7 @@ import Speaker from "@web-kits/icons/fill-duo/speaker";
 import Stack from "@web-kits/icons/fill-duo/stack";
 import TaskDebug from "@web-kits/icons/fill-duo/task-debug";
 import WaveformLines from "@web-kits/icons/fill-duo/waveform-lines";
+import WindowCode2 from "@web-kits/icons/fill-duo/window-code-2";
 import Github from "@web-kits/icons/social-media/github";
 import XTwitter from "@web-kits/icons/social-media/x-twitter";
 
@@ -39,6 +41,8 @@ const iconMap: Record<string, IconEntry> = {
   "/getting-started": { icon: Download, color: "var(--green-9)" },
   "/getting-started/typescript": { icon: Code, color: "var(--blue-9)" },
   "/getting-started/react": { icon: Atom, color: "var(--cyan-9)" },
+
+  "/cli": { icon: WindowCode2, color: "var(--purple-9)" },
 
   "/concepts/sources": { icon: WaveformLines, color: "var(--purple-9)" },
   "/concepts/filters": { icon: Equalizer, color: "var(--orange-9)" },
@@ -159,7 +163,7 @@ const iconMap: Record<string, IconEntry> = {
     color: "var(--red-9)",
     external: true,
     href: "https://npmjs.com/package/@web-kits/audio",
-    tag: "v0.0.6",
+    tag: `v${audioVersion}`,
   },
   "/buy-me-a-coffee": {
     icon: HotDrink,

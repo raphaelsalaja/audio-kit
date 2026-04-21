@@ -1,0 +1,19 @@
+.stage {
+  overflow: hidden;
+  background: white;
+}
+
+.cameraLayer {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+}
+
+.demoCardWrap {
+  position: absolute;
+}
+
+.shotCursor {
+  position: absolute;
+  inset: 0;
+}

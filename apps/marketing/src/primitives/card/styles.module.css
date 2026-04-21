@@ -1,0 +1,7 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  transform-origin: center;
+  will-change: filter, transform, opacity;
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@web-kits/audio": ["../../packages/audio/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*", "scripts/**/*", "remotion.config.ts"],
+  "exclude": ["node_modules", "out"]
+}

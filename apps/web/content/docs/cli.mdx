@@ -1,0 +1,63 @@
+---
+title: Command Line
+description: Install and manage sound patches from the command line.
+---
+
+`@web-kits/audio` ships a small CLI that installs sound patches into your project as typed TypeScript modules. Patches can come from a central registry, a GitHub repository, a direct URL, or a local path — in every case the CLI writes a generated `.ts` file per patch and keeps a barrel `index.ts` up to date.
+
+## Run without installing
+
+The CLI is published as the `bin` field of `@web-kits/audio`, so you can invoke it with `npx`, `pnpm dlx`, or `bunx` without adding anything to your dependencies.
+
+<Tabs items={[
+  { label: "npm", value: "npx @web-kits/audio add" },
+  { label: "yarn", value: "yarn dlx @web-kits/audio add" },
+  { label: "pnpm", value: "pnpm dlx @web-kits/audio add" },
+  { label: "bun", value: "bunx @web-kits/audio add" },
+]} />
+
+Running the bare command prints a banner with a short command list. Pass `--help` for the full reference, or `--version` to print the installed version.
+
+## Commands
+
+| Command                | Aliases            | What it does                              |
+| ---------------------- | ------------------ | ----------------------------------------- |
+| `add [source]`         | `a`                | Install sound patches from any source     |
+| `find [query]`         | `f`, `s`, `search` | Search the registry by name, tag, or text |
+| `list`                 | `ls`               | List installed patches                    |
+| `remove [names...]`    | `rm`               | Remove installed patches                  |
+| `check`                |                    | Check the registry for updates            |
+| `update`               | `upgrade`          | Re-download installed patches             |
+| `init`                 |                    | Scaffold a new local patch file           |
+
+## Source formats
+
+`add` accepts four kinds of source. The CLI picks a strategy based on what the argument looks like.
+
+| Source            | Example                                           | Behavior                                   |
+| ----------------- | ------------------------------------------------- | ------------------------------------------ |
+| _(none)_          | `@web-kits/audio add`                             | Browse the registry with a multiselect     |
+| Local path        | `@web-kits/audio add ./.web-kits/`                | Scan a directory (or a single `.json`)     |
+| GitHub shorthand  | `@web-kits/audio add raphaelsalaja/audio`         | Discover patches via the GitHub Tree API   |
+| Direct JSON URL   | `@web-kits/audio add https://example.com/sfx.json` | Fetch and validate a single patch file     |
+
+## What gets written
+
+Installing a patch creates two things inside the output directory (default `.web-kits/`):
+
+1. `<slug>.ts` — a generated module with one `SoundDefinition` export per sound plus a `_patch: SoundPatch` aggregate.
+2. `index.ts` — a barrel that re-exports every installed patch as a namespace.
+
+```ts title=".web-kits/index.ts"
+export * as core from "./core";
+export * as playful from "./playful";
+```
+
+In app code, import the barrel and play sounds by name:
+
+```ts
+import { playful } from "./.web-kits";
+
+playful.tap();
+playful.success();
+```
