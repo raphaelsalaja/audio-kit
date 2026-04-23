@@ -1,0 +1,517 @@
+.rackItems {
+  display: flex;
+  gap: 0.45rem;
+  align-items: stretch;
+  padding-bottom: 0.25rem;
+  overflow-x: auto;
+}
+
+.rackItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 260px;
+  min-width: 260px;
+  padding: 1.15rem 0.7rem 0.9rem;
+  background: var(--ds-gray-1);
+  border: 1px solid var(--ds-gray-4);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--ds-gray-1);
+}
+
+.bolt {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--ds-gray-4);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--ds-gray-1);
+}
+
+.boltTL {
+  top: 6px;
+  left: 6px;
+}
+.boltTR {
+  top: 6px;
+  right: 6px;
+}
+.boltBL {
+  bottom: 6px;
+  left: 6px;
+}
+.boltBR {
+  right: 6px;
+  bottom: 6px;
+}
+
+.rackItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rackItemType {
+  font-size: 0.7rem;
+  color: var(--ds-gray-10);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.headerActions {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.iconBtn {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  color: var(--ds-gray-10);
+  cursor: pointer;
+  background: var(--ds-gray-3);
+  border: 1px solid var(--ds-gray-4);
+  border-radius: 6px;
+  transition:
+    color 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+.bypassBtn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--ds-gray-8);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  transition:
+    background 120ms,
+    color 120ms;
+}
+
+.bypassBtn:hover {
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-3);
+}
+
+.bypassBtn[data-bypassed] {
+  color: #f59e0b;
+}
+
+.bypassBtn[data-bypassed]:hover {
+  color: #d97706;
+  background: rgba(245, 158, 11, 0.12);
+}
+
+.moveBtn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  color: var(--ds-gray-8);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  transition:
+    background 120ms,
+    color 120ms;
+}
+
+.moveBtn:hover:not(:disabled) {
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-3);
+}
+
+.moveBtn:disabled {
+  cursor: default;
+  opacity: 0.25;
+}
+
+.chevronFlip {
+  display: flex;
+  transform: rotate(180deg);
+}
+
+.deleteBtn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--ds-gray-8);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  transition:
+    background 120ms,
+    color 120ms;
+}
+
+.deleteBtn:hover {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.12);
+}
+
+.rackItemBypassed {
+  opacity: 0.45;
+}
+
+.iconBtn:hover {
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-4);
+  border-color: var(--ds-gray-5);
+}
+
+.rackItemTitle {
+  font-size: 0.86rem;
+  color: var(--ds-gray-12);
+}
+
+.field {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.fieldInline {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fieldLabel {
+  font-size: 0.72rem;
+  color: var(--ds-gray-10);
+}
+
+.fieldInput {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-3);
+  border: 1px solid var(--ds-gray-4);
+  border-radius: 7px;
+}
+
+.fieldInput:focus {
+  outline: none;
+  border-color: var(--ds-gray-6);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.fieldGroup {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  width: 40px;
+  height: 22px;
+  padding: 2px;
+  cursor: pointer;
+  background: var(--ds-gray-3);
+  border: 1px solid var(--ds-gray-5);
+  border-radius: 999px;
+  transition: background-color 120ms ease;
+}
+
+.switch[data-checked] {
+  background: var(--ds-gray-6);
+}
+
+.switchThumb {
+  width: 16px;
+  height: 16px;
+  background: var(--ds-gray-1);
+  border-radius: 999px;
+  transition: transform 120ms ease;
+}
+
+.switch[data-checked] .switchThumb {
+  transform: translateX(18px);
+}
+
+/* ── ADSR editor ── */
+
+.adsrWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.adsrSvg {
+  display: block;
+  width: 100%;
+  touch-action: none;
+  user-select: none;
+  background: var(--ds-gray-1);
+  border: 1px solid var(--ds-gray-4);
+  border-radius: 6px;
+}
+
+.adsrAxis {
+  stroke: var(--ds-gray-5);
+  stroke-width: 1;
+}
+
+.adsrRef {
+  stroke: var(--ds-gray-5);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.adsrTick {
+  stroke: var(--ds-gray-6);
+  stroke-width: 1;
+}
+
+.adsrFill {
+  opacity: 0.4;
+  fill: var(--ds-gray-4);
+}
+
+.adsrCurve {
+  fill: none;
+  stroke: var(--ds-gray-11);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.adsrHandle {
+  cursor: grab;
+  fill: var(--ds-gray-2);
+  stroke: var(--ds-gray-9);
+  stroke-width: 1.5;
+}
+
+.adsrHandle:hover {
+  fill: var(--ds-gray-4);
+  stroke: var(--ds-gray-11);
+}
+
+.adsrHandle:active {
+  cursor: grabbing;
+}
+
+.adsrValues {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adsrValueLabel {
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-gray-10);
+}
+
+/* ── Knobs ── */
+
+.knobRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.2rem;
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--ds-gray-4);
+}
+
+.knob {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  align-items: center;
+}
+
+.knobSvg {
+  display: block;
+  touch-action: none;
+  cursor: ns-resize;
+  user-select: none;
+}
+
+.knobSvg:active {
+  cursor: grabbing;
+}
+
+.knobTrack {
+  fill: none;
+  stroke: var(--ds-gray-4);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.knobArc {
+  fill: none;
+  stroke: var(--ds-gray-9);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.knobBody {
+  fill: var(--ds-gray-3);
+  stroke: var(--ds-gray-5);
+  stroke-width: 1;
+}
+
+.knobDot {
+  fill: var(--ds-gray-11);
+}
+
+.knobLabel {
+  font-size: 0.63rem;
+  color: var(--ds-gray-10);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.knobValue {
+  font-size: 0.63rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-gray-11);
+}
+
+.addRackControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+}
+
+.addRackBtn {
+  flex: 1;
+  min-width: 60px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ds-gray-8);
+  cursor: pointer;
+  background: transparent;
+  border: 1px dashed var(--ds-gray-5);
+  border-radius: 7px;
+  transition:
+    background 120ms,
+    color 120ms,
+    border-color 120ms,
+    border-style 120ms;
+}
+
+.addRackBtn:hover {
+  color: var(--ds-gray-12);
+  background: var(--ds-gray-3);
+  border-color: var(--ds-gray-6);
+  border-style: solid;
+}
+
+/* ── MIX rack item ── */
+
+.rackItemSlim {
+  width: 116px;
+  min-width: 116;
+  min-height: 300px;
+}
+
+/* mixControls fills the remaining rack item height and stacks top-to-bottom */
+.mixControls {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* Vertical fader fills available height */
+.mixFaderCol {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.faderV {
+  flex: 1;
+  width: 24px;
+  min-height: 60px;
+  -webkit-appearance: slider-vertical;
+  appearance: slider-vertical;
+  accent-color: var(--ds-gray-11);
+  cursor: pointer;
+  direction: rtl;
+  writing-mode: vertical-lr;
+}
+
+/* Pan knob column */
+.mixKnobCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+/* Delay column */
+.mixDelayCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.mixDelayInput {
+  width: 100%;
+  padding: 0.25rem 0.3rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--ds-gray-12);
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  background: var(--ds-gray-3);
+  border: 1px solid var(--ds-gray-5);
+  border-radius: 5px;
+}
+
+.mixDelayInput::-webkit-outer-spin-button,
+.mixDelayInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.mixLabel {
+  font-size: 0.63rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-gray-11);
+  letter-spacing: 0.02em;
+}
+
+.mixParamLabel {
+  font-size: 0.6rem;
+  color: var(--ds-gray-8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
