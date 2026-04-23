@@ -1,0 +1,31 @@
+{
+  "name": "@web-kits/recorder",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./react": "./src/react.tsx",
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "lint": "biome check --fix --unsafe .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.2.0",
+    "@remotion/player": "4.0.450",
+    "@web-kits/ui": "workspace:*",
+    "mediabunny": "^1.40.1",
+    "remotion": "4.0.450"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "^5.9.3"
+  }
+}

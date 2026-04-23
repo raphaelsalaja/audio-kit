@@ -1,0 +1,95 @@
+.root {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dim {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.track {
+  position: relative;
+  height: 36px;
+  touch-action: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.activeRange {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: rgba(99, 179, 237, 0.18);
+  border-top: 1px solid rgba(99, 179, 237, 0.5);
+  border-bottom: 1px solid rgba(99, 179, 237, 0.5);
+}
+
+.dimRange {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.handle {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 14px;
+  padding: 0;
+  margin: 0;
+  touch-action: none;
+  cursor: ew-resize;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transform: translateX(-50%);
+}
+
+.handle:hover {
+  background: #fafafa;
+}
+
+.handle::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 14px;
+  content: "";
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.handleStart {
+  cursor: ew-resize;
+}
+
+.handleEnd {
+  cursor: ew-resize;
+}
+
+.playhead {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  pointer-events: none;
+  background: #ef4444;
+  border-radius: 1px;
+  transform: translateX(-50%);
+}

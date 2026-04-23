@@ -1,0 +1,11 @@
+/*
+ * Optional stylesheet with CSS variables consumers can override.
+ * The <Recorder /> component is self-styled via CSS modules, but importing
+ * this file lets you theme it (accent color, z-index, fonts).
+ */
+:root {
+  --recorder-accent: #3b82f6;
+  --recorder-z: 2147483000;
+  --recorder-font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --recorder-font-mono: "SF Mono", "Fira Code", "Fira Mono", monospace;
+}

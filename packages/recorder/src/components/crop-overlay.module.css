@@ -1,0 +1,114 @@
+.root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.maskTop,
+.maskBottom,
+.maskLeft,
+.maskRight {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.maskTop {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.maskBottom {
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.maskLeft {
+  left: 0;
+}
+
+.maskRight {
+  right: 0;
+}
+
+.box {
+  position: absolute;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: move;
+  outline: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.85);
+}
+
+.edge {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.edgeN {
+  top: -4px;
+  right: 12px;
+  left: 12px;
+  height: 8px;
+  cursor: ns-resize;
+}
+
+.edgeS {
+  right: 12px;
+  bottom: -4px;
+  left: 12px;
+  height: 8px;
+  cursor: ns-resize;
+}
+
+.edgeW {
+  top: 12px;
+  bottom: 12px;
+  left: -4px;
+  width: 8px;
+  cursor: ew-resize;
+}
+
+.edgeE {
+  top: 12px;
+  right: -4px;
+  bottom: 12px;
+  width: 8px;
+  cursor: ew-resize;
+}
+
+.corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: auto;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+}
+
+.cornerNW {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+
+.cornerNE {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+
+.cornerSW {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+
+.cornerSE {
+  right: -6px;
+  bottom: -6px;
+  cursor: nwse-resize;
+}

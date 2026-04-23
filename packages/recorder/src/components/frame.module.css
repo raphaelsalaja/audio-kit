@@ -1,0 +1,33 @@
+.frame {
+  position: fixed;
+  z-index: var(--recorder-z, 2147483000);
+  box-sizing: border-box;
+  pointer-events: none;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease,
+    border-width 120ms ease,
+    border-radius 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.frame[data-state="selected"] {
+  outline: 1.5px dashed var(--recorder-accent, #3b82f6);
+  outline-offset: 3px;
+}
+
+.frame[data-state="recording"] {
+  outline: 2px solid #ef4444;
+  outline-offset: 4px;
+  animation: recorder-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes recorder-pulse {
+  0%,
+  100% {
+    outline-color: #ef4444;
+  }
+  50% {
+    outline-color: rgba(239, 68, 68, 0.35);
+  }
+}

@@ -1,0 +1,14 @@
+.spotlight {
+  position: fixed;
+  z-index: calc(var(--recorder-z, 2147483000) - 1);
+  box-sizing: border-box;
+  pointer-events: none;
+  box-shadow: 0 0 0 100vmax var(--recorder-spotlight-color, #000);
+  transition:
+    top 120ms ease,
+    left 120ms ease,
+    width 120ms ease,
+    height 120ms ease,
+    border-radius 120ms ease,
+    box-shadow 200ms ease;
+}

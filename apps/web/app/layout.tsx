@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { ReactNode } from "react";
 import { DrawerShell } from "@/components/drawer-shell";
+import { RecorderMount } from "@/components/recorder";
 import { SidebarSlotProvider } from "@/components/sidebar-slot";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TopNav } from "@/components/top-nav";
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   <TopNav />
                   {children}
                 </DrawerShell>
+                <RecorderMount />
               </SidebarSlotProvider>
             </ThemeProvider>
           </SoundProvider>

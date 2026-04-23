@@ -1,0 +1,79 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--recorder-z, 2147483000);
+  pointer-events: none;
+}
+
+.cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+.highlight {
+  position: fixed;
+  pointer-events: none;
+  background: color-mix(
+    in srgb,
+    var(--recorder-accent, #3b82f6) 12%,
+    transparent
+  );
+  border: 2px solid var(--recorder-accent, #3b82f6);
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  transition:
+    top 60ms ease,
+    left 60ms ease,
+    width 60ms ease,
+    height 60ms ease;
+}
+
+.label {
+  position: fixed;
+  padding: 4px 8px;
+  font-family: var(
+    --recorder-font-mono,
+    "SF Mono",
+    "Fira Code",
+    "Fira Mono",
+    monospace
+  );
+  font-size: 11px;
+  line-height: 1;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  background: var(--recorder-accent, #3b82f6);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(calc(-100% - 4px));
+}
+
+.hint {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  padding: 8px 14px;
+  font-family: var(--recorder-font-sans, system-ui, sans-serif);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.92);
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.82);
+  border-radius: 999px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(8px);
+  transform: translateX(-50%);
+}
+
+.hint kbd {
+  padding: 2px 6px;
+  margin: 0 4px;
+  font-family: inherit;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}

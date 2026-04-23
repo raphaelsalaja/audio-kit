@@ -16,6 +16,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "@web-kits/audio": "workspace:^",
     "@web-kits/icons": "workspace:*",
+    "@web-kits/recorder": "workspace:*",
     "@web-kits/ui": "workspace:*",
     "calligraph": "^1.4.1",
     "clsx": "^2.1.1",

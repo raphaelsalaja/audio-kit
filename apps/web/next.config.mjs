@@ -8,6 +8,7 @@ const securityHeaders = [
       "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
+      "media-src 'self' blob:",
       "font-src 'self' data:",
       "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com",
       "frame-ancestors 'none'",
@@ -31,7 +32,12 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const config = {
-  transpilePackages: ["@web-kits/audio", "@web-kits/icons", "@web-kits/ui"],
+  transpilePackages: [
+    "@web-kits/audio",
+    "@web-kits/icons",
+    "@web-kits/recorder",
+    "@web-kits/ui",
+  ],
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

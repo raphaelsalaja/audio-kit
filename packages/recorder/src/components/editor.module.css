@@ -1,0 +1,362 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--recorder-z, 2147483000) + 2);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  width: min(1200px, 96vw);
+  height: min(800px, 92vh);
+  overflow: hidden;
+  font-family: var(--recorder-font-sans, system-ui, sans-serif);
+  color: #fff;
+  background: rgba(20, 20, 22, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  min-height: 0;
+}
+
+.stageWrap {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 12px;
+  min-width: 0;
+  padding: 20px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0)),
+    repeating-conic-gradient(rgba(255, 255, 255, 0.04) 0 25%, transparent 0 50%)
+    0 0 / 24px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.playerStage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: auto;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.cropPositioner {
+  position: absolute;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.timelineRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 4px 4px;
+}
+
+.timelineBox {
+  flex: 1;
+  min-width: 0;
+}
+
+.playBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 12px;
+  color: #111;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  border-radius: 18px;
+}
+
+.playBtn:hover {
+  opacity: 0.88;
+}
+
+.sidebar {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tab {
+  padding: 12px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+}
+
+.tab[data-active="true"] {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom-color: #fff;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabPanel {
+  min-height: 0;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.panel {
+  display: grid;
+  gap: 16px;
+}
+
+.sectionHead {
+  padding-bottom: 4px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.fieldHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.fieldValue {
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.field input[type="range"] {
+  width: 100%;
+}
+
+.inline {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.inline input[type="range"] {
+  flex: 1;
+}
+
+.inline input[type="color"] {
+  width: 32px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.swatch {
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+}
+
+.swatch[data-active="true"] {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(99, 179, 237, 0.5);
+}
+
+.swatchCheck {
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.18) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.18) 75%);
+  background-position:
+    0 0,
+    0 4px,
+    4px -4px,
+    -4px 0;
+  background-size: 8px 8px;
+}
+
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.segment {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: capitalize;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+}
+
+.segment[data-active="true"] {
+  color: #111;
+  background: #fff;
+}
+
+.segment:hover:not([data-active="true"]) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hint {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.cropSummary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 8px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+}
+
+.dim {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.actionsRow {
+  display: flex;
+  gap: 8px;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.progress {
+  color: #6ee7b7;
+}
+
+.error {
+  color: #fda4af;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.btn {
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+}
+
+.btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btnGhost {
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btnGhost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 800px) {
+  .body {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: none;
+  }
+  .stageWrap {
+    border-right: none;
+  }
+}

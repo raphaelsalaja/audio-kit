@@ -1,0 +1,234 @@
+.root {
+  position: fixed;
+  z-index: calc(var(--recorder-z, 2147483000) + 1);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px;
+  font-family: var(--recorder-font-sans, system-ui, sans-serif);
+  font-size: 12px;
+  color: #fff;
+  pointer-events: auto;
+  background: rgba(20, 20, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.32),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  transform: translateX(-50%);
+}
+
+.group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 0 6px;
+}
+
+.group + .group {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.slider {
+  width: 72px;
+  height: 4px;
+  appearance: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+.slider::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  appearance: none;
+  cursor: grab;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  appearance: none;
+  cursor: grab;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.num {
+  width: 28px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: right;
+}
+
+.color {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+}
+
+.color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.segment {
+  padding: 4px 8px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
+}
+
+.segment:hover {
+  color: #fff;
+}
+
+.segment[data-active="true"] {
+  color: #111;
+  background: #fff;
+}
+
+.swatches {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.swatch {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+}
+
+.swatch[data-active="true"] {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.swatchCheck {
+  position: relative;
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.25) 25%, transparent 25%) 0 0 /
+    8px 8px,
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.25) 25%, transparent 25%) 0
+    4px / 8px 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #111;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: opacity 120ms ease;
+}
+
+.btn:hover {
+  opacity: 0.88;
+}
+
+.btnGhost {
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btnGhost:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.btnRecord {
+  color: #fff;
+  background: #ef4444;
+}
+
+.btnStop {
+  color: #fff;
+  background: #ef4444;
+}
+
+.btnStop::before {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  content: "";
+  background: #fff;
+  border-radius: 2px;
+}
+
+.btnRecord::before {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  content: "";
+  background: #fff;
+  border-radius: 50%;
+  animation: recorder-blink 1s ease-in-out infinite;
+}
+
+@keyframes recorder-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.notice {
+  padding: 2px 6px;
+  font-size: 10px;
+  color: rgba(250, 204, 21, 0.95);
+  background: rgba(250, 204, 21, 0.1);
+  border-radius: 4px;
+}
