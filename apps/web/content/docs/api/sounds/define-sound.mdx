@@ -28,16 +28,37 @@ function defineSound(definition: SoundDefinition): (opts?: PlayOptions) => Voice
 
 Override volume, panning, or pitch at play time without changing the definition.
 
-| Property       | Type     | Description            |
-| -------------- | -------- | ---------------------- |
-| `volume`       | `number` | Gain multiplier        |
-| `pan`          | `number` | Stereo pan (-1 to 1)   |
-| `detune`       | `number` | Pitch offset (cents)   |
-| `playbackRate` | `number` | Speed multiplier       |
-| `velocity`     | `number` | Intensity (0–1)        |
+| Property       | Type     | Description                                          |
+| -------------- | -------- | ---------------------------------------------------- |
+| `volume`       | `number` | Gain multiplier                                      |
+| `pan`          | `number` | Stereo pan (-1 to 1)                                 |
+| `detune`       | `number` | Pitch offset (cents)                                 |
+| `playbackRate` | `number` | Speed multiplier                                     |
+| `velocity`     | `number` | Intensity (0–1)                                      |
+| `jitter`       | `object` | Per-voice random variation (see [below](#jitter))    |
 
 ```ts
 play({ velocity: 0.5, pan: -0.3, detune: 100 });
+```
+
+### Jitter
+
+Give repeated triggers a little life. `jitter` randomizes chosen parameters once per voice, so the same sound never plays exactly the same way twice. Each field is the maximum symmetric offset (`±value`).
+
+| Property       | Type     | Description                                    |
+| -------------- | -------- | ---------------------------------------------- |
+| `detune`       | `number` | Random pitch in cents (e.g. `50` = ±50 cents)  |
+| `volume`       | `number` | Random gain offset (e.g. `0.1` = ±10%)         |
+| `playbackRate` | `number` | Random rate offset (e.g. `0.05` = ±5%)         |
+
+```ts
+const click = defineSound({
+  source: { type: "sine", frequency: 1800 },
+  envelope: { decay: 0.06 },
+  gain: 0.3,
+});
+
+<button onClick={() => click({ jitter: { detune: 60 } })}>Click</button>
 ```
 
 ## VoiceHandle
