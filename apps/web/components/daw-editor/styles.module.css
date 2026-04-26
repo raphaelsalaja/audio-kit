@@ -1,0 +1,18 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  border-radius: 14px;
+}
+
+.panel {
+  padding: 0.8rem;
+  background: var(--ds-gray-2);
+  border: 1px solid var(--ds-gray-4);
+  border-radius: 10px;
+}
+
+.emptyState {
+  font-size: 0.9rem;
+  color: var(--ds-gray-10);
+}

@@ -1,0 +1,200 @@
+/* ── Header ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+}
+
+.title {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ds-gray-10);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dirtyDot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--ds-orange-9);
+  border-radius: 50%;
+}
+
+.actions {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.actionBtn {
+  display: inline-flex;
+  gap: 0.3rem;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ds-gray-10);
+  cursor: pointer;
+  background: var(--ds-gray-3);
+  border: 1px solid var(--ds-gray-alpha-4);
+  border-radius: 6px;
+  transition:
+    background 120ms,
+    color 120ms,
+    border-color 120ms;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  &:not(:disabled):hover {
+    color: var(--ds-gray-12);
+    background: var(--ds-gray-4);
+  }
+}
+
+.actionBtnPrimary {
+  color: var(--ds-gray-1);
+  background: var(--ds-gray-12);
+  border-color: transparent;
+
+  &:not(:disabled):hover {
+    color: var(--ds-gray-1);
+    background: var(--ds-gray-11);
+  }
+}
+
+/* ── Outer frame ── */
+
+.preFrame {
+  display: flex;
+  overflow-x: auto;
+  /* max-height: 380px; */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  background: var(--ds-gray-1);
+  border-radius: 8px;
+}
+
+/* ── Line-number gutter ── */
+
+.gutter {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  flex-shrink: 0;
+  padding: 0.75rem 0.6rem 0.75rem 0.75rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  line-height: 1.65;
+  text-align: right;
+  user-select: none;
+  background: var(--ds-gray-3);
+}
+
+.gutterLine {
+  display: block;
+  min-width: 2ch;
+}
+
+/* ── Code area: stacked pre + textarea ── */
+
+.codeArea {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─ Typography — identical on both layers.
+   Declared together so they can never drift. ─ */
+
+.pre,
+.editorInput {
+  box-sizing: border-box;
+  grid-area: 1 / 1;
+  padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+  margin: 0;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  line-height: 1.65;
+  tab-size: 2;
+  white-space: pre;
+}
+
+/* ─ Highlighted layer ─ */
+
+.pre {
+  align-self: start; /* don't stretch — let pre set the row height */
+  width: max-content;
+  min-width: 100%;
+  min-height: 120px;
+  pointer-events: none; /* don't stretch — let pre set the row height */
+}
+
+.line {
+  display: block;
+  white-space: pre;
+}
+
+.pre span {
+  color: var(--shiki-light);
+}
+
+:global(.dark) .pre span {
+  color: var(--shiki-dark);
+}
+
+/* ─ Editable layer ─ */
+
+.editorInput {
+  z-index: 1;
+  align-self: stretch;
+  /* fills the grid cell — height matches pre automatically */
+  width: 100%;
+  overflow: hidden;
+  color: transparent;
+  caret-color: var(--ds-gray-12);
+  resize: none;
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+/* ── Error + hint ── */
+
+.errorText {
+  padding: 0.35rem 0.6rem;
+  margin: 0.45rem 0 0;
+  font-size: 0.71rem;
+  line-height: 1.5;
+  color: var(--ds-red-10);
+  background: color-mix(in oklab, var(--ds-red-3) 80%, transparent);
+  border: 1px solid var(--ds-red-a5);
+  border-radius: 6px;
+}
+
+.hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: var(--ds-gray-8);
+}
+
+.hint kbd {
+  display: inline-block;
+  padding: 0.05em 0.35em;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: var(--ds-gray-10);
+  background: var(--ds-gray-3);
+  border-radius: 4px;
+}

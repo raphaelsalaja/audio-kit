@@ -1,0 +1,30 @@
+.page {
+  max-width: 1120px;
+  padding: 2rem 1rem 3rem;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  margin-top: 0.5rem;
+  color: var(--ds-gray-10);
+}
+
+.referenceSection {
+  margin-top: 1.5rem;
+}
+
+.referenceTitle {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: var(--ds-gray-11);
+}
