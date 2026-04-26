@@ -575,13 +575,25 @@ export function render(
   const t0 = baseTime ?? ctx.currentTime;
   const velocity = opts?.velocity ?? 1;
 
+  const jitter = opts?.jitter;
+  const detuneJitter = jitter?.detune
+    ? (Math.random() * 2 - 1) * jitter.detune
+    : 0;
+  const volumeJitter = jitter?.volume
+    ? 1 + (Math.random() * 2 - 1) * jitter.volume
+    : 1;
+  const rateJitter = jitter?.playbackRate
+    ? 1 + (Math.random() * 2 - 1) * jitter.playbackRate
+    : 1;
+
   const allDisposers: (() => void)[] = [chain.dispose];
   const allSourceNodes: AudioScheduledSourceNode[] = [];
   const allEnvNodes: GainNode[] = [];
 
   for (const layer of layers) {
     const layerStart = t0 + (layer.delay ?? 0);
-    const baseGain = (layer.gain ?? 0.5) * (opts?.volume ?? 1) * velocity;
+    const baseGain =
+      (layer.gain ?? 0.5) * (opts?.volume ?? 1) * velocity * volumeJitter;
 
     const { node: envNode, duration: envDuration } = buildEnvelope(
       ctx,
@@ -598,11 +610,11 @@ export function render(
       envDuration,
     );
 
-    if (opts?.detune && sourceResult.detuneParam) {
-      sourceResult.detuneParam.value += opts.detune;
+    if (sourceResult.detuneParam && (opts?.detune || detuneJitter !== 0)) {
+      sourceResult.detuneParam.value += (opts?.detune ?? 0) + detuneJitter;
     }
-    if (opts?.playbackRate && sourceResult.playbackRateParam) {
-      sourceResult.playbackRateParam.value *= opts.playbackRate;
+    if (sourceResult.playbackRateParam && (opts?.playbackRate || rateJitter !== 1)) {
+      sourceResult.playbackRateParam.value *= (opts?.playbackRate ?? 1) * rateJitter;
     }
 
     let tail: AudioNode = sourceResult.node;

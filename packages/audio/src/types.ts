@@ -423,6 +423,25 @@ export type PlayOptions = {
   playbackRate?: number;
   /** Velocity sensitivity (0 – 1). Scales gain and can dim filter cutoffs. */
   velocity?: number;
+  /**
+   * Per-voice random variation applied once on every trigger, so repeated
+   * plays of the same sound don't feel identical. Each field is the maximum
+   * symmetric offset (`±value`). Omitted fields are not jittered.
+   *
+   * @example
+   * ```ts
+   * // ±60 cents of pitch and ±10% volume on every click
+   * click({ jitter: { detune: 60, volume: 0.1 } });
+   * ```
+   */
+  jitter?: {
+    /** Random detune in cents, applied as ±value. E.g. `50` = ±50 cents. */
+    detune?: number;
+    /** Random volume multiplier, applied as ±value (0 – 1). E.g. `0.1` = ±10%. */
+    volume?: number;
+    /** Random playback rate offset, applied as ±value. E.g. `0.05` = ±5%. */
+    playbackRate?: number;
+  };
 };
 
 /** A single step in a {@link playSequence} timeline. */
